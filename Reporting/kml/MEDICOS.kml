@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>MEDICOS DEL CHACO.kml</name>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffff0000</color>
+			<width>1.1</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4cff0000</color>
+		</PolyStyle>
+	</Style>
+	<Style id="sn_ylw-pushpin6">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<LineStyle>
+			<color>ffff0000</color>
+			<width>1.1</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>4cff0000</color>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin5">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin6</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark>
+		<name>MEDICOS DEL CHACO</name>
+		<styleUrl>#msn_ylw-pushpin5</styleUrl>
+		<Polygon>
+			<tessellate>1</tessellate>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-57.56060298776477,-25.32031817725306,0 -57.57412429328018,-25.31648550727096,0 -57.58720180243069,-25.31185590135055,0 -57.59635640476348,-25.30878839961814,0 -57.60755376543012,-25.30483652759008,0 -57.6106183128705,-25.3113310537303,0 -57.61488437285036,-25.3207846975132,0 -57.611273353045,-25.32226196550398,0 -57.61127006744165,-25.32244135925755,0 -57.61101708583112,-25.32375039851209,0 -57.61077241094322,-25.32588047800186,0 -57.61011743963846,-25.3279811463646,0 -57.60952909997768,-25.32963574744644,0 -57.60845350213635,-25.33219018075396,0 -57.60788380856077,-25.3335534570376,0 -57.60574559554389,-25.33874159228121,0 -57.60536945033757,-25.33967080348189,0 -57.6047280954319,-25.34204780789217,0 -57.60335366828064,-25.34168609050853,0 -57.60297286320848,-25.34280827873727,0 -57.60056046021335,-25.34997044951948,0 -57.60050649245711,-25.3500831967785,0 -57.60037654068639,-25.35231022818092,0 -57.60034284566632,-25.35359476645287,0 -57.59994022167002,-25.35426171691694,0 -57.59967226564487,-25.35460311412756,0 -57.5995540874105,-25.35508607840785,0 -57.59940608951188,-25.35607181005038,0 -57.59894911856085,-25.35629797941994,0 -57.59813295800623,-25.35664810836583,0 -57.59712624536503,-25.35705706065686,0 -57.5962370276262,-25.35749208832236,0 -57.5957677918252,-25.35772610652574,0 -57.59353313146384,-25.35418295282106,0 -57.59145492838697,-25.35058069106103,0 -57.58716768548959,-25.34330282006597,0 -57.58493526337709,-25.33934225449718,0 -57.56060298776477,-25.32031817725306,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>

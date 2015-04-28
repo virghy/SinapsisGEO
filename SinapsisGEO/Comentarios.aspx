@@ -1,0 +1,62 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Comentarios.aspx.cs" Inherits="SinapsisGEO.Comentarios" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <h2>Reclamos y Comentarios</h2>
+    <br />
+    <fieldset>
+        <legend>Reclamos y Comentarios</legend>
+
+        <ul>
+            <li>
+                <asp:HiddenField ID="IdCliente" runat="server" />
+                <asp:Label ID="Label1" runat="server" AssociatedControlID="txtNombre">Nombre: </asp:Label></li>
+             
+            <li>
+                <asp:Label runat="server" ID="txtNombre" Text='<%# Request.QueryString["Nombre"] %>' />   
+            </li>
+
+            <li>
+                <asp:Label ID="Label2" runat="server" AssociatedControlID="txtNroPedido">Nro Pedido: </asp:Label></li>
+                
+            <li>
+                <asp:Label runat="server" ID="txtNroPedido" Text='' />
+            </li>
+            <li>
+                <asp:Label ID="Label4" runat="server" AssociatedControlID="txtTelefono">Telefono: </asp:Label></li>
+                
+            <li>
+                <asp:TextBox runat="server" ID="txtTelefono" MaxLength="10" />
+                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Requerido" CssClass="error" ControlToValidate="txtTelefono"></asp:RequiredFieldValidator>--%>
+            </li>
+
+            <li>
+                <asp:Label ID="Label3" runat="server" AssociatedControlID="cboTipoReclamo">Tipo de Reclamo: </asp:Label></li>
+                
+            <li>
+                <asp:DropDownList ID="cboTipoReclamo" ItemType="DAL.tel_TipoReclamo" SelectMethod="GetTipoReclamo" DataTextField="TipoReclamo" DataValueField="IdTipoReclamo" runat="server"></asp:DropDownList>
+
+            </li>
+
+            <li>
+                <asp:Label ID="Label5" runat="server" AssociatedControlID="txtObs">Comentario: </asp:Label></li>
+            <li>
+                <asp:TextBox runat="server" ID="txtObs" Text=''  MaxLength="500"  TextMode="MultiLine" Height="100px" Width="400px" />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="error" runat="server" ControlToValidate="txtObs" ErrorMessage="Requerido"></asp:RequiredFieldValidator>
+            </li>
+
+        </ul>
+
+        <ul>
+            <li>
+                <asp:Button ID="Button1" runat="server" CommandName="Update" Text="Grabar" OnClick="Button1_Click" />
+                <asp:Button ID="Button2" runat="server" CommandName="Cancel" Text="Cancelar" PostBackUrl="~/Default.aspx" CausesValidation="false"/>
+
+            </li>
+        </ul>
+    
+
+    </fieldset>
+</asp:Content>

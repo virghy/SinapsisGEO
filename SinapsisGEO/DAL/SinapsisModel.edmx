@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SinapsisModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SinapsisModelStoreContainer">
+          <EntitySet Name="tel_Carrito" EntityType="SinapsisModel.Store.tel_Carrito" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tel_Carrito_Item" EntityType="SinapsisModel.Store.tel_Carrito_Item" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tel_Clientes" EntityType="SinapsisModel.Store.tel_Clientes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tel_Empresa" EntityType="SinapsisModel.Store.tel_Empresa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tel_Pedidos" EntityType="SinapsisModel.Store.tel_Pedidos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tel_Productos" EntityType="SinapsisModel.Store.tel_Productos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tel_Sucursal" EntityType="SinapsisModel.Store.tel_Sucursal" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tel_Carrito_Item_tel_Carrito" Association="SinapsisModel.Store.FK_tel_Carrito_Item_tel_Carrito">
+            <End Role="tel_Carrito" EntitySet="tel_Carrito" />
+            <End Role="tel_Carrito_Item" EntitySet="tel_Carrito_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Carrito_Item_tel_Productos" Association="SinapsisModel.Store.FK_tel_Carrito_Item_tel_Productos">
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+            <End Role="tel_Carrito_Item" EntitySet="tel_Carrito_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Carrito_tel_Clientes" Association="SinapsisModel.Store.FK_tel_Carrito_tel_Clientes">
+            <End Role="tel_Clientes" EntitySet="tel_Clientes" />
+            <End Role="tel_Carrito" EntitySet="tel_Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Pedidos_tel_Clientes" Association="SinapsisModel.Store.FK_tel_Pedidos_tel_Clientes">
+            <End Role="tel_Clientes" EntitySet="tel_Clientes" />
+            <End Role="tel_Pedidos" EntitySet="tel_Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Pedidos_tel_Empresa" Association="SinapsisModel.Store.FK_tel_Pedidos_tel_Empresa">
+            <End Role="tel_Empresa" EntitySet="tel_Empresa" />
+            <End Role="tel_Pedidos" EntitySet="tel_Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Sucursal_tel_Empresa" Association="SinapsisModel.Store.FK_tel_Sucursal_tel_Empresa">
+            <End Role="tel_Empresa" EntitySet="tel_Empresa" />
+            <End Role="tel_Sucursal" EntitySet="tel_Sucursal" />
+          </AssociationSet>
+          <AssociationSet Name="tel_Sucursal_tel_Pedidos_FK1" Association="SinapsisModel.Store.tel_Sucursal_tel_Pedidos_FK1">
+            <End Role="tel_Sucursal" EntitySet="tel_Sucursal" />
+            <End Role="tel_Pedidos" EntitySet="tel_Pedidos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tel_Carrito">
+          <Key>
+            <PropertyRef Name="IdCarrito" />
+          </Key>
+          <Property Name="IdCarrito" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="NroPedido" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="Estado" Type="char" MaxLength="1" />
+          <Property Name="Telefono" Type="bigint" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="Empresa" Type="varchar" MaxLength="50" />
+          <Property Name="referencia" Type="varchar" MaxLength="50" />
+          <Property Name="audit_Usuario" Type="int" />
+          <Property Name="Audit_Fecha" Type="datetime" />
+          <Property Name="obs" Type="varchar" MaxLength="50" />
+          <Property Name="IdSucursal" Type="int" />
+          <Property Name="cuadrante" Type="char" MaxLength="5" />
+          <Property Name="IdTipoPedido" Type="char" MaxLength="2" />
+          <Property Name="CostoEnvio" Type="money" />
+          <Property Name="TotalPedido" Type="money" />
+          <Property Name="TotalGeneral" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="Anulado" Type="char" MaxLength="1" />
+          <Property Name="IdFormaPago" Type="int" />
+        </EntityType>
+        <EntityType Name="tel_Carrito_Item">
+          <Key>
+            <PropertyRef Name="IdCarritoItem" />
+          </Key>
+          <Property Name="IdCarritoItem" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="IdProducto" Type="char" MaxLength="10" />
+          <Property Name="IdProducto1" Type="char" MaxLength="10" />
+          <Property Name="Cantidad" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Precio" Type="money" />
+          <Property Name="IdCarrito" Type="int" />
+          <Property Name="Obs" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tel_Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion1" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="Empresa" Type="varchar" MaxLength="50" />
+          <Property Name="referencia" Type="varchar" MaxLength="50" />
+          <Property Name="audit_Usuario" Type="varchar" MaxLength="20" />
+          <Property Name="Audit_Fecha" Type="datetime" />
+          <Property Name="obs" Type="varchar" MaxLength="50" />
+          <Property Name="NroDoc" Type="varchar" MaxLength="20" />
+          <Property Name="Telefono" Type="bigint" />
+          <Property Name="NroCasa" Type="smallint" />
+          <Property Name="IdSucursal" Type="int" />
+          <Property Name="cuadrante" Type="char" MaxLength="5" />
+          <Property Name="Nombres" Type="varchar" MaxLength="101" StoreGeneratedPattern="Computed" />
+          <Property Name="IdClienteWeb" Type="int" />
+          <Property Name="GeoLat" Type="decimal" Precision="9" Scale="6" />
+          <Property Name="GeoLng" Type="decimal" Precision="9" Scale="6" />
+        </EntityType>
+        <EntityType Name="tel_Empresa">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="Telefonos" Type="varchar" MaxLength="20" />
+          <Property Name="Contacto" Type="varchar" MaxLength="50" />
+          <Property Name="CostoEnvio" Type="money" />
+        </EntityType>
+        <EntityType Name="tel_Pedidos">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="NroPedido" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="Estado" Type="char" MaxLength="1" />
+          <Property Name="Telefono" Type="bigint" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="Empresa" Type="varchar" MaxLength="50" />
+          <Property Name="referencia" Type="varchar" MaxLength="50" />
+          <Property Name="audit_Usuario" Type="int" />
+          <Property Name="Audit_Fecha" Type="datetime" />
+          <Property Name="horaCola" Type="int" />
+          <Property Name="horaPreparacion" Type="int" />
+          <Property Name="HoraEnvio" Type="int" />
+          <Property Name="HoraEntrega" Type="varchar" MaxLength="50" />
+          <Property Name="obs" Type="varchar" MaxLength="50" />
+          <Property Name="IdMovil" Type="int" />
+          <Property Name="IdSucursal" Type="int" />
+          <Property Name="cuadrante" Type="char" MaxLength="5" />
+          <Property Name="IdTipoPedido" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="CostoEnvio" Type="money" />
+          <Property Name="TotalPedido" Type="money" />
+          <Property Name="TotalGeneral" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="Vuelto" Type="money" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" />
+          <Property Name="Anulado" Type="char" MaxLength="1" />
+          <Property Name="IdFormaPago" Type="int" />
+          <Property Name="IdCarrito" Type="int" />
+          <Property Name="IdPedidoWeb" Type="int" />
+        </EntityType>
+        <EntityType Name="tel_Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdProducto" Type="char" Nullable="false" MaxLength="10" />
+          <Property Name="IdPadre" Type="char" MaxLength="10" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Tipo" Type="char" MaxLength="1" />
+          <Property Name="IdGrupo" Type="char" MaxLength="10" />
+          <Property Name="IdGrupoPadre" Type="char" MaxLength="10" />
+          <Property Name="Contenido" Type="varchar" MaxLength="500" />
+          <Property Name="PideCantidad" Type="bit" />
+          <Property Name="SaboresMax" Type="int" />
+          <Property Name="Orden" Type="varchar" MaxLength="50" />
+          <Property Name="Seleccionable" Type="bit" />
+          <Property Name="FiltraSucursal" Type="bit" />
+        </EntityType>
+        <EntityType Name="tel_Sucursal">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdSucursal" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" Nullable="false" />
+          <Property Name="IdSucursal" Type="int" Nullable="false" />
+          <Property Name="Sucursal" Type="varchar" MaxLength="50" />
+          <Property Name="Obs" Type="varchar" MaxLength="150" />
+          <Property Name="IdLista" Type="char" MaxLength="2" />
+        </EntityType>
+        <Association Name="FK_tel_Carrito_Item_tel_Carrito">
+          <End Role="tel_Carrito" Type="SinapsisModel.Store.tel_Carrito" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tel_Carrito_Item" Type="SinapsisModel.Store.tel_Carrito_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Carrito">
+              <PropertyRef Name="IdCarrito" />
+            </Principal>
+            <Dependent Role="tel_Carrito_Item">
+              <PropertyRef Name="IdCarrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Carrito_Item_tel_Productos">
+          <End Role="tel_Productos" Type="SinapsisModel.Store.tel_Productos" Multiplicity="0..1" />
+          <End Role="tel_Carrito_Item" Type="SinapsisModel.Store.tel_Carrito_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="tel_Carrito_Item">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Carrito_tel_Clientes">
+          <End Role="tel_Clientes" Type="SinapsisModel.Store.tel_Clientes" Multiplicity="0..1" />
+          <End Role="tel_Carrito" Type="SinapsisModel.Store.tel_Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="tel_Carrito">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Pedidos_tel_Clientes">
+          <End Role="tel_Clientes" Type="SinapsisModel.Store.tel_Clientes" Multiplicity="0..1" />
+          <End Role="tel_Pedidos" Type="SinapsisModel.Store.tel_Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="tel_Pedidos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Pedidos_tel_Empresa">
+          <End Role="tel_Empresa" Type="SinapsisModel.Store.tel_Empresa" Multiplicity="0..1" />
+          <End Role="tel_Pedidos" Type="SinapsisModel.Store.tel_Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tel_Pedidos">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Sucursal_tel_Empresa">
+          <End Role="tel_Empresa" Type="SinapsisModel.Store.tel_Empresa" Multiplicity="1" />
+          <End Role="tel_Sucursal" Type="SinapsisModel.Store.tel_Sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tel_Sucursal">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tel_Sucursal_tel_Pedidos_FK1">
+          <End Role="tel_Sucursal" Type="SinapsisModel.Store.tel_Sucursal" Multiplicity="0..1" />
+          <End Role="tel_Pedidos" Type="SinapsisModel.Store.tel_Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Sucursal">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="tel_Pedidos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SinapsisModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="SinapsisEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tel_Clientes" EntityType="SinapsisModel.tel_Clientes" />
+          <EntitySet Name="tel_Pedidos" EntityType="SinapsisModel.tel_Pedidos" />
+          <AssociationSet Name="FK_tel_Pedidos_tel_Clientes" Association="SinapsisModel.FK_tel_Pedidos_tel_Clientes">
+            <End Role="tel_Clientes" EntitySet="tel_Clientes" />
+            <End Role="tel_Pedidos" EntitySet="tel_Pedidos" />
+          </AssociationSet>
+          <EntitySet Name="tel_Sucursal" EntityType="SinapsisModel.tel_Sucursal" />
+          <AssociationSet Name="tel_Sucursal_tel_Pedidos_FK1" Association="SinapsisModel.tel_Sucursal_tel_Pedidos_FK1">
+            <End Role="tel_Sucursal" EntitySet="tel_Sucursal" />
+            <End Role="tel_Pedidos" EntitySet="tel_Pedidos" />
+          </AssociationSet>
+          <EntitySet Name="tel_Productos" EntityType="SinapsisModel.tel_Productos" />
+          <EntitySet Name="tel_Carrito" EntityType="SinapsisModel.tel_Carrito" />
+          <EntitySet Name="tel_Carrito_Item" EntityType="SinapsisModel.tel_Carrito_Item" />
+          <EntitySet Name="tel_Empresa" EntityType="SinapsisModel.tel_Empresa" />
+          <AssociationSet Name="FK_tel_Carrito_Item_tel_Carrito" Association="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito">
+            <End Role="tel_Carrito" EntitySet="tel_Carrito" />
+            <End Role="tel_Carrito_Item" EntitySet="tel_Carrito_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Carrito_tel_Clientes" Association="SinapsisModel.FK_tel_Carrito_tel_Clientes">
+            <End Role="tel_Clientes" EntitySet="tel_Clientes" />
+            <End Role="tel_Carrito" EntitySet="tel_Carrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Carrito_Item_tel_Productos" Association="SinapsisModel.FK_tel_Carrito_Item_tel_Productos">
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+            <End Role="tel_Carrito_Item" EntitySet="tel_Carrito_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Pedidos_tel_Empresa" Association="SinapsisModel.FK_tel_Pedidos_tel_Empresa">
+            <End Role="tel_Empresa" EntitySet="tel_Empresa" />
+            <End Role="tel_Pedidos" EntitySet="tel_Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Sucursal_tel_Empresa" Association="SinapsisModel.FK_tel_Sucursal_tel_Empresa">
+            <End Role="tel_Empresa" EntitySet="tel_Empresa" />
+            <End Role="tel_Sucursal" EntitySet="tel_Sucursal" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tel_Clientes">
+          <Key>
+            <PropertyRef Name="IdCliente" />
+          </Key>
+          <Property Name="IdCliente" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Direccion1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Empresa" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="referencia" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="audit_Usuario" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Audit_Fecha" Type="DateTime" Precision="3" />
+          <Property Name="obs" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="NroDoc" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Telefono" Type="Int64" />
+          <Property Name="NroCasa" Type="Int16" />
+          <Property Name="IdSucursal" Type="Int32" />
+          <Property Name="cuadrante" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+          <Property Name="Nombres" Type="String" MaxLength="101" Unicode="false" FixedLength="false" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="IdClienteWeb" Type="Int32" />
+          <Property Name="GeoLat" Type="Decimal" Precision="9" Scale="6" />
+          <Property Name="GeoLng" Type="Decimal" Precision="9" Scale="6" />
+          <NavigationProperty Name="tel_Pedidos" Relationship="SinapsisModel.FK_tel_Pedidos_tel_Clientes" FromRole="tel_Clientes" ToRole="tel_Pedidos" />
+          <NavigationProperty Name="tel_Carrito" Relationship="SinapsisModel.FK_tel_Carrito_tel_Clientes" FromRole="tel_Clientes" ToRole="tel_Carrito" />
+        </EntityType>
+        <EntityType Name="tel_Pedidos">
+          <Key>
+            <PropertyRef Name="IdPedido" />
+          </Key>
+          <Property Name="IdPedido" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="NroPedido" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="Estado" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Telefono" Type="Int64" />
+          <Property Name="Nombre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Empresa" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="referencia" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="audit_Usuario" Type="Int32" />
+          <Property Name="Audit_Fecha" Type="DateTime" Precision="3" />
+          <Property Name="horaCola" Type="Int32" />
+          <Property Name="horaPreparacion" Type="Int32" />
+          <Property Name="HoraEnvio" Type="Int32" />
+          <Property Name="HoraEntrega" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="obs" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IdMovil" Type="Int32" />
+          <Property Name="IdSucursal" Type="Int32" />
+          <Property Name="cuadrante" Type="String" MaxLength="5" Unicode="false" FixedLength="true" />
+          <Property Name="IdTipoPedido" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="CostoEnvio" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalPedido" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalGeneral" Type="Decimal" Precision="19" Scale="4" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="Vuelto" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UserName" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Anulado" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IdFormaPago" Type="Int32" />
+          <Property Name="IdCarrito" Type="Int32" />
+          <Property Name="IdPedidoWeb" Type="Int32" />
+          <NavigationProperty Name="tel_Clientes" Relationship="SinapsisModel.FK_tel_Pedidos_tel_Clientes" FromRole="tel_Pedidos" ToRole="tel_Clientes" />
+          <NavigationProperty Name="tel_Sucursal" Relationship="SinapsisModel.tel_Sucursal_tel_Pedidos_FK1" FromRole="tel_Pedidos" ToRole="tel_Sucursal" />
+          <NavigationProperty Name="tel_Empresa" Relationship="SinapsisModel.FK_tel_Pedidos_tel_Empresa" FromRole="tel_Pedidos" ToRole="tel_Empresa" />
+        </EntityType>
+        <Association Name="FK_tel_Pedidos_tel_Clientes">
+          <End Role="tel_Clientes" Type="SinapsisModel.tel_Clientes" Multiplicity="0..1" />
+          <End Role="tel_Pedidos" Type="SinapsisModel.tel_Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="tel_Pedidos">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tel_Sucursal">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdSucursal" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="Int32" Name="IdSucursal" Nullable="false" />
+          <Property Type="String" Name="Sucursal" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Obs" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IdLista" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tel_Pedidos" Relationship="SinapsisModel.tel_Sucursal_tel_Pedidos_FK1" FromRole="tel_Sucursal" ToRole="tel_Pedidos" />
+          <NavigationProperty Name="tel_Empresa" Relationship="SinapsisModel.FK_tel_Sucursal_tel_Empresa" FromRole="tel_Sucursal" ToRole="tel_Empresa" />
+        </EntityType>
+        <Association Name="tel_Sucursal_tel_Pedidos_FK1">
+          <End Type="SinapsisModel.tel_Sucursal" Role="tel_Sucursal" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_Pedidos" Role="tel_Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Sucursal">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdSucursal" />
+            </Principal>
+            <Dependent Role="tel_Pedidos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tel_Productos">
+          <Key>
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="String" Name="IdProducto" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="IdPadre" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Descripcion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Activo" />
+          <Property Type="String" Name="Tipo" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="IdGrupo" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="IdGrupoPadre" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Contenido" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="PideCantidad" />
+          <Property Type="Int32" Name="SaboresMax" />
+          <Property Type="String" Name="Orden" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Seleccionable" />
+          <Property Type="Boolean" Name="FiltraSucursal" />
+          <NavigationProperty Name="tel_Carrito_Item" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" FromRole="tel_Productos" ToRole="tel_Carrito_Item" />
+        </EntityType>
+        <EntityType Name="tel_Carrito">
+          <Key>
+            <PropertyRef Name="IdCarrito" />
+          </Key>
+          <Property Type="Int32" Name="IdCarrito" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdEmpresa" />
+          <Property Type="Int32" Name="NroPedido" />
+          <Property Type="DateTime" Name="Fecha" Precision="3" />
+          <Property Type="Int32" Name="IdCliente" />
+          <Property Type="String" Name="Estado" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int64" Name="Telefono" />
+          <Property Type="String" Name="Nombre" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Apellido" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Direccion" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Empresa" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="referencia" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="audit_Usuario" />
+          <Property Type="DateTime" Name="Audit_Fecha" Precision="3" />
+          <Property Type="String" Name="obs" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdSucursal" />
+          <Property Type="String" Name="cuadrante" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="IdTipoPedido" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="Decimal" Name="CostoEnvio" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="TotalPedido" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="TotalGeneral" Precision="19" Scale="4" p1:StoreGeneratedPattern="Computed" />
+          <Property Type="String" Name="UserName" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Anulado" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="IdFormaPago" />
+          <NavigationProperty Name="tel_Carrito_Item" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito" FromRole="tel_Carrito" ToRole="tel_Carrito_Item" />
+          <NavigationProperty Name="tel_Clientes" Relationship="SinapsisModel.FK_tel_Carrito_tel_Clientes" FromRole="tel_Carrito" ToRole="tel_Clientes" />
+        </EntityType>
+        <EntityType Name="tel_Carrito_Item">
+          <Key>
+            <PropertyRef Name="IdCarritoItem" />
+          </Key>
+          <Property Type="Int32" Name="IdCarritoItem" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdEmpresa" />
+          <Property Type="String" Name="IdProducto" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="IdProducto1" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Type="Decimal" Name="Cantidad" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="Precio" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="IdCarrito" />
+          <Property Type="String" Name="Obs" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tel_Carrito" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito" FromRole="tel_Carrito_Item" ToRole="tel_Carrito" />
+          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" FromRole="tel_Carrito_Item" ToRole="tel_Productos" />
+        </EntityType>
+        <EntityType Name="tel_Empresa">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
+          <Property Type="String" Name="Empresa" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Direccion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Telefonos" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contacto" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CostoEnvio" Precision="19" Scale="4" />
+          <NavigationProperty Name="tel_Pedidos" Relationship="SinapsisModel.FK_tel_Pedidos_tel_Empresa" FromRole="tel_Empresa" ToRole="tel_Pedidos" />
+          <NavigationProperty Name="tel_Sucursal" Relationship="SinapsisModel.FK_tel_Sucursal_tel_Empresa" FromRole="tel_Empresa" ToRole="tel_Sucursal" />
+        </EntityType>
+        <Association Name="FK_tel_Carrito_Item_tel_Carrito">
+          <End Type="SinapsisModel.tel_Carrito" Role="tel_Carrito" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SinapsisModel.tel_Carrito_Item" Role="tel_Carrito_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Carrito">
+              <PropertyRef Name="IdCarrito" />
+            </Principal>
+            <Dependent Role="tel_Carrito_Item">
+              <PropertyRef Name="IdCarrito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Carrito_tel_Clientes">
+          <End Type="SinapsisModel.tel_Clientes" Role="tel_Clientes" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_Carrito" Role="tel_Carrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Clientes">
+              <PropertyRef Name="IdCliente" />
+            </Principal>
+            <Dependent Role="tel_Carrito">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Carrito_Item_tel_Productos">
+          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_Carrito_Item" Role="tel_Carrito_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Productos">
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="tel_Carrito_Item">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Pedidos_tel_Empresa">
+          <End Type="SinapsisModel.tel_Empresa" Role="tel_Empresa" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_Pedidos" Role="tel_Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tel_Pedidos">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Sucursal_tel_Empresa">
+          <End Type="SinapsisModel.tel_Empresa" Role="tel_Empresa" Multiplicity="1" />
+          <End Type="SinapsisModel.tel_Sucursal" Role="tel_Sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="tel_Sucursal">
+              <PropertyRef Name="IdEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SinapsisModelStoreContainer" CdmEntityContainer="SinapsisEntities">
+          <EntitySetMapping Name="tel_Clientes">
+            <EntityTypeMapping TypeName="SinapsisModel.tel_Clientes">
+              <MappingFragment StoreEntitySet="tel_Clientes">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Direccion1" ColumnName="Direccion1" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="audit_Usuario" ColumnName="audit_Usuario" />
+                <ScalarProperty Name="Audit_Fecha" ColumnName="Audit_Fecha" />
+                <ScalarProperty Name="obs" ColumnName="obs" />
+                <ScalarProperty Name="NroDoc" ColumnName="NroDoc" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="NroCasa" ColumnName="NroCasa" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="cuadrante" ColumnName="cuadrante" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="IdClienteWeb" ColumnName="IdClienteWeb" />
+                <ScalarProperty Name="GeoLat" ColumnName="GeoLat" />
+                <ScalarProperty Name="GeoLng" ColumnName="GeoLng" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_Pedidos">
+            <EntityTypeMapping TypeName="SinapsisModel.tel_Pedidos">
+              <MappingFragment StoreEntitySet="tel_Pedidos">
+                <ScalarProperty Name="IdPedido" ColumnName="IdPedido" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="NroPedido" ColumnName="NroPedido" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="audit_Usuario" ColumnName="audit_Usuario" />
+                <ScalarProperty Name="Audit_Fecha" ColumnName="Audit_Fecha" />
+                <ScalarProperty Name="horaCola" ColumnName="horaCola" />
+                <ScalarProperty Name="horaPreparacion" ColumnName="horaPreparacion" />
+                <ScalarProperty Name="HoraEnvio" ColumnName="HoraEnvio" />
+                <ScalarProperty Name="HoraEntrega" ColumnName="HoraEntrega" />
+                <ScalarProperty Name="obs" ColumnName="obs" />
+                <ScalarProperty Name="IdMovil" ColumnName="IdMovil" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="cuadrante" ColumnName="cuadrante" />
+                <ScalarProperty Name="IdTipoPedido" ColumnName="IdTipoPedido" />
+                <ScalarProperty Name="CostoEnvio" ColumnName="CostoEnvio" />
+                <ScalarProperty Name="TotalPedido" ColumnName="TotalPedido" />
+                <ScalarProperty Name="TotalGeneral" ColumnName="TotalGeneral" />
+                <ScalarProperty Name="Vuelto" ColumnName="Vuelto" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Anulado" ColumnName="Anulado" />
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
+                <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+                <ScalarProperty Name="IdPedidoWeb" ColumnName="IdPedidoWeb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_Sucursal">
+            <EntityTypeMapping TypeName="SinapsisModel.tel_Sucursal">
+              <MappingFragment StoreEntitySet="tel_Sucursal">
+                <ScalarProperty Name="IdLista" ColumnName="IdLista" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_Productos">
+            <EntityTypeMapping TypeName="SinapsisModel.tel_Productos">
+              <MappingFragment StoreEntitySet="tel_Productos">
+                <ScalarProperty Name="FiltraSucursal" ColumnName="FiltraSucursal" />
+                <ScalarProperty Name="Seleccionable" ColumnName="Seleccionable" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="SaboresMax" ColumnName="SaboresMax" />
+                <ScalarProperty Name="PideCantidad" ColumnName="PideCantidad" />
+                <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+                <ScalarProperty Name="IdGrupoPadre" ColumnName="IdGrupoPadre" />
+                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_Carrito">
+            <EntityTypeMapping TypeName="SinapsisModel.tel_Carrito">
+              <MappingFragment StoreEntitySet="tel_Carrito">
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
+                <ScalarProperty Name="Anulado" ColumnName="Anulado" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="TotalGeneral" ColumnName="TotalGeneral" />
+                <ScalarProperty Name="TotalPedido" ColumnName="TotalPedido" />
+                <ScalarProperty Name="CostoEnvio" ColumnName="CostoEnvio" />
+                <ScalarProperty Name="IdTipoPedido" ColumnName="IdTipoPedido" />
+                <ScalarProperty Name="cuadrante" ColumnName="cuadrante" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="obs" ColumnName="obs" />
+                <ScalarProperty Name="Audit_Fecha" ColumnName="Audit_Fecha" />
+                <ScalarProperty Name="audit_Usuario" ColumnName="audit_Usuario" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="NroPedido" ColumnName="NroPedido" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_Carrito_Item">
+            <EntityTypeMapping TypeName="SinapsisModel.tel_Carrito_Item">
+              <MappingFragment StoreEntitySet="tel_Carrito_Item">
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="IdCarrito" ColumnName="IdCarrito" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IdProducto1" ColumnName="IdProducto1" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdCarritoItem" ColumnName="IdCarritoItem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_Empresa">
+            <EntityTypeMapping TypeName="SinapsisModel.tel_Empresa">
+              <MappingFragment StoreEntitySet="tel_Empresa">
+                <ScalarProperty Name="CostoEnvio" ColumnName="CostoEnvio" />
+                <ScalarProperty Name="Contacto" ColumnName="Contacto" />
+                <ScalarProperty Name="Telefonos" ColumnName="Telefonos" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>

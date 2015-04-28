@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SinapsisWS.FuturaService" CodeBehind="FuturaService.svc.cs" %>

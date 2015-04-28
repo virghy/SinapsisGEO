@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70692d4deb8341698eccac89c5198a10" Name="Diagrama1" ZoomLevel="84">
+        <EntityTypeShape EntityType="SinapsisModel.tel_Clientes" Width="1.5" PointX="1.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Pedidos" Width="1.5" PointX="6.375" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Pedidos_tel_Clientes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Sucursal" Width="1.5" PointX="2.875" PointY="9.375" />
+        <AssociationConnector Association="SinapsisModel.tel_Sucursal_tel_Pedidos_FK1" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Productos" Width="1.5" PointX="5.25" PointY="20.25" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Carrito" Width="1.5" PointX="5.25" PointY="13.125" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Carrito_Item" Width="1.5" PointX="7.5" PointY="14.625" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Empresa" Width="1.5" PointX="0.75" PointY="7.125" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_tel_Clientes" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Pedidos_tel_Empresa" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Sucursal_tel_Empresa" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

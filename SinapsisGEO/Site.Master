@@ -1,0 +1,136 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SinapsisGEO.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - Futura Software</title>
+    <asp:PlaceHolder runat="server">     
+          <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>  
+    <webopt:BundleReference runat="server" Path="~/Content/css" /> 
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-19371376-3', 'cidesa.com.py');
+    ga('send', 'pageview');
+
+</script>
+
+<body>
+<form runat="server">
+
+<ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    <Scripts>
+        <%--Framework Scripts--%>
+        <asp:ScriptReference Name="jquery" />
+        <asp:ScriptReference Name="jquery.ui.combined" />
+        <asp:ScriptReference Name="WebForms.js"  Path="~/Scripts/WebForms/WebForms.js" />
+        <asp:ScriptReference Name="WebUIValidation.js"  Path="~/Scripts/WebForms/WebUIValidation.js" />
+        <asp:ScriptReference Name="MenuStandards.js"  Path="~/Scripts/WebForms/MenuStandards.js" />
+        <asp:ScriptReference Name="GridView.js"  Path="~/Scripts/WebForms/GridView.js" />
+        <asp:ScriptReference Name="DetailsView.js"  Path="~/Scripts/WebForms/DetailsView.js" />
+        <asp:ScriptReference Name="TreeView.js"  Path="~/Scripts/WebForms/TreeView.js" />
+        <asp:ScriptReference Name="WebParts.js"  Path="~/Scripts/WebForms/WebParts.js" />
+        <asp:ScriptReference Name="Focus.js"  Path="~/Scripts/WebForms/Focus.js" />
+        <asp:ScriptReference Name="WebFormsBundle" />
+        <%--Site Scripts--%>
+ 
+    </Scripts>
+</ajaxToolkit:ToolkitScriptManager>
+
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    <a runat="server" href="~/">Sinapsis</a>
+                </p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <ul>
+<%--                                <li><a id="registerLink" runat="server" href="~/Account/Register">Registrarse</a></li>--%>
+                                <li><a id="loginLink" runat="server" href="~/Account/Login">Iniciar sesión</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <p>
+                                Hola, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                    <asp:LoginName runat="server" CssClass="username" /></a>!
+                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/" />
+                            </p>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </section>
+                <nav>
+                    <ul id="menu">
+<%--                        <li><a id="A1" runat="server" href="~/Default">Pedidos</a></li>
+                        
+                        <li><a runat="server" href="~/Mapa">Mapas</a></li>
+                        <li><a runat="server" href="~/AsignarDir">Asignar Direcciones</a>
+                        </li>--%>
+<%--                        <li><a runat="server" href="~/Contact">Contacto</a></li>--%>
+                    <asp:Menu ID="menu1" runat="server" Orientation="Horizontal" RenderingMode="List" StaticSubMenuIndent="10px">
+        
+                        <DynamicMenuStyle BackColor="#efeeef" />
+                        <DynamicSelectedStyle BackColor="#507CD1" />
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Pedidos"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="#" Text="Consultas">
+                                <asp:MenuItem NavigateUrl="~/Consultas/Productos.aspx" Text="Productos" />
+                                <asp:MenuItem NavigateUrl="~/Consultas/Direccion.aspx" Text="Direcciones" />
+                                <asp:MenuItem NavigateUrl="~/Consultas/VerPedido.aspx" Text="Pedidos" />
+                                <asp:MenuItem NavigateUrl="~/Consultas/PanelPedidos.aspx" Text="Panel de Pedidos" />
+                                <asp:MenuItem NavigateUrl="~/Consultas/QPedidos.aspx" Text="Histórico" />
+                                <asp:MenuItem NavigateUrl="~/Consultas/VerCadena.aspx" Text="Cadena de Envío" />
+                                <asp:MenuItem NavigateUrl="~/Consultas/Tablero.aspx" Text="Pedidos Entrantes" />
+                            </asp:MenuItem>
+
+                            <asp:MenuItem NavigateUrl="#" Text="Mapas">
+                                <asp:MenuItem NavigateUrl="~/Mapa.aspx" Text="Mapas" />
+                                <asp:MenuItem NavigateUrl="~/AsignarDir.aspx" Text="Asignar Direcciones"/>
+                            </asp:MenuItem>
+                              <asp:MenuItem NavigateUrl="#" Text="Admin">
+                                <asp:MenuItem NavigateUrl="~/Admin/Productos.aspx" Text="Productos" />
+                            </asp:MenuItem>
+                           
+                        </Items>
+
+                        <StaticSelectedStyle BackColor="#507CD1" />
+                    </asp:Menu>
+
+                    </ul>
+
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+        <section class="content-wrapper main-content clear-fix">
+
+            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; <%: DateTime.Now.Year %> - <a href="http://www.futura.com.py">Futura Software</a> </p>
+            </div>
+        </div>
+    </footer>
+    </form>
+</body>
+</html>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="FirebirdSql.Data.FirebirdClient" ProviderManifestToken="2.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="SP_COMANDA" EntityType="Model.Store.SP_COMANDA" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="SP_ESTADO" EntityType="Model.Store.SP_ESTADO" store:Type="Tables" Schema="Firebird" />
+        </EntityContainer>
+        <EntityType Name="SP_COMANDA">
+          <Key>
+            <PropertyRef Name="IDCOMANDA" />
+          </Key>
+          <Property Name="IDCOMANDA" Type="int" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="int" />
+          <Property Name="IDDIRECCION" Type="int" />
+          <Property Name="ESTADO" Type="int" />
+        </EntityType>
+        <EntityType Name="SP_ESTADO">
+          <Key>
+            <PropertyRef Name="IDCOMANDA" />
+          </Key>
+          <Property Name="IDCOMANDA" Type="int" Nullable="false" />
+          <Property Name="IDPERSONA" Type="int" />
+          <Property Name="IDDIRECCION" Type="int" />
+          <Property Name="ESTADO" Type="int" />
+          <Property Name="FECHA" Type="date" />
+          <Property Name="DRIVER" Type="varchar" MaxLength="102" />
+        </EntityType>
+        <Function Name="SP_GG_COMANDA_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="IDSUCURSAL" Type="int" Mode="In" />
+          <Parameter Name="HEADER" Type="varchar" Mode="In" />
+          <Parameter Name="DETAILS" Type="varchar" Mode="In" />
+          <Parameter Name="CLIENTE" Type="varchar" Mode="In" />
+          <Parameter Name="IDPEDIDO" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_XGG_ANULACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="IDCOMANDA" Type="int" Mode="In" />
+          <Parameter Name="MOTIVO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_XGG_ESTADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="IDPEDIDO" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PHEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="SP_COMANDA" EntityType="Model.SP_COMANDA" />
+          <FunctionImport Name="SP_GG_COMANDA_ADD" EntitySet="SP_COMANDA" ReturnType="Collection(Model.SP_COMANDA)">
+            <Parameter Name="IDSUCURSAL" Mode="In" Type="Int32" />
+            <Parameter Name="HEADER" Mode="In" Type="String" />
+            <Parameter Name="DETAILS" Mode="In" Type="String" />
+            <Parameter Name="CLIENTE" Mode="In" Type="String" />
+            <Parameter Name="IDPEDIDO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_XGG_ESTADO" EntitySet="SP_ESTADO" ReturnType="Collection(Model.SP_ESTADO)">
+          <Parameter Name="IDPEDIDO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="SP_ESTADO" EntityType="Model.SP_ESTADO" />
+        </EntityContainer>
+        <EntityType Name="SP_COMANDA">
+          <Key>
+            <PropertyRef Name="IDCOMANDA" />
+          </Key>
+          <Property Type="Int32" Name="IDCOMANDA" Nullable="false" />
+          <Property Type="Int32" Name="IDCLIENTE" />
+          <Property Type="Int32" Name="IDDIRECCION" />
+          <Property Type="Int32" Name="ESTADO" />
+        </EntityType>
+        <EntityType Name="SP_ESTADO">
+          <Key>
+            <PropertyRef Name="IDCOMANDA" />
+          </Key>
+          <Property Type="Int32" Name="IDCOMANDA" Nullable="false" />
+          <Property Type="Int32" Name="IDPERSONA" />
+          <Property Type="Int32" Name="IDDIRECCION" />
+          <Property Type="Int32" Name="ESTADO" />
+          <Property Type="DateTime" Name="FECHA" />
+          <Property Type="String" Name="DRIVER" MaxLength="102" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="PHEntities">
+        <EntitySetMapping Name="SP_COMANDA">
+            <EntityTypeMapping TypeName="Model.SP_COMANDA">
+              <MappingFragment StoreEntitySet="SP_COMANDA">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="IDDIRECCION" ColumnName="IDDIRECCION" />
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="IDCOMANDA" ColumnName="IDCOMANDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GG_COMANDA_ADD" FunctionName="Model.Store.SP_GG_COMANDA_ADD" />
+          <FunctionImportMapping FunctionImportName="SP_XGG_ESTADO" FunctionName="Model.Store.SP_XGG_ESTADO" />
+          <EntitySetMapping Name="SP_ESTADO">
+            <EntityTypeMapping TypeName="Model.SP_ESTADO">
+              <MappingFragment StoreEntitySet="SP_ESTADO">
+                <ScalarProperty Name="DRIVER" ColumnName="DRIVER" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="IDDIRECCION" ColumnName="IDDIRECCION" />
+                <ScalarProperty Name="IDPERSONA" ColumnName="IDPERSONA" />
+                <ScalarProperty Name="IDCOMANDA" ColumnName="IDCOMANDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

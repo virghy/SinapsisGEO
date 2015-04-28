@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="gisModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="gisModelStoreContainer">
+          <EntitySet Name="Coord" EntityType="gisModel.Store.Coord" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gis_calles" EntityType="gisModel.Store.gis_calles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gis_calles1" EntityType="gisModel.Store.gis_calles1" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gis_coordenadas" EntityType="gisModel.Store.gis_coordenadas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gis_Cuadrantes" EntityType="gisModel.Store.gis_Cuadrantes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gis_CuadranteSuc" EntityType="gisModel.Store.gis_CuadranteSuc" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_gis_Cuadrantes_gis_calles" Association="gisModel.Store.FK_gis_Cuadrantes_gis_calles">
+            <End Role="gis_calles" EntitySet="gis_calles" />
+            <End Role="gis_Cuadrantes" EntitySet="gis_Cuadrantes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Coord">
+          <Key>
+            <PropertyRef Name="Cuadrante" />
+          </Key>
+          <Property Name="Cuadrante" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Coordenadas" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Column 2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 5" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 6" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 7" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 8" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 9" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 10" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 11" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 12" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 13" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 14" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 15" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 16" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 17" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 18" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 19" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 20" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 21" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 22" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 23" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 24" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 25" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 26" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 27" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 28" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 29" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 30" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 31" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 32" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 33" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 34" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 35" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 36" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 37" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 38" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 39" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 40" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 41" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 42" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 43" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 44" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 45" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 46" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 47" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 48" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 49" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 50" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 51" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 52" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 53" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 54" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 55" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 56" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 57" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 58" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 59" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 60" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 61" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 62" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 63" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 64" Type="nvarchar" MaxLength="50" />
+          <Property Name="Column 65" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="gis_calles">
+          <Key>
+            <PropertyRef Name="IdCalle" />
+          </Key>
+          <Property Name="IdCalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecorto" Type="varchar" MaxLength="50" />
+          <Property Name="Tipo" Type="varchar" MaxLength="20" />
+          <Property Name="Titulo" Type="varchar" MaxLength="20" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="IdMunicipio" Type="int" />
+          <Property Name="IdDpto" Type="int" />
+          <Property Name="NombreLargo" Type="varchar" MaxLength="140" />
+          <Property Name="Nombre1" Type="varchar" MaxLength="50" />
+          <Property Name="Nombre2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="gis_calles1">
+          <Key>
+            <PropertyRef Name="IdCalle" />
+          </Key>
+          <Property Name="IdCalle" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecorto" Type="varchar" MaxLength="50" />
+          <Property Name="Tipo" Type="varchar" MaxLength="20" />
+          <Property Name="Titulo" Type="varchar" MaxLength="20" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="IdMunicipio" Type="int" />
+          <Property Name="IdDpto" Type="int" />
+          <Property Name="NombreLargo" Type="varchar" MaxLength="140" />
+        </EntityType>
+        <EntityType Name="gis_coordenadas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Cuadrante" Type="varchar" MaxLength="50" />
+          <Property Name="Coordenadas" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="gis_Cuadrantes">
+          <Key>
+            <PropertyRef Name="IdCuadrante" />
+          </Key>
+          <Property Name="IdCuadrante" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdCalle" Type="int" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="dNro" Type="int" />
+          <Property Name="hNro" Type="int" />
+          <Property Name="Cuadrante" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="gis_CuadranteSuc">
+          <Key>
+            <PropertyRef Name="IDCS" />
+          </Key>
+          <Property Name="IDCS" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="int" />
+          <Property Name="IdSucursal" Type="int" />
+          <Property Name="Cuadrante" Type="varchar" MaxLength="10" />
+          <Property Name="Obs" Type="varchar" MaxLength="10" />
+          <Property Name="Incluye" Type="bit" />
+        </EntityType>
+        <Association Name="FK_gis_Cuadrantes_gis_calles">
+          <End Role="gis_calles" Type="gisModel.Store.gis_calles" Multiplicity="0..1" />
+          <End Role="gis_Cuadrantes" Type="gisModel.Store.gis_Cuadrantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gis_calles">
+              <PropertyRef Name="IdCalle" />
+            </Principal>
+            <Dependent Role="gis_Cuadrantes">
+              <PropertyRef Name="IdCalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BuscarCalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cadena" Type="varchar" Mode="In" />
+          <Parameter Name="Cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BuscarCuadranteNombre" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="Calle" Type="varchar" Mode="In" />
+          <Parameter Name="Nro" Type="int" Mode="In" />
+          <Parameter Name="Calle1" Type="varchar" Mode="In" />
+          <Parameter Name="Calle2" Type="varchar" Mode="In" />
+          <Parameter Name="Cuadrante" Type="varchar" Mode="InOut" />
+          <Parameter Name="IdSucursal" Type="int" Mode="InOut" />
+          <Parameter Name="Obs" Type="varchar" Mode="InOut" />
+          <Parameter Name="Incluye" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="TraerCoord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cuadrante" Type="nvarchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gisModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="gisEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Coord" EntityType="gisModel.Coord" />
+          <EntitySet Name="gis_calles" EntityType="gisModel.gis_calles" />
+          <EntitySet Name="gis_calles1" EntityType="gisModel.gis_calles1" />
+          <EntitySet Name="gis_coordenadas" EntityType="gisModel.gis_coordenadas" />
+          <EntitySet Name="gis_Cuadrantes" EntityType="gisModel.gis_Cuadrantes" />
+          <EntitySet Name="gis_CuadranteSuc" EntityType="gisModel.gis_CuadranteSuc" />
+          <AssociationSet Name="FK_gis_Cuadrantes_gis_calles" Association="gisModel.FK_gis_Cuadrantes_gis_calles">
+            <End Role="gis_calles" EntitySet="gis_calles" />
+            <End Role="gis_Cuadrantes" EntitySet="gis_Cuadrantes" />
+          </AssociationSet>
+          <FunctionImport Name="BuscarCalle" ReturnType="Collection(gisModel.BuscarCalle_Result)">
+            <Parameter Name="Cadena" Mode="In" Type="String" />
+            <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BuscarCuadranteNombre">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="Calle" Mode="In" Type="String" />
+            <Parameter Name="Nro" Mode="In" Type="Int32" />
+            <Parameter Name="Calle1" Mode="In" Type="String" />
+            <Parameter Name="Calle2" Mode="In" Type="String" />
+            <Parameter Name="Cuadrante" Mode="InOut" Type="String" />
+            <Parameter Name="IdSucursal" Mode="InOut" Type="Int32" />
+            <Parameter Name="Obs" Mode="InOut" Type="String" />
+            <Parameter Name="Incluye" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="TraerCoord" ReturnType="Collection(String)">
+          <Parameter Name="Cuadrante" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Coord">
+          <Key>
+            <PropertyRef Name="Cuadrante" />
+          </Key>
+          <Property Name="Cuadrante" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Coordenadas" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Column_2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_4" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_5" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_6" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_7" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_8" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_9" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_10" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_11" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_12" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_13" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_14" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_15" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_16" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_17" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_18" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_19" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_20" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_21" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_22" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_23" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_24" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_25" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_26" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_27" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_28" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_29" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_30" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_31" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_32" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_33" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_34" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_35" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_36" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_37" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_38" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_39" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_40" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_41" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_42" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_43" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_44" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_45" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_46" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_47" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_48" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_49" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_50" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_51" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_52" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_53" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_54" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_55" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_56" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_57" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_58" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_59" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_60" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_61" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_62" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_63" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_64" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Column_65" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="gis_calles">
+          <Key>
+            <PropertyRef Name="IdCalle" />
+          </Key>
+          <Property Name="IdCalle" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecorto" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Tipo" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Titulo" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IdMunicipio" Type="Int32" />
+          <Property Name="IdDpto" Type="Int32" />
+          <Property Name="NombreLargo" Type="String" MaxLength="140" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="gis_Cuadrantes" Relationship="gisModel.FK_gis_Cuadrantes_gis_calles" FromRole="gis_calles" ToRole="gis_Cuadrantes" />
+        </EntityType>
+        <EntityType Name="gis_calles1">
+          <Key>
+            <PropertyRef Name="IdCalle" />
+          </Key>
+          <Property Name="IdCalle" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombrecorto" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Tipo" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Titulo" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IdMunicipio" Type="Int32" />
+          <Property Name="IdDpto" Type="Int32" />
+          <Property Name="NombreLargo" Type="String" MaxLength="140" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="gis_coordenadas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Cuadrante" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Coordenadas" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="gis_Cuadrantes">
+          <Key>
+            <PropertyRef Name="IdCuadrante" />
+          </Key>
+          <Property Name="IdCuadrante" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCalle" Type="Int32" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="dNro" Type="Int32" />
+          <Property Name="hNro" Type="Int32" />
+          <Property Name="Cuadrante" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="gis_calles" Relationship="gisModel.FK_gis_Cuadrantes_gis_calles" FromRole="gis_Cuadrantes" ToRole="gis_calles" />
+        </EntityType>
+        <EntityType Name="gis_CuadranteSuc">
+          <Key>
+            <PropertyRef Name="IDCS" />
+          </Key>
+          <Property Name="IDCS" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpresa" Type="Int32" />
+          <Property Name="IdSucursal" Type="Int32" />
+          <Property Name="Cuadrante" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Obs" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Incluye" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_gis_Cuadrantes_gis_calles">
+          <End Role="gis_calles" Type="gisModel.gis_calles" Multiplicity="0..1" />
+          <End Role="gis_Cuadrantes" Type="gisModel.gis_Cuadrantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gis_calles">
+              <PropertyRef Name="IdCalle" />
+            </Principal>
+            <Dependent Role="gis_Cuadrantes">
+              <PropertyRef Name="IdCalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="BuscarCalle_Result">
+          <Property Type="Int32" Name="IdCalle" Nullable="false" />
+          <Property Type="String" Name="NombreLargo" Nullable="true" MaxLength="140" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="gisModelStoreContainer" CdmEntityContainer="gisEntities">
+          <EntitySetMapping Name="Coord">
+            <EntityTypeMapping TypeName="gisModel.Coord">
+              <MappingFragment StoreEntitySet="Coord">
+                <ScalarProperty Name="Cuadrante" ColumnName="Cuadrante" />
+                <ScalarProperty Name="Coordenadas" ColumnName="Coordenadas" />
+                <ScalarProperty Name="Column_2" ColumnName="Column 2" />
+                <ScalarProperty Name="Column_3" ColumnName="Column 3" />
+                <ScalarProperty Name="Column_4" ColumnName="Column 4" />
+                <ScalarProperty Name="Column_5" ColumnName="Column 5" />
+                <ScalarProperty Name="Column_6" ColumnName="Column 6" />
+                <ScalarProperty Name="Column_7" ColumnName="Column 7" />
+                <ScalarProperty Name="Column_8" ColumnName="Column 8" />
+                <ScalarProperty Name="Column_9" ColumnName="Column 9" />
+                <ScalarProperty Name="Column_10" ColumnName="Column 10" />
+                <ScalarProperty Name="Column_11" ColumnName="Column 11" />
+                <ScalarProperty Name="Column_12" ColumnName="Column 12" />
+                <ScalarProperty Name="Column_13" ColumnName="Column 13" />
+                <ScalarProperty Name="Column_14" ColumnName="Column 14" />
+                <ScalarProperty Name="Column_15" ColumnName="Column 15" />
+                <ScalarProperty Name="Column_16" ColumnName="Column 16" />
+                <ScalarProperty Name="Column_17" ColumnName="Column 17" />
+                <ScalarProperty Name="Column_18" ColumnName="Column 18" />
+                <ScalarProperty Name="Column_19" ColumnName="Column 19" />
+                <ScalarProperty Name="Column_20" ColumnName="Column 20" />
+                <ScalarProperty Name="Column_21" ColumnName="Column 21" />
+                <ScalarProperty Name="Column_22" ColumnName="Column 22" />
+                <ScalarProperty Name="Column_23" ColumnName="Column 23" />
+                <ScalarProperty Name="Column_24" ColumnName="Column 24" />
+                <ScalarProperty Name="Column_25" ColumnName="Column 25" />
+                <ScalarProperty Name="Column_26" ColumnName="Column 26" />
+                <ScalarProperty Name="Column_27" ColumnName="Column 27" />
+                <ScalarProperty Name="Column_28" ColumnName="Column 28" />
+                <ScalarProperty Name="Column_29" ColumnName="Column 29" />
+                <ScalarProperty Name="Column_30" ColumnName="Column 30" />
+                <ScalarProperty Name="Column_31" ColumnName="Column 31" />
+                <ScalarProperty Name="Column_32" ColumnName="Column 32" />
+                <ScalarProperty Name="Column_33" ColumnName="Column 33" />
+                <ScalarProperty Name="Column_34" ColumnName="Column 34" />
+                <ScalarProperty Name="Column_35" ColumnName="Column 35" />
+                <ScalarProperty Name="Column_36" ColumnName="Column 36" />
+                <ScalarProperty Name="Column_37" ColumnName="Column 37" />
+                <ScalarProperty Name="Column_38" ColumnName="Column 38" />
+                <ScalarProperty Name="Column_39" ColumnName="Column 39" />
+                <ScalarProperty Name="Column_40" ColumnName="Column 40" />
+                <ScalarProperty Name="Column_41" ColumnName="Column 41" />
+                <ScalarProperty Name="Column_42" ColumnName="Column 42" />
+                <ScalarProperty Name="Column_43" ColumnName="Column 43" />
+                <ScalarProperty Name="Column_44" ColumnName="Column 44" />
+                <ScalarProperty Name="Column_45" ColumnName="Column 45" />
+                <ScalarProperty Name="Column_46" ColumnName="Column 46" />
+                <ScalarProperty Name="Column_47" ColumnName="Column 47" />
+                <ScalarProperty Name="Column_48" ColumnName="Column 48" />
+                <ScalarProperty Name="Column_49" ColumnName="Column 49" />
+                <ScalarProperty Name="Column_50" ColumnName="Column 50" />
+                <ScalarProperty Name="Column_51" ColumnName="Column 51" />
+                <ScalarProperty Name="Column_52" ColumnName="Column 52" />
+                <ScalarProperty Name="Column_53" ColumnName="Column 53" />
+                <ScalarProperty Name="Column_54" ColumnName="Column 54" />
+                <ScalarProperty Name="Column_55" ColumnName="Column 55" />
+                <ScalarProperty Name="Column_56" ColumnName="Column 56" />
+                <ScalarProperty Name="Column_57" ColumnName="Column 57" />
+                <ScalarProperty Name="Column_58" ColumnName="Column 58" />
+                <ScalarProperty Name="Column_59" ColumnName="Column 59" />
+                <ScalarProperty Name="Column_60" ColumnName="Column 60" />
+                <ScalarProperty Name="Column_61" ColumnName="Column 61" />
+                <ScalarProperty Name="Column_62" ColumnName="Column 62" />
+                <ScalarProperty Name="Column_63" ColumnName="Column 63" />
+                <ScalarProperty Name="Column_64" ColumnName="Column 64" />
+                <ScalarProperty Name="Column_65" ColumnName="Column 65" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gis_calles">
+            <EntityTypeMapping TypeName="gisModel.gis_calles">
+              <MappingFragment StoreEntitySet="gis_calles">
+                <ScalarProperty Name="IdCalle" ColumnName="IdCalle" />
+                <ScalarProperty Name="Nombrecorto" ColumnName="Nombrecorto" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+                <ScalarProperty Name="IdDpto" ColumnName="IdDpto" />
+                <ScalarProperty Name="NombreLargo" ColumnName="NombreLargo" />
+                <ScalarProperty Name="Nombre1" ColumnName="Nombre1" />
+                <ScalarProperty Name="Nombre2" ColumnName="Nombre2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gis_calles1">
+            <EntityTypeMapping TypeName="gisModel.gis_calles1">
+              <MappingFragment StoreEntitySet="gis_calles1">
+                <ScalarProperty Name="IdCalle" ColumnName="IdCalle" />
+                <ScalarProperty Name="Nombrecorto" ColumnName="Nombrecorto" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+                <ScalarProperty Name="IdDpto" ColumnName="IdDpto" />
+                <ScalarProperty Name="NombreLargo" ColumnName="NombreLargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gis_coordenadas">
+            <EntityTypeMapping TypeName="gisModel.gis_coordenadas">
+              <MappingFragment StoreEntitySet="gis_coordenadas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Cuadrante" ColumnName="Cuadrante" />
+                <ScalarProperty Name="Coordenadas" ColumnName="Coordenadas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gis_Cuadrantes">
+            <EntityTypeMapping TypeName="gisModel.gis_Cuadrantes">
+              <MappingFragment StoreEntitySet="gis_Cuadrantes">
+                <ScalarProperty Name="IdCuadrante" ColumnName="IdCuadrante" />
+                <ScalarProperty Name="IdCalle" ColumnName="IdCalle" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="dNro" ColumnName="dNro" />
+                <ScalarProperty Name="hNro" ColumnName="hNro" />
+                <ScalarProperty Name="Cuadrante" ColumnName="Cuadrante" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gis_CuadranteSuc">
+            <EntityTypeMapping TypeName="gisModel.gis_CuadranteSuc">
+              <MappingFragment StoreEntitySet="gis_CuadranteSuc">
+                <ScalarProperty Name="IDCS" ColumnName="IDCS" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="Cuadrante" ColumnName="Cuadrante" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+                <ScalarProperty Name="Incluye" ColumnName="Incluye" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BuscarCalle" FunctionName="gisModel.Store.BuscarCalle" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="gisModel.BuscarCalle_Result">
+                <ScalarProperty Name="IdCalle" ColumnName="IdCalle" />
+                <ScalarProperty Name="NombreLargo" ColumnName="NombreLargo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BuscarCuadranteNombre" FunctionName="gisModel.Store.BuscarCuadranteNombre" />
+          <FunctionImportMapping FunctionImportName="TraerCoord" FunctionName="gisModel.Store.TraerCoord" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
