@@ -2,7 +2,7 @@
 
 
 <h3>
-    <asp:Label ID="lblIdOpcion" runat="server" ></asp:Label>-<asp:Label ID="lblTitulo" runat="server" ></asp:Label>
+    <asp:Label ID="lblIdOpcion" CssClass="normal" runat="server" ></asp:Label><asp:Label ID="lblTitulo" runat="server" ></asp:Label>
     <asp:HiddenField ID="txtCantidad" runat="server" /> 
     <asp:HiddenField ID="txtEsCombo" runat="server" />
 </h3>

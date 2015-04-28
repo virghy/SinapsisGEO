@@ -46,7 +46,7 @@ namespace SinapsisGEO.Control
             if (o != null)
             {
                 this.lblTitulo.Text = o.Titulo.ToUpper();
-                this.lblIdOpcion.Text = IdOpcion.ToString() +'-'+ o.Maximo.ToString();
+                this.lblIdOpcion.Text = IdOpcion.ToString() +'('+ o.Maximo.ToString() + ')';
                 this.txtCantidad.Value = o.Maximo.ToString();
 
                 this.txtEsCombo.Value = o.EsCombo.HasValue ? (o.EsCombo.Value == true ? "SI" : "NO") : "NO";
