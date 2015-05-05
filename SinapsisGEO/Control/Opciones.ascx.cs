@@ -99,8 +99,8 @@ namespace SinapsisGEO.Control
             
             this.chkMitad.Visible = Seleccion.PermiteMitad.HasValue ? Seleccion.PermiteMitad.Value : false;
 
-            this.lstOpciones.SelectionMode = Seleccion.Maximo > 1 ? ListSelectionMode.Multiple : ListSelectionMode.Single;
-            this.lstOtraMitad.SelectionMode = Seleccion.Maximo > 1 ? ListSelectionMode.Multiple : ListSelectionMode.Single;
+            //this.lstOpciones.SelectionMode = Seleccion.Maximo > 1 ? ListSelectionMode.Multiple : ListSelectionMode.Single;
+            //this.lstOtraMitad.SelectionMode = Seleccion.Maximo > 1 ? ListSelectionMode.Multiple : ListSelectionMode.Single;
 
             List<DAL.Opciones> listaProducto;
 
@@ -121,6 +121,10 @@ namespace SinapsisGEO.Control
 
            // this.lstOpciones.DataSource = listaProducto;
            // this.lstOpciones.DataBind();
+
+            this.grdView.DataSource = listaProducto;
+            this.grdView.DataBind();
+
             foreach (var item in listaProducto)
             {
                 ListItem i = new ListItem(item.Descripcion, item.IdProducto);

@@ -7,7 +7,8 @@
     <asp:HiddenField ID="txtEsCombo" runat="server" />
 </h3>
     <div>
-    <asp:CheckBox ID="chkMitad" OnCheckedChanged="chkMitad_CheckedChanged" runat="server" Text="Mitad/Mitad?"/>
+    <asp:CheckBox CssClass="" ID="chkMitad" OnCheckedChanged="chkMitad_CheckedChanged" runat="server" Text="Mitad/Mitad?"/>
+
     </div>
 
 <hr />
@@ -16,11 +17,25 @@
 <div>
 <asp:Button ID="cmdAddItems" runat="server" Text="=>" OnClick="cmdAddItems_Click" />
 </div>
-<div style="display:grid;">
+<div id="dvMitad" style="display:grid;">
+
+<asp:GridView ItemType="DAL.Opciones" AutoGenerateColumns="false" id="grdView" runat="server">
+
+    <Columns>
+        <asp:BoundField DataField="IdProducto"></asp:BoundField>
+        <asp:BoundField DataField="Descripcion"></asp:BoundField>
+        <asp:TemplateField>
+            <ItemTemplate>
+                <asp:TextBox runat="server" ID="txtCantidad" Width="40px" Text='<%# Bind("Cantidad") %>' ></asp:TextBox>
+
+            </ItemTemplate>
+        </asp:TemplateField> 
+    </Columns>
+</asp:GridView>
+
 <asp:ListBox ID="lstOpciones" Height="100px" Width="200px"  DataTextField="DescripcionCorta" ItemType="DAL.tel_Productos" DataValueField="IdProducto"  runat="server"></asp:ListBox>
     <asp:ListBox ID="lstOtraMitad"  Visible="<%# chkMitad.Checked %>"  Width="200px" DataTextField="DescripcionCorta" ItemType="DAL.tel_Productos" DataValueField="IdProducto" Height="100px"  runat="server"></asp:ListBox>
 </div>
 <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
-
 
 

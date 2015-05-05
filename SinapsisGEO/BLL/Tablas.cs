@@ -80,10 +80,11 @@ namespace SinapsisGEO.BLL
             {
 
                 var query = from s in db.tel_Productos
-                            join o in db.tel_OpcionesDet on s.IdProducto equals o.IdProducto
+                            join od in db.tel_OpcionesDet on s.IdProducto equals od.IdProducto
+                            join o in db.tel_Opciones on od.IdOpcion equals o.IdOpcion
                             where o.IdOpcion == IdOpcion
                             orderby s.DescripcionCorta
-                            select new DAL.Opciones { IdProducto = s.IdProducto, Descripcion = s.DescripcionCorta, Predet = o.Predet };
+                            select new DAL.Opciones { IdProducto = s.IdProducto, Descripcion = s.DescripcionCorta, Predet = od.Predet, Cantidad= od.Predet.HasValue && od.Predet.Value==true ? o.Maximo.Value : 0 };
 
                return   query.OrderBy(p => p.Descripcion).ToList();
             }

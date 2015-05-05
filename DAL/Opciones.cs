@@ -11,5 +11,6 @@ namespace DAL
         public string IdProducto { get; set; }
         public string Descripcion { get; set; }
         public bool? Predet { get; set; }
+        public decimal Cantidad { get; set; }
     }
 }
