@@ -161,13 +161,11 @@ div.fullContainer div.mainContent .productWrapper3Grid {
 
 
 
-html {
+/*html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
 }
-
-
 body {
     background-color: #fff;
     border-top: solid 10px #000;
@@ -177,7 +175,13 @@ body {
     margin: 0;
     padding: 0;
 }
+*/
 
+body {
+   
+    font-size: .75em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+}
 
 a {
     color: #333;
@@ -641,7 +645,7 @@ input[type="checkbox"] {
     width: auto;
 }
 
-input[type="submit"],
+/*input[type="submit"],
 input[type="button"],
 button {
 
@@ -653,7 +657,7 @@ button {
     padding: 7px;
     margin-right: 8px;
     width: auto;
-}
+}*/
 
 /*input[type="submit"].delete { 
     background-color: #d5583b; 

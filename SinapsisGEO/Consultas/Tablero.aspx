@@ -14,25 +14,25 @@
 
     
     <form id="form1" runat="server">
-<ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    <Scripts>
-        <%--Framework Scripts--%>
-        <asp:ScriptReference Name="jquery" />
-        <asp:ScriptReference Name="jquery.ui.combined" />
-        <asp:ScriptReference Name="WebForms.js"  Path="~/Scripts/WebForms/WebForms.js" />
-        <asp:ScriptReference Name="WebUIValidation.js"  Path="~/Scripts/WebForms/WebUIValidation.js" />
-        <asp:ScriptReference Name="MenuStandards.js"  Path="~/Scripts/WebForms/MenuStandards.js" />
-        <asp:ScriptReference Name="GridView.js"  Path="~/Scripts/WebForms/GridView.js" />
-        <asp:ScriptReference Name="DetailsView.js"  Path="~/Scripts/WebForms/DetailsView.js" />
-        <asp:ScriptReference Name="TreeView.js"  Path="~/Scripts/WebForms/TreeView.js" />
-        <asp:ScriptReference Name="WebParts.js"  Path="~/Scripts/WebForms/WebParts.js" />
-        <asp:ScriptReference Name="Focus.js"  Path="~/Scripts/WebForms/Focus.js" />
-        <asp:ScriptReference Name="WebFormsBundle" />
-        <%--Site Scripts--%>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+             <Scripts>
+                    <%--Framework Scripts--%>
+                    <asp:ScriptReference Name="jquery" />
+                    <asp:ScriptReference Name="jquery.ui.combined" />
+                    <asp:ScriptReference Name="WebForms.js"  Path="~/Scripts/WebForms/WebForms.js" />
+                    <asp:ScriptReference Name="WebUIValidation.js"  Path="~/Scripts/WebForms/WebUIValidation.js" />
+                    <asp:ScriptReference Name="MenuStandards.js"  Path="~/Scripts/WebForms/MenuStandards.js" />
+                    <asp:ScriptReference Name="GridView.js"  Path="~/Scripts/WebForms/GridView.js" />
+                    <asp:ScriptReference Name="DetailsView.js"  Path="~/Scripts/WebForms/DetailsView.js" />
+                    <asp:ScriptReference Name="TreeView.js"  Path="~/Scripts/WebForms/TreeView.js" />
+                    <asp:ScriptReference Name="WebParts.js"  Path="~/Scripts/WebForms/WebParts.js" />
+                    <asp:ScriptReference Name="Focus.js"  Path="~/Scripts/WebForms/Focus.js" />
+                    <asp:ScriptReference Name="WebFormsBundle" />
+                    <%--Site Scripts--%>
         
-    </Scripts>
+                </Scripts>
+        </asp:ScriptManager>
 
-</ajaxToolkit:ToolkitScriptManager>
     <script src="../Scripts/jquery.timer.js"></script>
         <style>
            .tableroRojo {

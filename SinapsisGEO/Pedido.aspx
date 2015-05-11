@@ -74,8 +74,14 @@
             });
 
             $('#txtVuelto').number(true, 0,',','.');
-
+ 
         });
+
+       
+        function SelCelda(idProducto) {
+            alert(idProducto);
+        };
+
     }
 </script>
 

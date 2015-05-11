@@ -24,7 +24,10 @@ namespace SinapsisGEO
                   "~/Scripts/jquery-ui-1.10.3.min.js",
                   "~/Scripts/jquery-ui-timepicker-addon.js",
                   "~/Scripts/jquery.number.js",
-                  "~/Scripts/jqx/jqx-all.js"));
+                  "~/Scripts/jqx/jqx-all.js",
+                  "~/Scripts/bootstrap.js"));
+
+
 
             bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
                 "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",

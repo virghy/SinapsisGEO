@@ -94,13 +94,22 @@ namespace SinapsisGEO.Control {
         protected global::System.Web.UI.WebControls.TextBox txtIndicaciones;
         
         /// <summary>
-        /// lblError control.
+        /// divchkAgranda control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divchkAgranda;
+        
+        /// <summary>
+        /// chkAgranda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkAgranda;
         
         /// <summary>
         /// lstAgregados control.
@@ -119,6 +128,15 @@ namespace SinapsisGEO.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cmdBorrarItem;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// PlaceHolder1 control.

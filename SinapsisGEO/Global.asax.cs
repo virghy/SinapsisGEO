@@ -8,6 +8,7 @@ using System.Web.Security;
 using SinapsisGEO;
 using System.Configuration;
 using log4net;
+using System.Web.UI;
 
 namespace SinapsisGEO
 {
@@ -19,6 +20,28 @@ namespace SinapsisGEO
         private readonly ILog log = LogManager.GetLogger("Aplicacion");
         void Application_Start(object sender, EventArgs e)
         {
+
+            string str = "2.1.3";
+            ScriptManager.ScriptResourceMapping.AddDefinition("jquery", new ScriptResourceDefinition
+            {
+                Path = "~/Scripts/jquery-" + str + ".min.js",
+                DebugPath = "~/Scripts/jquery-" + str + ".js",
+                CdnPath = "http://http://code.jquery.com/jquery-" + str + ".min.js",
+                CdnDebugPath = "http://code.jquery.com/jquery-" + str + ".js",
+                CdnSupportsSecureConnection = true
+            });
+
+
+            ScriptManager.ScriptResourceMapping.AddDefinition("bootstrap", new ScriptResourceDefinition
+            {
+                Path = "~/Scripts/bootstrap.min.js",
+                DebugPath = "~/Scripts/bootstrap.js",
+                CdnPath = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js",
+                CdnDebugPath = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.js",
+                CdnSupportsSecureConnection = true
+            });
+
+
             // Código que se ejecuta al iniciarse la aplicación
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterOpenAuth();

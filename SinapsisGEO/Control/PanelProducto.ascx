@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PanelProducto.ascx.cs" Inherits="SinapsisGEO.Control.PanelProducto" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Src="~/Control/PanelCarrito.ascx" TagPrefix="uc1" TagName="PanelCarrito" %>
 <%@ Register Src="~/Control/PanelCombo.ascx" TagPrefix="uc1" TagName="PanelCombo" %>
 <%@ Register Src="~/Control/PanelAviso.ascx" TagPrefix="uc1" TagName="PanelAviso" %>
@@ -264,10 +265,11 @@ input[type=checkbox] {
 </asp:DataList>
 
         <asp:Button runat="server" ID="hiddenTargetControlForModalPopup" Style="display: none" />
-        <ajaxToolkit:ModalPopupExtender runat="server" ID="programmaticModalPopup" 
+        <cc1:ModalPopupExtender runat="server" ID="programmaticModalPopup" 
             TargetControlID="hiddenTargetControlForModalPopup" PopupControlID="programmaticPopup"
             BackgroundCssClass="modalBackground" CancelControlID="CancelButton">
-        </ajaxToolkit:ModalPopupExtender>
+        </cc1:ModalPopupExtender>
+    
 
  <asp:Panel runat="server" CssClass="modalPopup" ID="programmaticPopup" Style="display: none;
             width: 400px; padding: 10px">

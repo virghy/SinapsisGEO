@@ -46,9 +46,9 @@ namespace DAL
         public Nullable<System.DateTime> FechaAlta { get; set; }
         public string IdTipo { get; set; }
         public Nullable<bool> Diplomatico { get; set; }
-        public Nullable<int> IdClienteWeb1 { get; set; }
         public string Telefonoweb { get; set; }
         public Nullable<bool> Verificado { get; set; }
+        public Nullable<int> IdClienteWeb1 { get; set; }
     
         public virtual ICollection<tel_Carrito> tel_Carrito { get; set; }
         public virtual ICollection<tel_Pedidos> tel_Pedidos { get; set; }

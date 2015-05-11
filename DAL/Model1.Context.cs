@@ -298,5 +298,95 @@ namespace DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tel_AppAsignarMovil", nroPedidoParameter, idEmpresaParameter, idMovilParameter, operacionParameter);
         }
+    
+        public virtual int ph_ActualizarPrecio(Nullable<int> idEmpresa, string idProducto, Nullable<decimal> precio, string idLista, string lista)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var idProductoParameter = idProducto != null ?
+                new ObjectParameter("IdProducto", idProducto) :
+                new ObjectParameter("IdProducto", typeof(string));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            var idListaParameter = idLista != null ?
+                new ObjectParameter("IdLista", idLista) :
+                new ObjectParameter("IdLista", typeof(string));
+    
+            var listaParameter = lista != null ?
+                new ObjectParameter("Lista", lista) :
+                new ObjectParameter("Lista", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarPrecio", idEmpresaParameter, idProductoParameter, precioParameter, idListaParameter, listaParameter);
+        }
+    
+        public virtual int ph_ActualizarCombo(Nullable<int> idEmpresa, string iDPROMO, string pROMO, Nullable<int> iDDEFINICION_PROMO, string dEFINICION_PROMO, Nullable<int> cANTIDAD_DEFINICION, Nullable<int> iDPRODUCTO_CMB, string iDPRODUCTO, string pRODUCTO, Nullable<decimal> cANTIDAD, Nullable<int> pREDETERMINADO, Nullable<int> eSTADO, Nullable<decimal> cOMBINACIONES, string aGRANDADO, string iDART_COSTO_AGRANDADO)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var iDPROMOParameter = iDPROMO != null ?
+                new ObjectParameter("IDPROMO", iDPROMO) :
+                new ObjectParameter("IDPROMO", typeof(string));
+    
+            var pROMOParameter = pROMO != null ?
+                new ObjectParameter("PROMO", pROMO) :
+                new ObjectParameter("PROMO", typeof(string));
+    
+            var iDDEFINICION_PROMOParameter = iDDEFINICION_PROMO.HasValue ?
+                new ObjectParameter("IDDEFINICION_PROMO", iDDEFINICION_PROMO) :
+                new ObjectParameter("IDDEFINICION_PROMO", typeof(int));
+    
+            var dEFINICION_PROMOParameter = dEFINICION_PROMO != null ?
+                new ObjectParameter("DEFINICION_PROMO", dEFINICION_PROMO) :
+                new ObjectParameter("DEFINICION_PROMO", typeof(string));
+    
+            var cANTIDAD_DEFINICIONParameter = cANTIDAD_DEFINICION.HasValue ?
+                new ObjectParameter("CANTIDAD_DEFINICION", cANTIDAD_DEFINICION) :
+                new ObjectParameter("CANTIDAD_DEFINICION", typeof(int));
+    
+            var iDPRODUCTO_CMBParameter = iDPRODUCTO_CMB.HasValue ?
+                new ObjectParameter("IDPRODUCTO_CMB", iDPRODUCTO_CMB) :
+                new ObjectParameter("IDPRODUCTO_CMB", typeof(int));
+    
+            var iDPRODUCTOParameter = iDPRODUCTO != null ?
+                new ObjectParameter("IDPRODUCTO", iDPRODUCTO) :
+                new ObjectParameter("IDPRODUCTO", typeof(string));
+    
+            var pRODUCTOParameter = pRODUCTO != null ?
+                new ObjectParameter("PRODUCTO", pRODUCTO) :
+                new ObjectParameter("PRODUCTO", typeof(string));
+    
+            var cANTIDADParameter = cANTIDAD.HasValue ?
+                new ObjectParameter("CANTIDAD", cANTIDAD) :
+                new ObjectParameter("CANTIDAD", typeof(decimal));
+    
+            var pREDETERMINADOParameter = pREDETERMINADO.HasValue ?
+                new ObjectParameter("PREDETERMINADO", pREDETERMINADO) :
+                new ObjectParameter("PREDETERMINADO", typeof(int));
+    
+            var eSTADOParameter = eSTADO.HasValue ?
+                new ObjectParameter("ESTADO", eSTADO) :
+                new ObjectParameter("ESTADO", typeof(int));
+    
+            var cOMBINACIONESParameter = cOMBINACIONES.HasValue ?
+                new ObjectParameter("COMBINACIONES", cOMBINACIONES) :
+                new ObjectParameter("COMBINACIONES", typeof(decimal));
+    
+            var aGRANDADOParameter = aGRANDADO != null ?
+                new ObjectParameter("AGRANDADO", aGRANDADO) :
+                new ObjectParameter("AGRANDADO", typeof(string));
+    
+            var iDART_COSTO_AGRANDADOParameter = iDART_COSTO_AGRANDADO != null ?
+                new ObjectParameter("IDART_COSTO_AGRANDADO", iDART_COSTO_AGRANDADO) :
+                new ObjectParameter("IDART_COSTO_AGRANDADO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarCombo", idEmpresaParameter, iDPROMOParameter, pROMOParameter, iDDEFINICION_PROMOParameter, dEFINICION_PROMOParameter, cANTIDAD_DEFINICIONParameter, iDPRODUCTO_CMBParameter, iDPRODUCTOParameter, pRODUCTOParameter, cANTIDADParameter, pREDETERMINADOParameter, eSTADOParameter, cOMBINACIONESParameter, aGRANDADOParameter, iDART_COSTO_AGRANDADOParameter);
+        }
     }
 }

@@ -11,7 +11,11 @@ namespace SinapsisGEO.Control
 {
     public partial class PanelAddProducto : System.Web.UI.UserControl
     {
-        private SinapsisEntities db = new SinapsisEntities(); 
+        private SinapsisEntities db = new SinapsisEntities();
+
+        decimal cntTotal = 0;
+        decimal cntDefinicion = 0;
+        bool OkCantidad = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,7 +44,16 @@ namespace SinapsisGEO.Control
                 //this.imgProducto.ImageUrl = Page.ResolveUrl("~/images/productos/" + p.Imagen);
 
                 chkMitad.Visible = p.PermiteMitad.HasValue ? p.PermiteMitad.Value : false;
-
+                chkAgranda.Enabled= p.IdProductoAgranda != null;
+                chkAgranda.Checked = false;
+                if (p.IdProductoAgranda == null)
+                {
+                    divchkAgranda.Attributes["class"] = "checkbox  label-warning disabled";
+                }
+                else
+                {
+                    divchkAgranda.Attributes["class"] = "checkbox  label-warning";
+                }
                 //24-03/2014
                 //Verificamos si tiene querystring, si tiene, levantamos el carrito, si no tiene, es una consulta de productos
 
@@ -154,14 +167,24 @@ namespace SinapsisGEO.Control
 
                 if ( this.EsCombo.Text=="S" )
                 {
-                    car.AgregarItem(this.IdProducto.Text, Cantidad, obs, this.TraerContenido());
+                    String[] contenidoCombo = this.TraerContenidoGrid();
+                    if (this.OkCantidad)
+                    {
+                        car.AgregarItem(this.IdProducto.Text, Cantidad, obs, this.TraerContenidoGrid(),this.chkAgranda.Checked);  
+                    }
+                    else
+                    {
+                        this.lblError.Text = "Las cantidades no corresponden a la definicion del combo";
+                        return;
+                    }
+                   
                 }
                 else
                 {
-                    car.AgregarItem(this.IdProducto.Text, Cantidad, obs);
+                    car.AgregarItem(this.IdProducto.Text, Cantidad, obs,this.chkAgranda.Checked);
                     if (chkMitad.Checked)
                     {
-                        car.AgregarItem(this.cboMitad.SelectedValue, Cantidad, obs);
+                        car.AgregarItem(this.cboMitad.SelectedValue, Cantidad, obs,false);
                     }
                 }
 
@@ -175,7 +198,7 @@ namespace SinapsisGEO.Control
 
                 db.SaveChanges();
 
-                txt.Text = "Indicaciones";
+                //txt.Text = "Indicaciones";
 
                 if (car.Completo)
                 {
@@ -251,6 +274,65 @@ namespace SinapsisGEO.Control
             return sb.ToString().Split(new Char[] { ';' });
         }
 
+        String[] TraerContenidoGrid()
+        {
+            StringBuilder sb = new StringBuilder();
+            
+            foreach (RepeaterItem ri in rptOpciones.Items)
+            {
+
+                if (ri.ItemType == ListItemType.Item | ri.ItemType == ListItemType.AlternatingItem)
+                {
+
+                    var op = (Opciones)ri.FindControl("Opciones");
+
+                    GridView lst = (GridView)op.FindControl("grdView");
+                    this.cntDefinicion = Convert.ToDecimal(((HiddenField)op.FindControl("txtCantidad")).Value);
+             
+                    var OpcionEsCombo = (HiddenField)op.FindControl("txtEsCombo");
+
+                    if (OpcionEsCombo.Value == "SI")
+                    {
+
+                        cntTotal = 0;
+                        foreach (GridViewRow lstItem in lst.Rows)
+                        {
+                            if (lstItem.RowType== DataControlRowType.DataRow)
+                            {
+                                DropDownList cbo = (DropDownList)lstItem.FindControl("cboCantidad");
+                                Decimal cnt = Convert.ToDecimal(cbo.SelectedValue);
+
+                                if (cnt>0)
+                                {
+                                    sb.Append(lstItem.Cells[0].Text);
+                                  //  sb.Append(lstItem.Value);
+                                    sb.Append(":");
+                                    sb.Append(":");
+                                    // sb.Append(((HiddenField)op.FindControl("txtCantidad")).Value);
+                                    sb.Append(cnt.ToString("N2"));
+                                    cntTotal += cnt;
+                                    sb.Append(";");
+                                }
+
+                                    
+
+                            }
+                        }
+
+                        if (this.cntDefinicion != this.cntTotal)
+                        {
+                            this.OkCantidad=false;
+                            return null;
+                        }
+                    }
+
+
+                }
+            }
+            sb.Remove(sb.Length - 1, 1);
+
+            return sb.ToString().Split(new Char[] { ';' });
+        }
         protected void cmdCancel_Click(object sender, EventArgs e)
         {
             ((Consultas.Productos)this.Page).Cancelar();

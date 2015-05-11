@@ -59,11 +59,32 @@
                         <asp:ListItem>9</asp:ListItem>
                         <asp:ListItem>10</asp:ListItem>
                     </asp:DropDownList>
-         <asp:Button ID="cmdAgregar" runat="server" Text="Agregar" OnClick="Button1_Click" />
-            <br />
-            Indicaciones: <asp:TextBox ID="txtIndicaciones" Width="200px" runat="server"></asp:TextBox>
-            <asp:Label ID="lblError" runat="server" CssClass="error"></asp:Label>
-        </div> </td>
+          <asp:Button ID="cmdAgregar" runat="server" class="btn btn-primary btn-lg" Text="Agregar" OnClick="Button1_Click" />
+          
+      
+<div class="row">
+    <form class="form-horizontal">
+  <div class="form-group">
+    <label for="txtIndicaciones" class="col-sm-4 col-md-4 control-label">Indicaciones</label>
+    <div class="col-sm-8 col-md-8">
+        <asp:TextBox ID="txtIndicaciones" runat="server" class="form-control"   placeholder="Indicaciones para la cocina"></asp:TextBox>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class='checkbox  label-warning' runat="server" id="divchkAgranda" >
+        <label>
+          <asp:CheckBox runat="server" ID="chkAgranda" /> Agranda tu combo
+        </label>
+      </div>
+    </div>
+  </div>
+ 
+</form>
+</div>
+
+            </td>
         <td>
             <h4>
             Agregados:</h4>
@@ -79,6 +100,8 @@
     <tr>
         <td colspan="3">
             (Los precios son referenciales y serán actualizados al agregar al pedido)
+            <br />
+            <asp:Label  ID="lblError" runat="server" CssClass="label label-danger"></asp:Label>
         </td>
     </tr>
     <tr>

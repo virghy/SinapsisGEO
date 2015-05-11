@@ -214,7 +214,7 @@
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
           <Property Name="IdCliente" Type="int" Nullable="false" />
           <Property Name="Comentario" Type="varchar" MaxLength="500" />
-          <Property Name="audit_Usuario" Type="varchar" MaxLength="20" />
+          <Property Name="audit_Usuario" Type="varchar" MaxLength="10" />
           <Property Name="Audit_Fecha" Type="datetime" />
           <Property Name="IdTipoReclamo" Type="char" MaxLength="5" />
           <Property Name="IdPedido" Type="int" />
@@ -231,7 +231,7 @@
           <Property Name="IdCliente" Type="int" />
           <Property Name="IdSucursal" Type="int" />
           <Property Name="Direccion1" Type="varchar" MaxLength="50" />
-          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
           <Property Name="referencia" Type="varchar" MaxLength="200" />
           <Property Name="NroCasa" Type="smallint" />
           <Property Name="cuadrante" Type="char" MaxLength="5" />
@@ -511,6 +511,7 @@
           <Property Name="IdTam" Type="varchar" MaxLength="5" />
           <Property Name="PermiteMitad" Type="bit" />
           <Property Name="IncluyeEnvio" Type="bit" />
+          <Property Name="IdProductoAgranda" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="tel_Sucursal">
           <Key>
@@ -1074,6 +1075,30 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Parameter Name="IdSucursal" Type="int" Mode="In" />
           <Parameter Name="IdCliente" Type="int" Mode="In" />
         </Function>
+        <Function Name="ph_ActualizarCombo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="IDPROMO" Type="varchar" Mode="In" />
+          <Parameter Name="PROMO" Type="varchar" Mode="In" />
+          <Parameter Name="IDDEFINICION_PROMO" Type="int" Mode="In" />
+          <Parameter Name="DEFINICION_PROMO" Type="varchar" Mode="In" />
+          <Parameter Name="CANTIDAD_DEFINICION" Type="int" Mode="In" />
+          <Parameter Name="IDPRODUCTO_CMB" Type="int" Mode="In" />
+          <Parameter Name="IDPRODUCTO" Type="varchar" Mode="In" />
+          <Parameter Name="PRODUCTO" Type="varchar" Mode="In" />
+          <Parameter Name="CANTIDAD" Type="decimal" Mode="In" />
+          <Parameter Name="PREDETERMINADO" Type="int" Mode="In" />
+          <Parameter Name="ESTADO" Type="int" Mode="In" />
+          <Parameter Name="COMBINACIONES" Type="decimal" Mode="In" />
+          <Parameter Name="AGRANDADO" Type="varchar" Mode="In" />
+          <Parameter Name="IDART_COSTO_AGRANDADO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ph_ActualizarPrecio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="IdProducto" Type="varchar" Mode="In" />
+          <Parameter Name="Precio" Type="money" Mode="In" />
+          <Parameter Name="IdLista" Type="char" Mode="In" />
+          <Parameter Name="Lista" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="ph_Interfase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPedido" Type="int" Mode="In" />
         </Function>
@@ -1574,6 +1599,30 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             <End Role="tel_ListaPrecio" EntitySet="tel_ListaPrecio" />
             <End Role="tel_Precios" EntitySet="tel_Precios" />
           </AssociationSet>
+          <FunctionImport Name="ph_ActualizarPrecio">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="IdProducto" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="IdLista" Mode="In" Type="String" />
+            <Parameter Name="Lista" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ph_ActualizarCombo">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="IDPROMO" Mode="In" Type="String" />
+            <Parameter Name="PROMO" Mode="In" Type="String" />
+            <Parameter Name="IDDEFINICION_PROMO" Mode="In" Type="Int32" />
+            <Parameter Name="DEFINICION_PROMO" Mode="In" Type="String" />
+            <Parameter Name="CANTIDAD_DEFINICION" Mode="In" Type="Int32" />
+            <Parameter Name="IDPRODUCTO_CMB" Mode="In" Type="Int32" />
+            <Parameter Name="IDPRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="CANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="PREDETERMINADO" Mode="In" Type="Int32" />
+            <Parameter Name="ESTADO" Mode="In" Type="Int32" />
+            <Parameter Name="COMBINACIONES" Mode="In" Type="Decimal" />
+            <Parameter Name="AGRANDADO" Mode="In" Type="String" />
+            <Parameter Name="IDART_COSTO_AGRANDADO" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tel_Carrito">
           <Key>
@@ -1664,9 +1713,9 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="String" Name="IdTipo" MaxLength="3" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="tel_TipoCliente" Relationship="SinapsisModel.FK_tel_Clientes_tel_TipoCliente" FromRole="tel_Clientes" ToRole="tel_TipoCliente" />
           <Property Name="Diplomatico" Type="Boolean" />
-          <Property Name="IdClienteWeb1" Type="Int32" />
           <Property Name="Telefonoweb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Verificado" Type="Boolean" />
+          <Property Name="IdClienteWeb1" Type="Int32" />
         </EntityType>
         <EntityType Name="tel_Pedidos">
           <Key>
@@ -1751,6 +1800,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <NavigationProperty Name="tel_PedidosDet" Relationship="SinapsisModel.FK_tel_PedidosDet_tel_Productos" FromRole="tel_Productos" ToRole="tel_PedidosDet" />
           <Property Type="Boolean" Name="IncluyeEnvio" />
           <NavigationProperty Name="tel_ProductoOpcion" Relationship="SinapsisModel.FK_tel_ProductoOpcion_Productos" FromRole="tel_Productos" ToRole="tel_ProductoOpcion" />
+          <Property Name="IdProductoAgranda" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="tel_Sucursal">
           <Key>
@@ -1878,7 +1928,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="Int32" Name="IdCliente" />
           <Property Type="Int32" Name="IdSucursal" />
           <Property Type="String" Name="Direccion1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Direccion" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Direccion" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="referencia" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int16" Name="NroCasa" />
           <Property Type="String" Name="cuadrante" MaxLength="5" FixedLength="true" Unicode="false" />
@@ -2247,7 +2297,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="Int32" Name="IdEmpresa" Nullable="false" />
           <Property Type="Int32" Name="IdCliente" Nullable="false" />
           <Property Type="String" Name="Comentario" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="audit_Usuario" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="audit_Usuario" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Type="DateTime" Name="Audit_Fecha" Precision="3" />
           <Property Type="String" Name="IdTipoReclamo" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Type="Int32" Name="IdPedido" />
@@ -2899,9 +2949,9 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySetMapping Name="tel_Clientes">
             <EntityTypeMapping TypeName="SinapsisModel.tel_Clientes">
               <MappingFragment StoreEntitySet="tel_Clientes">
+                <ScalarProperty Name="IdClienteWeb1" ColumnName="IdClienteWeb1" />
                 <ScalarProperty Name="Verificado" ColumnName="Verificado" />
                 <ScalarProperty Name="Telefonoweb" ColumnName="Telefonoweb" />
-                <ScalarProperty Name="IdClienteWeb1" ColumnName="IdClienteWeb1" />
                 <ScalarProperty Name="Diplomatico" ColumnName="Diplomatico" />
                 <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
@@ -2976,6 +3026,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySetMapping Name="tel_Productos">
             <EntityTypeMapping TypeName="SinapsisModel.tel_Productos">
               <MappingFragment StoreEntitySet="tel_Productos">
+                <ScalarProperty Name="IdProductoAgranda" ColumnName="IdProductoAgranda" />
                 <ScalarProperty Name="IncluyeEnvio" ColumnName="IncluyeEnvio" />
                 <ScalarProperty Name="PermiteMitad" ColumnName="PermiteMitad" />
                 <ScalarProperty Name="IdTam" ColumnName="IdTam" />
@@ -3520,6 +3571,8 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ph_ActualizarPrecio" FunctionName="SinapsisModel.Store.ph_ActualizarPrecio" />
+          <FunctionImportMapping FunctionImportName="ph_ActualizarCombo" FunctionName="SinapsisModel.Store.ph_ActualizarCombo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

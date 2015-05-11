@@ -12,10 +12,8 @@
 
 <%: Scripts.Render("~/bundles/modernizr") %>
 
-    
-    <form id="form1" runat="server">
-<ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    <Scripts>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+         <Scripts>
         <%--Framework Scripts--%>
         <asp:ScriptReference Name="jquery" />
         <asp:ScriptReference Name="jquery.ui.combined" />
@@ -31,8 +29,9 @@
         <%--Site Scripts--%>
         
     </Scripts>
+    </asp:ScriptManager>
+    <form id="form1" runat="server">
 
-</ajaxToolkit:ToolkitScriptManager>
     <script src="../Scripts/jquery.timer.js"></script>
         <style>
            .tableroRojo {

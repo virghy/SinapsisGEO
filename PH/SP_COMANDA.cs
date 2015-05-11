@@ -19,4 +19,8 @@ namespace PH
         public Nullable<int> IDDIRECCION { get; set; }
         public Nullable<int> ESTADO { get; set; }
     }
+
+   
+
+
 }

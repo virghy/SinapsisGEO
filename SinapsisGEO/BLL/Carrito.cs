@@ -191,9 +191,9 @@ namespace SinapsisGEO.BLL
 		   return dr.Id;
 	   }
 
-		public void AgregarItem(String IdProducto, Decimal Cantidad, String Obs)
+		public void AgregarItem(String IdProducto, Decimal Cantidad, String Obs, bool Agranda=false)
 		{
-			AgregarItem(IdProducto,Cantidad, Obs, new String[0]);
+			AgregarItem(IdProducto,Cantidad, Obs, new String[0], Agranda);
 			
 			//var item = new DAL.tel_Carrito_Item();
 			//item.IdProducto = IdProducto;
@@ -221,7 +221,7 @@ namespace SinapsisGEO.BLL
 		}
 
 	
-		public void AgregarItem(String IdProducto, Decimal Cantidad, String Obs, String[] Combos)
+		public void AgregarItem(String IdProducto, Decimal Cantidad, String Obs, String[] Combos, bool Agranda)
 		{
 			var item = new DAL.tel_Carrito_Item();
 			item.IdProducto = IdProducto;
@@ -421,7 +421,8 @@ namespace SinapsisGEO.BLL
 						pint.IdDireccion = result.IDDIRECCION;
 						pint.Estado = result.ESTADO;
 						pint.Audit_Fecha = DateTime.Now;
-						db.tel_Ph_Interfase.Add(pint);                        
+						db.tel_Ph_Interfase.Add(pint);
+                        ph.SaveChanges();
 					}
 				}
 				catch (Exception ex)
@@ -555,7 +556,7 @@ namespace SinapsisGEO.BLL
 							String[] Obs = TraerContenido(item.IdPedidoDet, pd.tel_PedidosDet.ToList());
 							if (Obs[0]!="")
 							{
-								cr.AgregarItem(item.IdProducto, item.Cantidad.Value, item.Obs,Obs);		     
+								cr.AgregarItem(item.IdProducto, item.Cantidad.Value, item.Obs,Obs,false);		     
 							}
 							else
 							{
@@ -573,6 +574,12 @@ namespace SinapsisGEO.BLL
 
 
 		}
+
+        String TraerAgrandado(string IdProducto)
+        {
+
+            return null;
+        }
 
 		String[] TraerContenido(int IdItem, List<DAL.tel_PedidosDet> items)
 		{

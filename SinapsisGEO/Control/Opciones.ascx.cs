@@ -46,7 +46,8 @@ namespace SinapsisGEO.Control
             if (o != null)
             {
                 this.lblTitulo.Text = o.Titulo.ToUpper();
-                this.lblIdOpcion.Text = IdOpcion.ToString() +'('+ o.Maximo.ToString() + ')';
+                this.lblCantidad.Text = o.Maximo.ToString();
+                this.lblIdOpcion.Text = IdOpcion.ToString() ;
                 this.txtCantidad.Value = o.Maximo.ToString();
 
                 this.txtEsCombo.Value = o.EsCombo.HasValue ? (o.EsCombo.Value == true ? "SI" : "NO") : "NO";
@@ -97,7 +98,7 @@ namespace SinapsisGEO.Control
             this.EsCombo = Seleccion.EsCombo;
             this.PermiteMitad = Seleccion.PermiteMitad;
             
-            this.chkMitad.Visible = Seleccion.PermiteMitad.HasValue ? Seleccion.PermiteMitad.Value : false;
+            //this.chkMitad.Visible = Seleccion.PermiteMitad.HasValue ? Seleccion.PermiteMitad.Value : false;
 
             //this.lstOpciones.SelectionMode = Seleccion.Maximo > 1 ? ListSelectionMode.Multiple : ListSelectionMode.Single;
             //this.lstOtraMitad.SelectionMode = Seleccion.Maximo > 1 ? ListSelectionMode.Multiple : ListSelectionMode.Single;
@@ -130,7 +131,8 @@ namespace SinapsisGEO.Control
                 ListItem i = new ListItem(item.Descripcion, item.IdProducto);
             //                i.Selected=item
             i.Selected = item.Predet.HasValue ? item.Predet.Value : false;
-            this.lstOpciones.Items.Add(i);
+            
+                //this.lstOpciones.Items.Add(i);
             }
 
             
@@ -250,6 +252,39 @@ namespace SinapsisGEO.Control
         protected void chkMitad_CheckedChanged(object sender, EventArgs e)
         {
             this.lstOtraMitad.Visible = chkMitad.Checked;
+        }
+
+        protected void grdView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+           
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DAL.Opciones dO = e.Row.DataItem as DAL.Opciones;
+                DropDownList cbo = (DropDownList)e.Row.FindControl("cboCantidad");
+                CargarCantidad(cbo);
+                if (dO.Predet.Value)
+                {
+                    cbo.SelectedValue = dO.Cantidad.ToString();
+                }  
+
+
+            }
+        }
+
+        void CargarCantidad(DropDownList cbo)
+        {
+            int cant = Convert.ToInt32( this.txtCantidad.Value);
+
+            for (int i = 0; i <= cant; i++)
+            {
+                cbo.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                
+            }
+            if (this.PermiteMitad.HasValue && this.PermiteMitad.Value==true)
+            {
+                cbo.Items.Add(new ListItem("Mitad", "0,5"));
+            }
+
         }
 
        

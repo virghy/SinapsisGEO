@@ -368,7 +368,7 @@ namespace SinapsisGEO.Control
 
                  if (btn.CommandName == "C")
                  {
-                     car.AgregarItem(btn.CommandArgument, Cantidad, obs, this.PanelCombo.TraerContenido());
+                     car.AgregarItem(btn.CommandArgument, Cantidad, obs, this.PanelCombo.TraerContenido(),false);
                  }
                  else
                  {

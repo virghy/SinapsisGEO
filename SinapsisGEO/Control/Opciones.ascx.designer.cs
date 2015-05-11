@@ -13,6 +13,15 @@ namespace SinapsisGEO.Control {
     public partial class Opciones {
         
         /// <summary>
+        /// lblCantidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCantidad;
+        
+        /// <summary>
         /// lblIdOpcion control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,24 @@ namespace SinapsisGEO.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTitulo;
+        
+        /// <summary>
+        /// grdView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdView;
+        
+        /// <summary>
+        /// lblSelected control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSelected;
         
         /// <summary>
         /// txtCantidad control.
@@ -74,15 +101,6 @@ namespace SinapsisGEO.Control {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cmdAddItems;
-        
-        /// <summary>
-        /// grdView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdView;
         
         /// <summary>
         /// lstOpciones control.
