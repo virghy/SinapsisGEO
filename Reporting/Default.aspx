@@ -19,7 +19,7 @@ Empresa: <asp:DropDownList ID="cboEmpresa" runat="server" OnSelectedIndexChanged
           RepeatColumns="3" RepeatDirection="Horizontal" CellPadding="4" ForeColor="#333333">
           <ItemTemplate>
           <strong>
-              <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# (Eval("Tipo").ToString()=="R" ? "Viewer1.aspx?value=" : "Mapa.aspx?value=") + Eval("Archivo") + "&titulo=" + Eval("Nombre") +"&Id=" + Eval("IdReporte") %>'
+              <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# (Eval("Tipo").ToString()=="R" ? "Viewer1.aspx?value=" : "Mapa.aspx?value=") + Eval("Archivo") + "&titulo=" + Eval("Nombre") +"&Id=" + Eval("IdReporte") + "&IdEmpresa=" + cboEmpresa.SelectedValue %>'
                   Text='<%# Eval("Nombre") %>'></asp:HyperLink>&nbsp;
                     
               </strong>

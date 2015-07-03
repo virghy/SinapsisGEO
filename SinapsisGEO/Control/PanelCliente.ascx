@@ -587,8 +587,8 @@
           <asp:Label ForeColor="White" Font-Bold="true" runat="server" ID="label1" Text="Nro Teléfono:"></asp:Label>
     <asp:TextBox ID="txtTelefono" Width="120px" runat="server"></asp:TextBox>
 
-<asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
-    <asp:Button ID="cmdAgregar" runat="server" Text="Agregar Cliente" OnClick="cmdAgregar_Click" />
+<asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscar_Click" />
+    <asp:Button ID="cmdAgregar" runat="server" CssClass="btn btn-primary" Text="Agregar Cliente" OnClick="cmdAgregar_Click" />
 <%--    <button id="create-user">Agregar Cliente</button>--%>
 <%--    <asp:Button ID="btnAddDir" Visible="false" runat="server" Text="Agregar Direccion" OnClick="btnAddDir_Click" />--%>
     <asp:Label ForeColor="White" Font-Bold="true" runat="server" ID="label2" Text="Tipo Pedido:"></asp:Label>
@@ -657,9 +657,9 @@
 
         <br />
 <%--        <asp:Button ID="btnEdit" CommandArgument='<%# Eval("Id") %>' CommandName="Select"  runat="server" Text="Editar" OnClick="btnEdit_Click" />--%>
-        <a  onclick='<%# String.Format("EditarDir({0});", Eval("Id")) %>' href="#">Editar</a>
+        <a class="btn btn-primary"  onclick='<%# String.Format("EditarDir({0});", Eval("Id")) %>' href="#">Editar</a>
            
-         <asp:Button ID="btnAddPedido" CommandArgument='<%# Eval("Id") %>' runat="server" Text="Crear Pedido" OnClick="btnAddPedido_Click" />
+         <asp:Button CssClass="btn btn-primary" ID="btnAddPedido" CommandArgument='<%# Eval("Id") %>' runat="server" Text="Crear Pedido" OnClick="btnAddPedido_Click" />
 
 </div>
 </ItemTemplate>

@@ -12,9 +12,11 @@
 
 <%: Scripts.Render("~/bundles/modernizr") %>
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
+   
+    <form id="form1" runat="server">
+ <asp:ScriptManager ID="ScriptManager1" runat="server">
          <Scripts>
-        <%--Framework Scripts--%>
+       
         <asp:ScriptReference Name="jquery" />
         <asp:ScriptReference Name="jquery.ui.combined" />
         <asp:ScriptReference Name="WebForms.js"  Path="~/Scripts/WebForms/WebForms.js" />
@@ -26,12 +28,10 @@
         <asp:ScriptReference Name="WebParts.js"  Path="~/Scripts/WebForms/WebParts.js" />
         <asp:ScriptReference Name="Focus.js"  Path="~/Scripts/WebForms/Focus.js" />
         <asp:ScriptReference Name="WebFormsBundle" />
-        <%--Site Scripts--%>
+
         
     </Scripts>
     </asp:ScriptManager>
-    <form id="form1" runat="server">
-
     <script src="../Scripts/jquery.timer.js"></script>
         <style>
            .tableroRojo {

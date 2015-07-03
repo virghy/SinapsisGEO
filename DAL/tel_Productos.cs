@@ -47,6 +47,7 @@ namespace DAL
         public Nullable<bool> PermiteMitad { get; set; }
         public Nullable<bool> IncluyeEnvio { get; set; }
         public string IdProductoAgranda { get; set; }
+        public string IdCostoAgranda { get; set; }
     
         public virtual ICollection<tel_Carrito_Item> tel_Carrito_Item { get; set; }
         public virtual tel_Familia tel_Familia { get; set; }

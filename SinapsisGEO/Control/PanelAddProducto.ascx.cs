@@ -190,10 +190,22 @@ namespace SinapsisGEO.Control
 
                 //Agregamos los Toppings
 
-                foreach (ListItem  item in lstAgregados.Items)
+                //foreach (ListItem  item in lstAgregados.Items)
+                //{
+                //    car.AgregarItem(item.Value, 1, "");
+                //}
+                String[] contenidoTopping = this.TraerToppingGrid();
+
+                if (contenidoTopping !=null)
                 {
-                    car.AgregarItem(item.Value, 1, "");
+                    foreach (var item in contenidoTopping)
+                    {
+                        String[] itemDet = item.Split(new Char[] { ':' });
+                        car.AgregarItem(itemDet[0], Convert.ToDecimal(itemDet[1]), "");
+                    } 
                 }
+ 
+
 
 
                 db.SaveChanges();
@@ -332,6 +344,75 @@ namespace SinapsisGEO.Control
             sb.Remove(sb.Length - 1, 1);
 
             return sb.ToString().Split(new Char[] { ';' });
+        }
+        String[] TraerToppingGrid()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (RepeaterItem ri in rptOpciones.Items)
+            {
+
+                if (ri.ItemType == ListItemType.Item | ri.ItemType == ListItemType.AlternatingItem)
+                {
+
+                    var op = (Opciones)ri.FindControl("Opciones");
+
+                    GridView lst = (GridView)op.FindControl("grdView");
+                    this.cntDefinicion = Convert.ToDecimal(((HiddenField)op.FindControl("txtCantidad")).Value);
+
+                    var OpcionEsCombo = (HiddenField)op.FindControl("txtEsCombo");
+
+                    if (OpcionEsCombo.Value == "NO")
+                    {
+
+                        cntTotal = 0;
+                        foreach (GridViewRow lstItem in lst.Rows)
+                        {
+                            if (lstItem.RowType == DataControlRowType.DataRow)
+                            {
+                                DropDownList cbo = (DropDownList)lstItem.FindControl("cboCantidad");
+                                Decimal cnt = Convert.ToDecimal(cbo.SelectedValue);
+
+                                if (cnt > 0)
+                                {
+                                    sb.Append(lstItem.Cells[0].Text);
+                                    //  sb.Append(lstItem.Value);
+                                    sb.Append(":");
+                                    //sb.Append(":");
+                                    // sb.Append(((HiddenField)op.FindControl("txtCantidad")).Value);
+                                    sb.Append(cnt.ToString("N2"));
+                                    cntTotal += cnt;
+                                    sb.Append(";");
+                                }
+
+
+
+                            }
+                        }
+
+                        if (this.cntDefinicion <= this.cntTotal && this.cntDefinicion!=0)
+                        {
+                            this.OkCantidad = false;
+                            return null;
+                        }
+                    }
+
+
+                }
+            }
+            if (sb.Length>0)
+            {
+                sb.Remove(sb.Length - 1, 1);
+
+                return sb.ToString().Split(new Char[] { ';' });
+            }
+                else
+	        {
+                    return null;
+	        }
+                
+
+
         }
         protected void cmdCancel_Click(object sender, EventArgs e)
         {

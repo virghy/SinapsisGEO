@@ -7,72 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Reporting {
+namespace SinapsisGEO.Admin {
     
     
-    public partial class Mapa {
+    public partial class UpdateProducto {
         
         /// <summary>
-        /// lblTitulo control.
+        /// txtProducto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitulo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtProducto;
         
         /// <summary>
-        /// IdReporte control.
+        /// cmdBuscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField IdReporte;
+        protected global::System.Web.UI.WebControls.Button cmdBuscar;
         
         /// <summary>
-        /// IdEmpresa control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField IdEmpresa;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// cboSucursal control.
+        /// GridView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboSucursal;
+        protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
-        /// txtdFecha control.
+        /// cmdUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdFecha;
+        protected global::System.Web.UI.WebControls.Button cmdUpdate;
         
         /// <summary>
-        /// txthFecha control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txthFecha;
-        
-        /// <summary>
-        /// btnCargar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCargar;
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

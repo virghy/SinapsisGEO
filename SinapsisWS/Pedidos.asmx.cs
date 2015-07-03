@@ -67,7 +67,7 @@ namespace SinapsisWS
                     if (sb.Length>0)
 	                {
                         sb.Remove(sb.Length - 1, 1);
-		                cr.AgregarItem(d.IdArticulo, d.Cantidad, d.Comentario,sb.ToString().Split(new Char[] { ';' }));    
+		                cr.AgregarItem(d.IdArticulo, d.Cantidad, d.Comentario,sb.ToString().Split(new Char[] { ';' }),false);    
 	                }
                     else
 	                {

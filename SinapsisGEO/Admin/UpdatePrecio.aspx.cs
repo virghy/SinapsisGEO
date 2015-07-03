@@ -19,6 +19,13 @@ namespace SinapsisGEO.Admin
             PH.Operaciones op = new PH.Operaciones();
             this.GridView1.DataSource= op.SP_CALL_PRECIO(this.txtProducto.Value);
             this.GridView1.DataBind();
+            using (DAL.SinapsisEntities db = new DAL.SinapsisEntities())
+            {
+                
+              var pr = db.tel_Precios.Where( p=> p.IdEmpresa==Global.IdEmpresa && p.IdProducto==this.txtProducto.Value);
+              this.GridView2.DataSource = pr.ToList();
+              this.GridView2.DataBind();
+            }
         }
 
         protected void cmdUpdate_Click(object sender, EventArgs e)
