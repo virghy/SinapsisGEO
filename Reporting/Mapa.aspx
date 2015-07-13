@@ -61,7 +61,8 @@
                 data: "{Sucursal: " + $('#<%= cboSucursal.ClientID %>').val() +
                         ",dFecha: '" + $('#<%= txtdFecha.ClientID %>').val() +
                         "',hFecha: '" + $('#<%= txthFecha.ClientID %>').val() +
-                        "',IdReporte:" + $('#<%= IdReporte.ClientID %>').val()
+                        "',IdReporte:" + $('#<%= IdReporte.ClientID %>').val() +
+                        ",Empresa:" + $('#<%= IdEmpresa.ClientID %>').val()
                     + " }",
 
                 contentType: "application/json; charset=utf-8",
@@ -137,6 +138,7 @@
         <asp:Label ID="lblTitulo" runat="server" ></asp:Label>
         <%# Request.QueryString["titulo"] %>
         <asp:HiddenField ID="IdReporte" runat="server" />
+        <asp:HiddenField ID="IdEmpresa" runat="server" />
     </h2>
    
     <div id="toggler" class="toggler">

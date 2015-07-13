@@ -250,6 +250,7 @@
     <Content Include="Admin\Web.config" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\Prod.pubxml" />
+    <None Include="Properties\PublishProfiles\Produccion.pubxml" />
     <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\GEO.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />

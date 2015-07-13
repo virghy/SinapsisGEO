@@ -106,7 +106,7 @@ namespace Reporting
         }
 
         [WebMethod]
-        public List<GeoData> ListaConsumo(int Sucursal, String dFecha, String hFecha, int IdReporte)
+        public List<GeoData> ListaConsumo(int Sucursal, String dFecha, String hFecha, int IdReporte, int Empresa)
         {
             List<GeoData> lista = new List<GeoData>();
             List<GeoData> listaGEO = new List<GeoData>(); 
@@ -148,7 +148,7 @@ namespace Reporting
               var IdEmpresa = new SqlParameter
               {
                   ParameterName = "IdEmpresa",
-                  Value = Global.IdEmpresa
+                  Value = Empresa
               };
 
                 var IdSucursal = new SqlParameter
