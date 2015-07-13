@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Entidades\SP_CALL_COMBO.cs" />
     <Compile Include="Entidades\SP_CALL_PRECIO.cs" />
+    <Compile Include="Entidades\SP_CALL_PRODUCTO.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

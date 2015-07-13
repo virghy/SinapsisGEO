@@ -196,7 +196,9 @@
     <Content Include="Admin\CargarArchivo.aspx" />
     <Content Include="Admin\Productos.aspx" />
     <Content Include="Admin\Sucursal.aspx" />
+    <Content Include="Admin\Test.aspx" />
     <Content Include="Admin\UpdateCombo.aspx" />
+    <Content Include="Admin\UpdateProducto.aspx" />
     <Content Include="Admin\UpdatePrecio.aspx" />
     <Content Include="AsignarDir.aspx" />
     <Content Include="Clientes.aspx" />
@@ -744,12 +746,26 @@
     <Compile Include="Admin\Sucursal.aspx.designer.cs">
       <DependentUpon>Sucursal.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UpdateCombo.aspx.cs">
       <DependentUpon>UpdateCombo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\UpdateCombo.aspx.designer.cs">
       <DependentUpon>UpdateCombo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UpdateProducto.aspx.cs">
+      <DependentUpon>UpdateProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UpdateProducto.aspx.designer.cs">
+      <DependentUpon>UpdateProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UpdatePrecio.aspx.cs">
       <DependentUpon>UpdatePrecio.aspx</DependentUpon>

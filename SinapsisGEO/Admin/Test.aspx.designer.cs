@@ -10,60 +10,42 @@
 namespace SinapsisGEO.Admin {
     
     
-    public partial class UpdatePrecio {
+    public partial class Test {
         
         /// <summary>
-        /// txtProducto control.
+        /// inputEmail3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtProducto;
+        protected global::System.Web.UI.WebControls.TextBox inputEmail3;
         
         /// <summary>
-        /// cmdBuscar control.
+        /// inputPassword3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdBuscar;
+        protected global::System.Web.UI.WebControls.TextBox inputPassword3;
         
         /// <summary>
-        /// GridView1 control.
+        /// cmdEjecutar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Button cmdEjecutar;
         
         /// <summary>
-        /// GridView2 control.
+        /// cmdWithTrans control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
-        
-        /// <summary>
-        /// cmdUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdUpdate;
-        
-        /// <summary>
-        /// lblError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Button cmdWithTrans;
     }
 }

@@ -512,6 +512,7 @@
           <Property Name="PermiteMitad" Type="bit" />
           <Property Name="IncluyeEnvio" Type="bit" />
           <Property Name="IdProductoAgranda" Type="char" MaxLength="10" />
+          <Property Name="IdCostoAgranda" Type="char" MaxLength="10" />
         </EntityType>
         <EntityType Name="tel_Sucursal">
           <Key>
@@ -1099,6 +1100,28 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Parameter Name="IdLista" Type="char" Mode="In" />
           <Parameter Name="Lista" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="ph_ActualizarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpresa" Type="int" Mode="In" />
+          <Parameter Name="IDARTICULO" Type="varchar" Mode="In" />
+          <Parameter Name="IDGRUPO" Type="int" Mode="In" />
+          <Parameter Name="GRUPO" Type="varchar" Mode="In" />
+          <Parameter Name="IDMEDIDA" Type="int" Mode="In" />
+          <Parameter Name="IDLINEA" Type="int" Mode="In" />
+          <Parameter Name="LINEA" Type="varchar" Mode="In" />
+          <Parameter Name="ARTICULO" Type="varchar" Mode="In" />
+          <Parameter Name="ESTADO" Type="varchar" Mode="In" />
+          <Parameter Name="DESCRIPCION_CORTA" Type="varchar" Mode="In" />
+          <Parameter Name="IDIMPUESTO" Type="int" Mode="In" />
+          <Parameter Name="IDFAMILIA" Type="int" Mode="In" />
+          <Parameter Name="FAMILIA" Type="varchar" Mode="In" />
+          <Parameter Name="IDMARCA" Type="int" Mode="In" />
+          <Parameter Name="IDCOLECCION" Type="int" Mode="In" />
+          <Parameter Name="COMBO" Type="smallint" Mode="In" />
+          <Parameter Name="PRODUCCION" Type="smallint" Mode="In" />
+          <Parameter Name="IDFRANQUICIA" Type="int" Mode="In" />
+          <Parameter Name="FRANQUICIA" Type="varchar" Mode="In" />
+          <Parameter Name="DESCRIPCION_WEB" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="ph_Interfase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPedido" Type="int" Mode="In" />
         </Function>
@@ -1623,6 +1646,28 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             <Parameter Name="AGRANDADO" Mode="In" Type="String" />
             <Parameter Name="IDART_COSTO_AGRANDADO" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ph_ActualizarProducto">
+            <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="IDARTICULO" Mode="In" Type="String" />
+            <Parameter Name="IDGRUPO" Mode="In" Type="Int32" />
+            <Parameter Name="GRUPO" Mode="In" Type="String" />
+            <Parameter Name="IDMEDIDA" Mode="In" Type="Int32" />
+            <Parameter Name="IDLINEA" Mode="In" Type="Int32" />
+            <Parameter Name="LINEA" Mode="In" Type="String" />
+            <Parameter Name="ARTICULO" Mode="In" Type="String" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPCION_CORTA" Mode="In" Type="String" />
+            <Parameter Name="IDIMPUESTO" Mode="In" Type="Int32" />
+            <Parameter Name="IDFAMILIA" Mode="In" Type="Int32" />
+            <Parameter Name="FAMILIA" Mode="In" Type="String" />
+            <Parameter Name="IDMARCA" Mode="In" Type="Int32" />
+            <Parameter Name="IDCOLECCION" Mode="In" Type="Int32" />
+            <Parameter Name="COMBO" Mode="In" Type="Int16" />
+            <Parameter Name="PRODUCCION" Mode="In" Type="Int16" />
+            <Parameter Name="IDFRANQUICIA" Mode="In" Type="Int32" />
+            <Parameter Name="FRANQUICIA" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPCION_WEB" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tel_Carrito">
           <Key>
@@ -1801,6 +1846,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="Boolean" Name="IncluyeEnvio" />
           <NavigationProperty Name="tel_ProductoOpcion" Relationship="SinapsisModel.FK_tel_ProductoOpcion_Productos" FromRole="tel_Productos" ToRole="tel_ProductoOpcion" />
           <Property Name="IdProductoAgranda" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdCostoAgranda" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="tel_Sucursal">
           <Key>
@@ -3026,6 +3072,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySetMapping Name="tel_Productos">
             <EntityTypeMapping TypeName="SinapsisModel.tel_Productos">
               <MappingFragment StoreEntitySet="tel_Productos">
+                <ScalarProperty Name="IdCostoAgranda" ColumnName="IdCostoAgranda" />
                 <ScalarProperty Name="IdProductoAgranda" ColumnName="IdProductoAgranda" />
                 <ScalarProperty Name="IncluyeEnvio" ColumnName="IncluyeEnvio" />
                 <ScalarProperty Name="PermiteMitad" ColumnName="PermiteMitad" />
@@ -3573,6 +3620,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ph_ActualizarPrecio" FunctionName="SinapsisModel.Store.ph_ActualizarPrecio" />
           <FunctionImportMapping FunctionImportName="ph_ActualizarCombo" FunctionName="SinapsisModel.Store.ph_ActualizarCombo" />
+          <FunctionImportMapping FunctionImportName="ph_ActualizarProducto" FunctionName="SinapsisModel.Store.ph_ActualizarProducto" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

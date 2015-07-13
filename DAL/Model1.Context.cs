@@ -388,5 +388,90 @@ namespace DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarCombo", idEmpresaParameter, iDPROMOParameter, pROMOParameter, iDDEFINICION_PROMOParameter, dEFINICION_PROMOParameter, cANTIDAD_DEFINICIONParameter, iDPRODUCTO_CMBParameter, iDPRODUCTOParameter, pRODUCTOParameter, cANTIDADParameter, pREDETERMINADOParameter, eSTADOParameter, cOMBINACIONESParameter, aGRANDADOParameter, iDART_COSTO_AGRANDADOParameter);
         }
+    
+        public virtual int ph_ActualizarProducto(Nullable<int> idEmpresa, string iDARTICULO, Nullable<int> iDGRUPO, string gRUPO, Nullable<int> iDMEDIDA, Nullable<int> iDLINEA, string lINEA, string aRTICULO, string eSTADO, string dESCRIPCION_CORTA, Nullable<int> iDIMPUESTO, Nullable<int> iDFAMILIA, string fAMILIA, Nullable<int> iDMARCA, Nullable<int> iDCOLECCION, Nullable<short> cOMBO, Nullable<short> pRODUCCION, Nullable<int> iDFRANQUICIA, string fRANQUICIA, string dESCRIPCION_WEB)
+        {
+            var idEmpresaParameter = idEmpresa.HasValue ?
+                new ObjectParameter("IdEmpresa", idEmpresa) :
+                new ObjectParameter("IdEmpresa", typeof(int));
+    
+            var iDARTICULOParameter = iDARTICULO != null ?
+                new ObjectParameter("IDARTICULO", iDARTICULO) :
+                new ObjectParameter("IDARTICULO", typeof(string));
+    
+            var iDGRUPOParameter = iDGRUPO.HasValue ?
+                new ObjectParameter("IDGRUPO", iDGRUPO) :
+                new ObjectParameter("IDGRUPO", typeof(int));
+    
+            var gRUPOParameter = gRUPO != null ?
+                new ObjectParameter("GRUPO", gRUPO) :
+                new ObjectParameter("GRUPO", typeof(string));
+    
+            var iDMEDIDAParameter = iDMEDIDA.HasValue ?
+                new ObjectParameter("IDMEDIDA", iDMEDIDA) :
+                new ObjectParameter("IDMEDIDA", typeof(int));
+    
+            var iDLINEAParameter = iDLINEA.HasValue ?
+                new ObjectParameter("IDLINEA", iDLINEA) :
+                new ObjectParameter("IDLINEA", typeof(int));
+    
+            var lINEAParameter = lINEA != null ?
+                new ObjectParameter("LINEA", lINEA) :
+                new ObjectParameter("LINEA", typeof(string));
+    
+            var aRTICULOParameter = aRTICULO != null ?
+                new ObjectParameter("ARTICULO", aRTICULO) :
+                new ObjectParameter("ARTICULO", typeof(string));
+    
+            var eSTADOParameter = eSTADO != null ?
+                new ObjectParameter("ESTADO", eSTADO) :
+                new ObjectParameter("ESTADO", typeof(string));
+    
+            var dESCRIPCION_CORTAParameter = dESCRIPCION_CORTA != null ?
+                new ObjectParameter("DESCRIPCION_CORTA", dESCRIPCION_CORTA) :
+                new ObjectParameter("DESCRIPCION_CORTA", typeof(string));
+    
+            var iDIMPUESTOParameter = iDIMPUESTO.HasValue ?
+                new ObjectParameter("IDIMPUESTO", iDIMPUESTO) :
+                new ObjectParameter("IDIMPUESTO", typeof(int));
+    
+            var iDFAMILIAParameter = iDFAMILIA.HasValue ?
+                new ObjectParameter("IDFAMILIA", iDFAMILIA) :
+                new ObjectParameter("IDFAMILIA", typeof(int));
+    
+            var fAMILIAParameter = fAMILIA != null ?
+                new ObjectParameter("FAMILIA", fAMILIA) :
+                new ObjectParameter("FAMILIA", typeof(string));
+    
+            var iDMARCAParameter = iDMARCA.HasValue ?
+                new ObjectParameter("IDMARCA", iDMARCA) :
+                new ObjectParameter("IDMARCA", typeof(int));
+    
+            var iDCOLECCIONParameter = iDCOLECCION.HasValue ?
+                new ObjectParameter("IDCOLECCION", iDCOLECCION) :
+                new ObjectParameter("IDCOLECCION", typeof(int));
+    
+            var cOMBOParameter = cOMBO.HasValue ?
+                new ObjectParameter("COMBO", cOMBO) :
+                new ObjectParameter("COMBO", typeof(short));
+    
+            var pRODUCCIONParameter = pRODUCCION.HasValue ?
+                new ObjectParameter("PRODUCCION", pRODUCCION) :
+                new ObjectParameter("PRODUCCION", typeof(short));
+    
+            var iDFRANQUICIAParameter = iDFRANQUICIA.HasValue ?
+                new ObjectParameter("IDFRANQUICIA", iDFRANQUICIA) :
+                new ObjectParameter("IDFRANQUICIA", typeof(int));
+    
+            var fRANQUICIAParameter = fRANQUICIA != null ?
+                new ObjectParameter("FRANQUICIA", fRANQUICIA) :
+                new ObjectParameter("FRANQUICIA", typeof(string));
+    
+            var dESCRIPCION_WEBParameter = dESCRIPCION_WEB != null ?
+                new ObjectParameter("DESCRIPCION_WEB", dESCRIPCION_WEB) :
+                new ObjectParameter("DESCRIPCION_WEB", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarProducto", idEmpresaParameter, iDARTICULOParameter, iDGRUPOParameter, gRUPOParameter, iDMEDIDAParameter, iDLINEAParameter, lINEAParameter, aRTICULOParameter, eSTADOParameter, dESCRIPCION_CORTAParameter, iDIMPUESTOParameter, iDFAMILIAParameter, fAMILIAParameter, iDMARCAParameter, iDCOLECCIONParameter, cOMBOParameter, pRODUCCIONParameter, iDFRANQUICIAParameter, fRANQUICIAParameter, dESCRIPCION_WEBParameter);
+        }
     }
 }

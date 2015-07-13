@@ -106,6 +106,7 @@
                             </asp:MenuItem>
                               <asp:MenuItem NavigateUrl="#" Text="Admin">
                                 <asp:MenuItem NavigateUrl="~/Admin/Productos.aspx" Text="Productos" />
+                                <asp:MenuItem NavigateUrl="~/Admin/UpdatePrecio.aspx" Text="Actualizar Precio" />
                             </asp:MenuItem>
                            
                         </Items>

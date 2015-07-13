@@ -10,7 +10,7 @@
 namespace SinapsisGEO.Admin {
     
     
-    public partial class UpdatePrecio {
+    public partial class UpdateProducto {
         
         /// <summary>
         /// txtProducto control.

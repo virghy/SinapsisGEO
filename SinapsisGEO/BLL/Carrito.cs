@@ -428,6 +428,7 @@ namespace SinapsisGEO.BLL
 				catch (Exception ex)
 				{
 					
+                   
 					throw ex;
 				}
 		}

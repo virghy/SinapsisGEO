@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdatePrecio.aspx.cs" Inherits="SinapsisGEO.Admin.UpdatePrecio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateProducto.aspx.cs" Inherits="SinapsisGEO.Admin.UpdateProducto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
 </asp:Content>
@@ -9,7 +9,7 @@
     <div class="row">
    
   <div class="form-group">
-    <label class="sr-only" for="txtProducto">Amount (in dollars)</label>
+    <label class="sr-only" for="txtProducto">Producto:</label>
     <div class="input-group">
       <div class="input-group-addon">Producto:</div>
       <input type="text" runat="server" class="form-control" id="txtProducto" placeholder="Codigo Producto"/>
@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <div class="panel panel-primary">
-            <div class="panel-heading">Precios Remoto</div>
+            <div class="panel-heading">Producto Remoto</div>
             <div class="panel-body">
         
               <asp:GridView ID="GridView1" CssClass="table table-condensed" runat="server">
@@ -34,7 +34,7 @@
   <%--      </div>
 
                 <div class="panel panel-primary">--%>
-                     <div class="panel-heading">Precios Locales</div>
+                     <div class="panel-heading">Producto Local</div>
             <div class="panel-body">
         <asp:GridView ID="GridView2" CssClass="table table-condensed" runat="server">
 
