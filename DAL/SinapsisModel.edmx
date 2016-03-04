@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SinapsisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sys_Eventos">
+          <Key>
+            <PropertyRef Name="IdEvento" />
+          </Key>
+          <Property Name="IdEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoEvento" Type="varchar" MaxLength="50" />
+          <Property Name="Info" Type="varchar(max)" />
+          <Property Name="FechaEvento" Type="datetime" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="IdEmpresa" Type="int" />
+        </EntityType>
         <EntityType Name="sys_Menu">
           <Key>
             <PropertyRef Name="IdMenu" />
@@ -205,6 +216,7 @@
           <Property Name="IdProducto" Type="char" MaxLength="10" />
           <Property Name="Cantidad" Type="money" />
           <Property Name="Predet" Type="bit" />
+          <Property Name="IdEmpresa" Type="int" />
         </EntityType>
         <EntityType Name="tel_Comentarios">
           <Key>
@@ -373,6 +385,7 @@
           <Property Name="PermiteMitad" Type="bit" />
           <Property Name="EsCombo" Type="bit" />
           <Property Name="IdProducto" Type="char" MaxLength="10" />
+          <Property Name="IdVersion" Type="int" />
         </EntityType>
         <EntityType Name="tel_OpcionesDet">
           <Key>
@@ -384,6 +397,8 @@
           <Property Name="ValorAdicional" Type="money" />
           <Property Name="IdProducto" Type="char" MaxLength="10" />
           <Property Name="Predet" Type="bit" />
+          <Property Name="IdVersion" Type="int" />
+          <Property Name="Activo" Type="bit" />
         </EntityType>
         <EntityType Name="tel_Pedidos">
           <Key>
@@ -469,6 +484,7 @@
           <Property Name="IdProducto" Type="char" MaxLength="10" />
           <Property Name="Precio" Type="money" />
           <Property Name="IdLista" Type="char" MaxLength="2" />
+          <Property Name="IdVersion" Type="int" />
         </EntityType>
         <EntityType Name="tel_ProductoOpcion">
           <Key>
@@ -487,6 +503,7 @@
         </EntityType>
         <EntityType Name="tel_Productos">
           <Key>
+            <PropertyRef Name="IdEmpresa" />
             <PropertyRef Name="IdProducto" />
           </Key>
           <Property Name="IdEmpresa" Type="int" Nullable="false" />
@@ -513,6 +530,7 @@
           <Property Name="IncluyeEnvio" Type="bit" />
           <Property Name="IdProductoAgranda" Type="char" MaxLength="10" />
           <Property Name="IdCostoAgranda" Type="char" MaxLength="10" />
+          <Property Name="IdVersion" Type="int" />
         </EntityType>
         <EntityType Name="tel_Sucursal">
           <Key>
@@ -613,9 +631,11 @@
           <End Role="tel_Carrito_Item" Type="Self.tel_Carrito_Item" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Principal>
             <Dependent Role="tel_Carrito_Item">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
@@ -672,20 +692,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tel_Combos_tel_Productos">
-          <End Role="tel_Productos" Type="Self.tel_Productos" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tel_Combos" Type="Self.tel_Combos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Productos">
-              <PropertyRef Name="IdProducto" />
-            </Principal>
-            <Dependent Role="tel_Combos">
-              <PropertyRef Name="IdProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tel_CombosDet_tel_Combos">
           <End Role="tel_Combos" Type="Self.tel_Combos" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -705,9 +711,11 @@
           <End Role="tel_CombosDet" Type="Self.tel_CombosDet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Principal>
             <Dependent Role="tel_CombosDet">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
@@ -928,9 +936,11 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <End Role="tel_PedidosDet" Type="Self.tel_PedidosDet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Principal>
             <Dependent Role="tel_PedidosDet">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
@@ -954,9 +964,11 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <End Role="tel_Precios" Type="Self.tel_Precios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Principal>
             <Dependent Role="tel_Precios">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
@@ -966,9 +978,11 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <End Role="tel_ProductoOpcion" Type="Self.tel_ProductoOpcion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Principal>
             <Dependent Role="tel_ProductoOpcion">
+              <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
@@ -1092,6 +1106,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Parameter Name="COMBINACIONES" Type="decimal" Mode="In" />
           <Parameter Name="AGRANDADO" Type="varchar" Mode="In" />
           <Parameter Name="IDART_COSTO_AGRANDADO" Type="varchar" Mode="In" />
+          <Parameter Name="IdVersion" Type="int" Mode="In" />
         </Function>
         <Function Name="ph_ActualizarPrecio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
@@ -1099,6 +1114,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Parameter Name="Precio" Type="money" Mode="In" />
           <Parameter Name="IdLista" Type="char" Mode="In" />
           <Parameter Name="Lista" Type="varchar" Mode="In" />
+          <Parameter Name="IdVersion" Type="int" Mode="In" />
         </Function>
         <Function Name="ph_ActualizarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpresa" Type="int" Mode="In" />
@@ -1121,6 +1137,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Parameter Name="IDFRANQUICIA" Type="int" Mode="In" />
           <Parameter Name="FRANQUICIA" Type="varchar" Mode="In" />
           <Parameter Name="DESCRIPCION_WEB" Type="varchar" Mode="In" />
+          <Parameter Name="IdVersion" Type="int" Mode="In" />
         </Function>
         <Function Name="ph_Interfase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPedido" Type="int" Mode="In" />
@@ -1173,6 +1190,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Parameter Name="IdSucursal" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="SinapsisModelStoreContainer">
+          <EntitySet Name="sys_Eventos" EntityType="Self.sys_Eventos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sys_Menu" EntityType="Self.sys_Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sys_MenuDet" EntityType="Self.sys_MenuDet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sys_ReporteEmpresa" EntityType="Self.sys_ReporteEmpresa" Schema="dbo" store:Type="Tables" />
@@ -1243,10 +1261,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <AssociationSet Name="FK_tel_Clientes_tel_TipoCliente" Association="Self.FK_tel_Clientes_tel_TipoCliente">
             <End Role="tel_TipoCliente" EntitySet="tel_TipoCliente" />
             <End Role="tel_Clientes" EntitySet="tel_Clientes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tel_Combos_tel_Productos" Association="Self.FK_tel_Combos_tel_Productos">
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
-            <End Role="tel_Combos" EntitySet="tel_Combos" />
           </AssociationSet>
           <AssociationSet Name="FK_tel_CombosDet_tel_Combos" Association="Self.FK_tel_CombosDet_tel_Combos">
             <End Role="tel_Combos" EntitySet="tel_Combos" />
@@ -1374,7 +1388,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySet Name="tel_Carrito_Item" EntityType="SinapsisModel.tel_Carrito_Item" />
           <EntitySet Name="tel_Clientes" EntityType="SinapsisModel.tel_Clientes" />
           <EntitySet Name="tel_Pedidos" EntityType="SinapsisModel.tel_Pedidos" />
-          <EntitySet Name="tel_Productos" EntityType="SinapsisModel.tel_Productos" />
           <EntitySet Name="tel_Sucursal" EntityType="SinapsisModel.tel_Sucursal" />
           <AssociationSet Name="FK_tel_Carrito_Item_tel_Carrito" Association="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito">
             <End Role="tel_Carrito" EntitySet="tel_Carrito" />
@@ -1383,10 +1396,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <AssociationSet Name="FK_tel_Carrito_tel_Clientes" Association="SinapsisModel.FK_tel_Carrito_tel_Clientes">
             <End Role="tel_Clientes" EntitySet="tel_Clientes" />
             <End Role="tel_Carrito" EntitySet="tel_Carrito" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tel_Carrito_Item_tel_Productos" Association="SinapsisModel.FK_tel_Carrito_Item_tel_Productos">
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
-            <End Role="tel_Carrito_Item" EntitySet="tel_Carrito_Item" />
           </AssociationSet>
           <AssociationSet Name="FK_tel_Pedidos_tel_Clientes" Association="SinapsisModel.FK_tel_Pedidos_tel_Clientes">
             <End Role="tel_Clientes" EntitySet="tel_Clientes" />
@@ -1417,23 +1426,11 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             <End Role="tel_Familia" EntitySet="tel_Familia" />
             <End Role="tel_Linea" EntitySet="tel_Linea" />
           </AssociationSet>
-          <AssociationSet Name="FK_tel_Productos_tel_Familia" Association="SinapsisModel.FK_tel_Productos_tel_Familia">
-            <End Role="tel_Familia" EntitySet="tel_Familia" />
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
-          </AssociationSet>
           <AssociationSet Name="FK_tel_Grupo_tel_Linea" Association="SinapsisModel.FK_tel_Grupo_tel_Linea">
             <End Role="tel_Linea" EntitySet="tel_Linea" />
             <End Role="tel_Grupo" EntitySet="tel_Grupo" />
           </AssociationSet>
-          <AssociationSet Name="FK_tel_Productos_tel_Linea" Association="SinapsisModel.FK_tel_Productos_tel_Linea">
-            <End Role="tel_Linea" EntitySet="tel_Linea" />
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
-          </AssociationSet>
           <EntitySet Name="tel_Precios" EntityType="SinapsisModel.tel_Precios" />
-          <AssociationSet Name="FK_tel_Precios_tel_Productos" Association="SinapsisModel.FK_tel_Precios_tel_Productos">
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
-            <End Role="tel_Precios" EntitySet="tel_Precios" />
-          </AssociationSet>
           <FunctionImport Name="App_GetPrecio" EntitySet="tel_Precios" ReturnType="Collection(SinapsisModel.tel_Precios)">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="IdProducto" Mode="In" Type="String" />
@@ -1446,16 +1443,8 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           </FunctionImport>
           <EntitySet Name="tel_Combos" EntityType="SinapsisModel.tel_Combos" />
           <EntitySet Name="tel_CombosDet" EntityType="SinapsisModel.tel_CombosDet" />
-          <AssociationSet Name="FK_tel_Combos_tel_Productos" Association="SinapsisModel.FK_tel_Combos_tel_Productos">
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
-            <End Role="tel_Combos" EntitySet="tel_Combos" />
-          </AssociationSet>
           <AssociationSet Name="FK_tel_CombosDet_tel_Combos" Association="SinapsisModel.FK_tel_CombosDet_tel_Combos">
             <End Role="tel_Combos" EntitySet="tel_Combos" />
-            <End Role="tel_CombosDet" EntitySet="tel_CombosDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tel_CombosDet_tel_Productos" Association="SinapsisModel.FK_tel_CombosDet_tel_Productos">
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
             <End Role="tel_CombosDet" EntitySet="tel_CombosDet" />
           </AssociationSet>
           <AssociationSet Name="FK_tel_Carrito_Item_tel_Carrito_Item" Association="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito_Item">
@@ -1478,10 +1467,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <AssociationSet Name="FK_tel_PedidosDet_tel_PedidosDet1" Association="SinapsisModel.FK_tel_PedidosDet_tel_PedidosDet1">
             <End Role="tel_PedidosDet" EntitySet="tel_PedidosDet" />
             <End Role="tel_PedidosDet1" EntitySet="tel_PedidosDet" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tel_PedidosDet_tel_Productos" Association="SinapsisModel.FK_tel_PedidosDet_tel_Productos">
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
-            <End Role="tel_PedidosDet" EntitySet="tel_PedidosDet" />
           </AssociationSet>
           <EntitySet Name="tel_Comentarios" EntityType="SinapsisModel.tel_Comentarios" />
           <EntitySet Name="tel_TipoReclamo" EntityType="SinapsisModel.tel_TipoReclamo" />
@@ -1513,10 +1498,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySet Name="tel_ProductoOpcion" EntityType="SinapsisModel.tel_ProductoOpcion" />
           <AssociationSet Name="FK_tel_ProductoOpcion_tel_Opciones" Association="SinapsisModel.FK_tel_ProductoOpcion_tel_Opciones">
             <End Role="tel_Opciones" EntitySet="tel_Opciones" />
-            <End Role="tel_ProductoOpcion" EntitySet="tel_ProductoOpcion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tel_ProductoOpcion_Productos" Association="SinapsisModel.FK_tel_ProductoOpcion_Productos">
-            <End Role="tel_Productos" EntitySet="tel_Productos" />
             <End Role="tel_ProductoOpcion" EntitySet="tel_ProductoOpcion" />
           </AssociationSet>
           <FunctionImport Name="tel_ActualizarEstado">
@@ -1628,6 +1609,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             <Parameter Name="Precio" Mode="In" Type="Decimal" />
             <Parameter Name="IdLista" Mode="In" Type="String" />
             <Parameter Name="Lista" Mode="In" Type="String" />
+            <Parameter Name="IdVersion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ph_ActualizarCombo">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
@@ -1645,6 +1627,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             <Parameter Name="COMBINACIONES" Mode="In" Type="Decimal" />
             <Parameter Name="AGRANDADO" Mode="In" Type="String" />
             <Parameter Name="IDART_COSTO_AGRANDADO" Mode="In" Type="String" />
+            <Parameter Name="IdVersion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ph_ActualizarProducto">
             <Parameter Name="IdEmpresa" Mode="In" Type="Int32" />
@@ -1667,8 +1650,39 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             <Parameter Name="IDFRANQUICIA" Mode="In" Type="Int32" />
             <Parameter Name="FRANQUICIA" Mode="In" Type="String" />
             <Parameter Name="DESCRIPCION_WEB" Mode="In" Type="String" />
+            <Parameter Name="IdVersion" Mode="In" Type="Int32" />
           </FunctionImport>
-        </EntityContainer>
+          <EntitySet Name="sys_Eventos" EntityType="SinapsisModel.sys_Eventos" />
+          <EntitySet Name="tel_Productos" EntityType="SinapsisModel.tel_Productos" />
+          <AssociationSet Name="FK_tel_Carrito_Item_tel_Productos" Association="SinapsisModel.FK_tel_Carrito_Item_tel_Productos">
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+            <End Role="tel_Carrito_Item" EntitySet="tel_Carrito_Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Productos_tel_Familia" Association="SinapsisModel.FK_tel_Productos_tel_Familia">
+            <End Role="tel_Familia" EntitySet="tel_Familia" />
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Productos_tel_Linea" Association="SinapsisModel.FK_tel_Productos_tel_Linea">
+            <End Role="tel_Linea" EntitySet="tel_Linea" />
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_PedidosDet_tel_Productos" Association="SinapsisModel.FK_tel_PedidosDet_tel_Productos">
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+            <End Role="tel_PedidosDet" EntitySet="tel_PedidosDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_Precios_tel_Productos" Association="SinapsisModel.FK_tel_Precios_tel_Productos">
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+            <End Role="tel_Precios" EntitySet="tel_Precios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_ProductoOpcion_Productos" Association="SinapsisModel.FK_tel_ProductoOpcion_Productos">
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+            <End Role="tel_ProductoOpcion" EntitySet="tel_ProductoOpcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tel_CombosDet_tel_Productos" Association="SinapsisModel.FK_tel_CombosDet_tel_Productos">
+            <End Role="tel_Productos" EntitySet="tel_Productos" />
+            <End Role="tel_CombosDet" EntitySet="tel_CombosDet" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="tel_Carrito">
           <Key>
             <PropertyRef Name="IdCarrito" />
@@ -1720,10 +1734,10 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Name="IdCarrito" Type="Int32" />
           <Property Name="Obs" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="tel_Carrito" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito" FromRole="tel_Carrito_Item" ToRole="tel_Carrito" />
-          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" FromRole="tel_Carrito_Item" ToRole="tel_Productos" />
           <Property Type="Int32" Name="IdCIPadre" />
           <NavigationProperty Name="tel_Carrito_Item1" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito_Item" FromRole="tel_Carrito_Item" ToRole="tel_Carrito_Item1" />
           <NavigationProperty Name="tel_Carrito_Item2" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito_Item" FromRole="tel_Carrito_Item1" ToRole="tel_Carrito_Item" />
+          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" FromRole="tel_Carrito_Item" ToRole="tel_Productos" />
           </EntityType>
         <EntityType Name="tel_Clientes">
           <Key>
@@ -1811,43 +1825,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="Int32" Name="TiempoServicio" />
           <Property Type="Boolean" Name="TransferTemporal" />
         </EntityType>
-        <EntityType Name="tel_Productos">
-          <Key>
-            <PropertyRef Name="IdProducto" />
-          </Key>
-          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
-          <Property Name="IdProducto" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
-          <Property Name="IdPadre" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
-          <Property Name="Descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Activo" Type="Boolean" />
-          <Property Name="Tipo" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
-          <Property Name="IdGrupo" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
-          <Property Name="IdGrupoPadre" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
-          <Property Name="Contenido" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="PideCantidad" Type="Boolean" />
-          <Property Name="SaboresMax" Type="Int32" />
-          <Property Name="Orden" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Seleccionable" Type="Boolean" />
-          <Property Name="FiltraSucursal" Type="Boolean" />
-          <NavigationProperty Name="tel_Carrito_Item" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" FromRole="tel_Productos" ToRole="tel_Carrito_Item" />
-          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="EsCombo" />
-          <Property Type="String" Name="IdProducto1" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdFamilia" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdLinea" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="IdTam" MaxLength="5" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tel_Familia" Relationship="SinapsisModel.FK_tel_Productos_tel_Familia" FromRole="tel_Productos" ToRole="tel_Familia" />
-          <NavigationProperty Name="tel_Linea" Relationship="SinapsisModel.FK_tel_Productos_tel_Linea" FromRole="tel_Productos" ToRole="tel_Linea" />
-          <NavigationProperty Name="tel_Precios" Relationship="SinapsisModel.FK_tel_Precios_tel_Productos" FromRole="tel_Productos" ToRole="tel_Precios" />
-          <Property Type="Boolean" Name="PermiteMitad" />
-          <NavigationProperty Name="tel_Combos" Relationship="SinapsisModel.FK_tel_Combos_tel_Productos" FromRole="tel_Productos" ToRole="tel_Combos" />
-          <NavigationProperty Name="tel_CombosDet" Relationship="SinapsisModel.FK_tel_CombosDet_tel_Productos" FromRole="tel_Productos" ToRole="tel_CombosDet" />
-          <NavigationProperty Name="tel_PedidosDet" Relationship="SinapsisModel.FK_tel_PedidosDet_tel_Productos" FromRole="tel_Productos" ToRole="tel_PedidosDet" />
-          <Property Type="Boolean" Name="IncluyeEnvio" />
-          <NavigationProperty Name="tel_ProductoOpcion" Relationship="SinapsisModel.FK_tel_ProductoOpcion_Productos" FromRole="tel_Productos" ToRole="tel_ProductoOpcion" />
-          <Property Name="IdProductoAgranda" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="IdCostoAgranda" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-        </EntityType>
         <EntityType Name="tel_Sucursal">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -1889,18 +1866,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             </Principal>
             <Dependent Role="tel_Carrito">
               <PropertyRef Name="IdCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tel_Carrito_Item_tel_Productos">
-          <End Role="tel_Productos" Type="SinapsisModel.tel_Productos" Multiplicity="0..1" />
-          <End Role="tel_Carrito_Item" Type="SinapsisModel.tel_Carrito_Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Productos">
-              <PropertyRef Name="IdProducto" />
-            </Principal>
-            <Dependent Role="tel_Carrito_Item">
-              <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2014,8 +1979,8 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="String" Name="IdFamilia" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Familia" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tel_Linea" Relationship="SinapsisModel.FK_tel_Linea_tel_Familia" FromRole="tel_Familia" ToRole="tel_Linea" />
-          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Productos_tel_Familia" FromRole="tel_Familia" ToRole="tel_Productos" />
           <Property Type="Boolean" Name="Activo" />
+          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Productos_tel_Familia" FromRole="tel_Familia" ToRole="tel_Productos" />
         </EntityType>
         <EntityType Name="tel_Grupo">
           <Key>
@@ -2044,8 +2009,8 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="String" Name="Linea" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tel_Familia" Relationship="SinapsisModel.FK_tel_Linea_tel_Familia" FromRole="tel_Linea" ToRole="tel_Familia" />
           <NavigationProperty Name="tel_Grupo" Relationship="SinapsisModel.FK_tel_Grupo_tel_Linea" FromRole="tel_Linea" ToRole="tel_Grupo" />
-          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Productos_tel_Linea" FromRole="tel_Linea" ToRole="tel_Productos" />
           <Property Type="Boolean" Name="Activo" />
+          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Productos_tel_Linea" FromRole="tel_Linea" ToRole="tel_Productos" />
         </EntityType>
         <Association Name="FK_tel_Linea_tel_Familia">
           <End Type="SinapsisModel.tel_Familia" Role="tel_Familia" Multiplicity="1" />
@@ -2056,20 +2021,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
               <PropertyRef Name="IdFamilia" />
             </Principal>
             <Dependent Role="tel_Linea">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdFamilia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tel_Productos_tel_Familia">
-          <End Type="SinapsisModel.tel_Familia" Role="tel_Familia" Multiplicity="0..1" />
-          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Familia">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdFamilia" />
-            </Principal>
-            <Dependent Role="tel_Productos">
               <PropertyRef Name="IdEmpresa" />
               <PropertyRef Name="IdFamilia" />
             </Dependent>
@@ -2091,22 +2042,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tel_Productos_tel_Linea">
-          <End Type="SinapsisModel.tel_Linea" Role="tel_Linea" Multiplicity="0..1" />
-          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Linea">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdFamilia" />
-              <PropertyRef Name="IdLinea" />
-            </Principal>
-            <Dependent Role="tel_Productos">
-              <PropertyRef Name="IdEmpresa" />
-              <PropertyRef Name="IdFamilia" />
-              <PropertyRef Name="IdLinea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="tel_Precios">
           <Key>
             <PropertyRef Name="IdPrecio" />
@@ -2116,21 +2051,10 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="String" Name="IdProducto" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Type="Decimal" Name="Precio" Precision="19" Scale="4" />
           <Property Type="String" Name="IdLista" MaxLength="2" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Precios_tel_Productos" FromRole="tel_Precios" ToRole="tel_Productos" />
           <NavigationProperty Name="tel_ListaPrecio" Relationship="SinapsisModel.FK_tel_Precios_tel_ListaPrecio" FromRole="tel_Precios" ToRole="tel_ListaPrecio" />
+          <Property Name="IdVersion" Type="Int32" />
+          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Precios_tel_Productos" FromRole="tel_Precios" ToRole="tel_Productos" />
         </EntityType>
-        <Association Name="FK_tel_Precios_tel_Productos">
-          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
-          <End Type="SinapsisModel.tel_Precios" Role="tel_Precios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Productos">
-              <PropertyRef Name="IdProducto" />
-            </Principal>
-            <Dependent Role="tel_Precios">
-              <PropertyRef Name="IdProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="App_GetPrecio_Result">
           <Property Type="Int32" Name="IdPrecio" Nullable="false" />
           <Property Type="Int32" Name="IdEmpresa" Nullable="true" />
@@ -2182,7 +2106,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="Decimal" Name="Cantidad" Precision="19" Scale="4" />
           <Property Type="Int32" Name="IdEmpresa" />
           <Property Type="Boolean" Name="Activo" />
-          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_Combos_tel_Productos" FromRole="tel_Combos" ToRole="tel_Productos" />
           <NavigationProperty Name="tel_CombosDet" Relationship="SinapsisModel.FK_tel_CombosDet_tel_Combos" FromRole="tel_Combos" ToRole="tel_CombosDet" />
           <Property Type="Boolean" Name="PermiteMitad" />
         </EntityType>
@@ -2196,22 +2119,9 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="Decimal" Name="Cantidad" Precision="19" Scale="4" />
           <Property Type="Boolean" Name="Predet" />
           <NavigationProperty Name="tel_Combos" Relationship="SinapsisModel.FK_tel_CombosDet_tel_Combos" FromRole="tel_CombosDet" ToRole="tel_Combos" />
+          <Property Name="IdEmpresa" Type="Int32" />
           <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_CombosDet_tel_Productos" FromRole="tel_CombosDet" ToRole="tel_Productos" />
         </EntityType>
-        <Association Name="FK_tel_Combos_tel_Productos">
-          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="SinapsisModel.tel_Combos" Role="tel_Combos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Productos">
-              <PropertyRef Name="IdProducto" />
-            </Principal>
-            <Dependent Role="tel_Combos">
-              <PropertyRef Name="IdProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tel_CombosDet_tel_Combos">
           <End Type="SinapsisModel.tel_Combos" Role="tel_Combos" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -2223,18 +2133,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             </Principal>
             <Dependent Role="tel_CombosDet">
               <PropertyRef Name="IdCombo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tel_CombosDet_tel_Productos">
-          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
-          <End Type="SinapsisModel.tel_CombosDet" Role="tel_CombosDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Productos">
-              <PropertyRef Name="IdProducto" />
-            </Principal>
-            <Dependent Role="tel_CombosDet">
-              <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2284,7 +2182,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <NavigationProperty Name="tel_PedidosDet11" Relationship="SinapsisModel.FK_tel_PedidosDet_tel_PedidosDet1" FromRole="tel_PedidosDet" ToRole="tel_PedidosDet1" />
           <NavigationProperty Name="tel_PedidosDet3" Relationship="SinapsisModel.FK_tel_PedidosDet_tel_PedidosDet1" FromRole="tel_PedidosDet1" ToRole="tel_PedidosDet" />
           <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_PedidosDet_tel_Productos" FromRole="tel_PedidosDet" ToRole="tel_Productos" />
-        </EntityType>
+          </EntityType>
         <Association Name="tel_Pedidos_tel_PedidosDet_FK1">
           <End Type="SinapsisModel.tel_Pedidos" Role="tel_Pedidos" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -2320,18 +2218,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             </Principal>
             <Dependent Role="tel_PedidosDet1">
               <PropertyRef Name="IdPDPadre" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tel_PedidosDet_tel_Productos">
-          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
-          <End Type="SinapsisModel.tel_PedidosDet" Role="tel_PedidosDet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Productos">
-              <PropertyRef Name="IdProducto" />
-            </Principal>
-            <Dependent Role="tel_PedidosDet">
-              <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2489,6 +2375,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="Boolean" Name="PermiteMitad" />
           <Property Type="Boolean" Name="EsCombo" />
           <Property Type="String" Name="IdProducto" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdVersion" Type="Int32" />
         </EntityType>
         <EntityType Name="tel_OpcionesDet">
           <Key>
@@ -2501,6 +2388,8 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="String" Name="IdProducto" MaxLength="10" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="tel_Opciones" Relationship="SinapsisModel.FK_tel_OpcionesDet_tel_Opciones" FromRole="tel_OpcionesDet" ToRole="tel_Opciones" />
           <Property Type="Boolean" Name="Predet" />
+          <Property Name="IdVersion" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" />
         </EntityType>
         <Association Name="FK_tel_OpcionesDet_tel_Opciones">
           <End Type="SinapsisModel.tel_Opciones" Role="tel_Opciones" Multiplicity="0..1" />
@@ -2528,8 +2417,8 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <Property Type="String" Name="IdTam" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Orden" />
           <NavigationProperty Name="tel_Opciones" Relationship="SinapsisModel.FK_tel_ProductoOpcion_tel_Opciones" FromRole="tel_ProductoOpcion" ToRole="tel_Opciones" />
-          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_ProductoOpcion_Productos" FromRole="tel_ProductoOpcion" ToRole="tel_Productos" />
           <Property Type="Int32" Name="IdEmpresa" />
+          <NavigationProperty Name="tel_Productos" Relationship="SinapsisModel.FK_tel_ProductoOpcion_Productos" FromRole="tel_ProductoOpcion" ToRole="tel_Productos" />
         </EntityType>
         <Association Name="FK_tel_ProductoOpcion_tel_Opciones">
           <End Type="SinapsisModel.tel_Opciones" Role="tel_Opciones" Multiplicity="0..1" />
@@ -2540,18 +2429,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             </Principal>
             <Dependent Role="tel_ProductoOpcion">
               <PropertyRef Name="IdOpcion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tel_ProductoOpcion_Productos">
-          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
-          <End Type="SinapsisModel.tel_ProductoOpcion" Role="tel_ProductoOpcion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tel_Productos">
-              <PropertyRef Name="IdProducto" />
-            </Principal>
-            <Dependent Role="tel_ProductoOpcion">
-              <PropertyRef Name="IdProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2936,7 +2813,156 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="sys_Eventos">
+          <Key>
+            <PropertyRef Name="IdEvento" />
+          </Key>
+          <Property Name="IdEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoEvento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaEvento" Type="DateTime" Precision="3" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdEmpresa" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tel_Productos">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+            <PropertyRef Name="IdProducto" />
+          </Key>
+          <Property Name="IdEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="IdProducto" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdPadre" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IdGrupo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IdGrupoPadre" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Contenido" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PideCantidad" Type="Boolean" />
+          <Property Name="SaboresMax" Type="Int32" />
+          <Property Name="Orden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seleccionable" Type="Boolean" />
+          <Property Name="FiltraSucursal" Type="Boolean" />
+          <Property Name="DescripcionCorta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsCombo" Type="Boolean" />
+          <Property Name="IdProducto1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IdFamilia" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IdLinea" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IdTam" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PermiteMitad" Type="Boolean" />
+          <Property Name="IncluyeEnvio" Type="Boolean" />
+          <Property Name="IdProductoAgranda" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdCostoAgranda" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdVersion" Type="Int32" />
+          <NavigationProperty Name="tel_Carrito_Item" Relationship="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" FromRole="tel_Productos" ToRole="tel_Carrito_Item" />
+          <NavigationProperty Name="tel_Familia" Relationship="SinapsisModel.FK_tel_Productos_tel_Familia" FromRole="tel_Productos" ToRole="tel_Familia" />
+          <NavigationProperty Name="tel_Linea" Relationship="SinapsisModel.FK_tel_Productos_tel_Linea" FromRole="tel_Productos" ToRole="tel_Linea" />
+          <NavigationProperty Name="tel_PedidosDet" Relationship="SinapsisModel.FK_tel_PedidosDet_tel_Productos" FromRole="tel_Productos" ToRole="tel_PedidosDet" />
+          <NavigationProperty Name="tel_Precios" Relationship="SinapsisModel.FK_tel_Precios_tel_Productos" FromRole="tel_Productos" ToRole="tel_Precios" />
+          <NavigationProperty Name="tel_ProductoOpcion" Relationship="SinapsisModel.FK_tel_ProductoOpcion_Productos" FromRole="tel_Productos" ToRole="tel_ProductoOpcion" />
+          <NavigationProperty Name="tel_CombosDet" Relationship="SinapsisModel.FK_tel_CombosDet_tel_Productos" FromRole="tel_Productos" ToRole="tel_CombosDet" />
+        </EntityType>
+        <Association Name="FK_tel_Carrito_Item_tel_Productos">
+          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_Carrito_Item" Role="tel_Carrito_Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="tel_Carrito_Item">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Productos_tel_Familia">
+          <End Type="SinapsisModel.tel_Familia" Role="tel_Familia" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Familia">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdFamilia" />
+            </Principal>
+            <Dependent Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdFamilia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Productos_tel_Linea">
+          <End Type="SinapsisModel.tel_Linea" Role="tel_Linea" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Linea">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdFamilia" />
+              <PropertyRef Name="IdLinea" />
+            </Principal>
+            <Dependent Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdFamilia" />
+              <PropertyRef Name="IdLinea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_PedidosDet_tel_Productos">
+          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_PedidosDet" Role="tel_PedidosDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="tel_PedidosDet">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_Precios_tel_Productos">
+          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_Precios" Role="tel_Precios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="tel_Precios">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_ProductoOpcion_Productos">
+          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_ProductoOpcion" Role="tel_ProductoOpcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="tel_ProductoOpcion">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tel_CombosDet_tel_Productos">
+          <End Type="SinapsisModel.tel_Productos" Role="tel_Productos" Multiplicity="0..1" />
+          <End Type="SinapsisModel.tel_CombosDet" Role="tel_CombosDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tel_Productos">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Principal>
+            <Dependent Role="tel_CombosDet">
+              <PropertyRef Name="IdEmpresa" />
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -3069,36 +3095,6 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tel_Productos">
-            <EntityTypeMapping TypeName="SinapsisModel.tel_Productos">
-              <MappingFragment StoreEntitySet="tel_Productos">
-                <ScalarProperty Name="IdCostoAgranda" ColumnName="IdCostoAgranda" />
-                <ScalarProperty Name="IdProductoAgranda" ColumnName="IdProductoAgranda" />
-                <ScalarProperty Name="IncluyeEnvio" ColumnName="IncluyeEnvio" />
-                <ScalarProperty Name="PermiteMitad" ColumnName="PermiteMitad" />
-                <ScalarProperty Name="IdTam" ColumnName="IdTam" />
-                <ScalarProperty Name="IdLinea" ColumnName="IdLinea" />
-                <ScalarProperty Name="IdFamilia" ColumnName="IdFamilia" />
-                <ScalarProperty Name="IdProducto1" ColumnName="IdProducto1" />
-                <ScalarProperty Name="EsCombo" ColumnName="EsCombo" />
-                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
-                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
-                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
-                <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
-                <ScalarProperty Name="IdGrupoPadre" ColumnName="IdGrupoPadre" />
-                <ScalarProperty Name="Contenido" ColumnName="Contenido" />
-                <ScalarProperty Name="PideCantidad" ColumnName="PideCantidad" />
-                <ScalarProperty Name="SaboresMax" ColumnName="SaboresMax" />
-                <ScalarProperty Name="Orden" ColumnName="Orden" />
-                <ScalarProperty Name="Seleccionable" ColumnName="Seleccionable" />
-                <ScalarProperty Name="FiltraSucursal" ColumnName="FiltraSucursal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tel_Sucursal">
             <EntityTypeMapping TypeName="SinapsisModel.tel_Sucursal">
               <MappingFragment StoreEntitySet="tel_Sucursal">
@@ -3185,6 +3181,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySetMapping Name="tel_Precios">
             <EntityTypeMapping TypeName="SinapsisModel.tel_Precios">
               <MappingFragment StoreEntitySet="tel_Precios">
+                <ScalarProperty Name="IdVersion" ColumnName="IdVersion" />
                 <ScalarProperty Name="IdLista" ColumnName="IdLista" />
                 <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
@@ -3213,6 +3210,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySetMapping Name="tel_CombosDet">
             <EntityTypeMapping TypeName="SinapsisModel.tel_CombosDet">
               <MappingFragment StoreEntitySet="tel_CombosDet">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
                 <ScalarProperty Name="Predet" ColumnName="Predet" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
@@ -3353,6 +3351,7 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySetMapping Name="tel_Opciones">
             <EntityTypeMapping TypeName="SinapsisModel.tel_Opciones">
               <MappingFragment StoreEntitySet="tel_Opciones">
+                <ScalarProperty Name="IdVersion" ColumnName="IdVersion" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
                 <ScalarProperty Name="EsCombo" ColumnName="EsCombo" />
                 <ScalarProperty Name="PermiteMitad" ColumnName="PermiteMitad" />
@@ -3373,6 +3372,8 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <EntitySetMapping Name="tel_OpcionesDet">
             <EntityTypeMapping TypeName="SinapsisModel.tel_OpcionesDet">
               <MappingFragment StoreEntitySet="tel_OpcionesDet">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdVersion" ColumnName="IdVersion" />
                 <ScalarProperty Name="Predet" ColumnName="Predet" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
                 <ScalarProperty Name="ValorAdicional" ColumnName="ValorAdicional" />
@@ -3621,6 +3622,49 @@ warning 6035: The relationship 'FK_tel_Comentarios_tel_Pedidos' has columns that
           <FunctionImportMapping FunctionImportName="ph_ActualizarPrecio" FunctionName="SinapsisModel.Store.ph_ActualizarPrecio" />
           <FunctionImportMapping FunctionImportName="ph_ActualizarCombo" FunctionName="SinapsisModel.Store.ph_ActualizarCombo" />
           <FunctionImportMapping FunctionImportName="ph_ActualizarProducto" FunctionName="SinapsisModel.Store.ph_ActualizarProducto" />
+          <EntitySetMapping Name="sys_Eventos">
+            <EntityTypeMapping TypeName="SinapsisModel.sys_Eventos">
+              <MappingFragment StoreEntitySet="sys_Eventos">
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="FechaEvento" ColumnName="FechaEvento" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="TipoEvento" ColumnName="TipoEvento" />
+                <ScalarProperty Name="IdEvento" ColumnName="IdEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_Productos">
+            <EntityTypeMapping TypeName="SinapsisModel.tel_Productos">
+              <MappingFragment StoreEntitySet="tel_Productos">
+                <ScalarProperty Name="IdVersion" ColumnName="IdVersion" />
+                <ScalarProperty Name="IdCostoAgranda" ColumnName="IdCostoAgranda" />
+                <ScalarProperty Name="IdProductoAgranda" ColumnName="IdProductoAgranda" />
+                <ScalarProperty Name="IncluyeEnvio" ColumnName="IncluyeEnvio" />
+                <ScalarProperty Name="PermiteMitad" ColumnName="PermiteMitad" />
+                <ScalarProperty Name="IdTam" ColumnName="IdTam" />
+                <ScalarProperty Name="IdLinea" ColumnName="IdLinea" />
+                <ScalarProperty Name="IdFamilia" ColumnName="IdFamilia" />
+                <ScalarProperty Name="IdProducto1" ColumnName="IdProducto1" />
+                <ScalarProperty Name="EsCombo" ColumnName="EsCombo" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="FiltraSucursal" ColumnName="FiltraSucursal" />
+                <ScalarProperty Name="Seleccionable" ColumnName="Seleccionable" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="SaboresMax" ColumnName="SaboresMax" />
+                <ScalarProperty Name="PideCantidad" ColumnName="PideCantidad" />
+                <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+                <ScalarProperty Name="IdGrupoPadre" ColumnName="IdGrupoPadre" />
+                <ScalarProperty Name="IdGrupo" ColumnName="IdGrupo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdPadre" ColumnName="IdPadre" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

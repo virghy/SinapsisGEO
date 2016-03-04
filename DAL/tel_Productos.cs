@@ -17,11 +17,10 @@ namespace DAL
         public tel_Productos()
         {
             this.tel_Carrito_Item = new HashSet<tel_Carrito_Item>();
-            this.tel_Precios = new HashSet<tel_Precios>();
-            this.tel_Combos = new HashSet<tel_Combos>();
-            this.tel_CombosDet = new HashSet<tel_CombosDet>();
             this.tel_PedidosDet = new HashSet<tel_PedidosDet>();
+            this.tel_Precios = new HashSet<tel_Precios>();
             this.tel_ProductoOpcion = new HashSet<tel_ProductoOpcion>();
+            this.tel_CombosDet = new HashSet<tel_CombosDet>();
         }
     
         public int IdEmpresa { get; set; }
@@ -48,14 +47,14 @@ namespace DAL
         public Nullable<bool> IncluyeEnvio { get; set; }
         public string IdProductoAgranda { get; set; }
         public string IdCostoAgranda { get; set; }
+        public Nullable<int> IdVersion { get; set; }
     
         public virtual ICollection<tel_Carrito_Item> tel_Carrito_Item { get; set; }
         public virtual tel_Familia tel_Familia { get; set; }
         public virtual tel_Linea tel_Linea { get; set; }
-        public virtual ICollection<tel_Precios> tel_Precios { get; set; }
-        public virtual ICollection<tel_Combos> tel_Combos { get; set; }
-        public virtual ICollection<tel_CombosDet> tel_CombosDet { get; set; }
         public virtual ICollection<tel_PedidosDet> tel_PedidosDet { get; set; }
+        public virtual ICollection<tel_Precios> tel_Precios { get; set; }
         public virtual ICollection<tel_ProductoOpcion> tel_ProductoOpcion { get; set; }
+        public virtual ICollection<tel_CombosDet> tel_CombosDet { get; set; }
     }
 }

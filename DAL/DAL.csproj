@@ -74,6 +74,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SinapsisModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="sys_Eventos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="sys_Menu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

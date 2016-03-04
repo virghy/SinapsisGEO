@@ -20,6 +20,8 @@ namespace DAL
         public Nullable<decimal> ValorAdicional { get; set; }
         public string IdProducto { get; set; }
         public Nullable<bool> Predet { get; set; }
+        public Nullable<int> IdVersion { get; set; }
+        public Nullable<bool> Activo { get; set; }
     
         public virtual tel_Opciones tel_Opciones { get; set; }
     }

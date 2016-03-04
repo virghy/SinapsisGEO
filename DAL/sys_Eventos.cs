@@ -12,16 +12,13 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tel_CombosDet
+    public partial class sys_Eventos
     {
-        public int IdCD { get; set; }
-        public Nullable<int> IdCombo { get; set; }
-        public string IdProducto { get; set; }
-        public Nullable<decimal> Cantidad { get; set; }
-        public Nullable<bool> Predet { get; set; }
+        public int IdEvento { get; set; }
+        public string TipoEvento { get; set; }
+        public string Info { get; set; }
+        public Nullable<System.DateTime> FechaEvento { get; set; }
+        public string Usuario { get; set; }
         public Nullable<int> IdEmpresa { get; set; }
-    
-        public virtual tel_Combos tel_Combos { get; set; }
-        public virtual tel_Productos tel_Productos { get; set; }
     }
 }

@@ -198,6 +198,7 @@
     <Content Include="Admin\Sucursal.aspx" />
     <Content Include="Admin\Test.aspx" />
     <Content Include="Admin\UpdateCombo.aspx" />
+    <Content Include="Admin\UpdateFull.aspx" />
     <Content Include="Admin\UpdateProducto.aspx" />
     <Content Include="Admin\UpdatePrecio.aspx" />
     <Content Include="AsignarDir.aspx" />
@@ -732,6 +733,7 @@
     <Compile Include="Admin\CargarArchivo.aspx.designer.cs">
       <DependentUpon>CargarArchivo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AsyncUpdateFull.cs" />
     <Compile Include="Admin\Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -759,6 +761,13 @@
     </Compile>
     <Compile Include="Admin\UpdateCombo.aspx.designer.cs">
       <DependentUpon>UpdateCombo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UpdateFull.aspx.cs">
+      <DependentUpon>UpdateFull.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UpdateFull.aspx.designer.cs">
+      <DependentUpon>UpdateFull.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UpdateProducto.aspx.cs">
       <DependentUpon>UpdateProducto.aspx</DependentUpon>

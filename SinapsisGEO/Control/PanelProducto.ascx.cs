@@ -340,7 +340,7 @@ namespace SinapsisGEO.Control
                 
                  if (chkMitad.Checked)
                  {
-                     var prod = db.tel_Productos.Find(btn.CommandArgument);
+                     var prod = db.tel_Productos.Find(Global.IdEmpresa, btn.CommandArgument);
 
                      if (prod.PermiteMitad.HasValue && prod.PermiteMitad.Value)
                      {

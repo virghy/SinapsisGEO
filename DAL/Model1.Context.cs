@@ -31,7 +31,6 @@ namespace DAL
         public virtual DbSet<tel_Carrito_Item> tel_Carrito_Item { get; set; }
         public virtual DbSet<tel_Clientes> tel_Clientes { get; set; }
         public virtual DbSet<tel_Pedidos> tel_Pedidos { get; set; }
-        public virtual DbSet<tel_Productos> tel_Productos { get; set; }
         public virtual DbSet<tel_Sucursal> tel_Sucursal { get; set; }
         public virtual DbSet<tel_Empresa> tel_Empresa { get; set; }
         public virtual DbSet<Tel_Direcciones> Tel_Direcciones { get; set; }
@@ -66,6 +65,8 @@ namespace DAL
         public virtual DbSet<tel_Ciudades> tel_Ciudades { get; set; }
         public virtual DbSet<tel_MovilTracker> tel_MovilTracker { get; set; }
         public virtual DbSet<tel_ListaPrecio> tel_ListaPrecio { get; set; }
+        public virtual DbSet<sys_Eventos> sys_Eventos { get; set; }
+        public virtual DbSet<tel_Productos> tel_Productos { get; set; }
     
         public virtual ObjectResult<tel_Precios> App_GetPrecio(Nullable<int> idEmpresa, string idProducto, string idCanal, Nullable<int> idSucursal, Nullable<int> idCliente)
         {
@@ -299,7 +300,7 @@ namespace DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tel_AppAsignarMovil", nroPedidoParameter, idEmpresaParameter, idMovilParameter, operacionParameter);
         }
     
-        public virtual int ph_ActualizarPrecio(Nullable<int> idEmpresa, string idProducto, Nullable<decimal> precio, string idLista, string lista)
+        public virtual int ph_ActualizarPrecio(Nullable<int> idEmpresa, string idProducto, Nullable<decimal> precio, string idLista, string lista, Nullable<int> idVersion)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
                 new ObjectParameter("IdEmpresa", idEmpresa) :
@@ -321,10 +322,14 @@ namespace DAL
                 new ObjectParameter("Lista", lista) :
                 new ObjectParameter("Lista", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarPrecio", idEmpresaParameter, idProductoParameter, precioParameter, idListaParameter, listaParameter);
+            var idVersionParameter = idVersion.HasValue ?
+                new ObjectParameter("IdVersion", idVersion) :
+                new ObjectParameter("IdVersion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarPrecio", idEmpresaParameter, idProductoParameter, precioParameter, idListaParameter, listaParameter, idVersionParameter);
         }
     
-        public virtual int ph_ActualizarCombo(Nullable<int> idEmpresa, string iDPROMO, string pROMO, Nullable<int> iDDEFINICION_PROMO, string dEFINICION_PROMO, Nullable<int> cANTIDAD_DEFINICION, Nullable<int> iDPRODUCTO_CMB, string iDPRODUCTO, string pRODUCTO, Nullable<decimal> cANTIDAD, Nullable<int> pREDETERMINADO, Nullable<int> eSTADO, Nullable<decimal> cOMBINACIONES, string aGRANDADO, string iDART_COSTO_AGRANDADO)
+        public virtual int ph_ActualizarCombo(Nullable<int> idEmpresa, string iDPROMO, string pROMO, Nullable<int> iDDEFINICION_PROMO, string dEFINICION_PROMO, Nullable<int> cANTIDAD_DEFINICION, Nullable<int> iDPRODUCTO_CMB, string iDPRODUCTO, string pRODUCTO, Nullable<decimal> cANTIDAD, Nullable<int> pREDETERMINADO, Nullable<int> eSTADO, Nullable<decimal> cOMBINACIONES, string aGRANDADO, string iDART_COSTO_AGRANDADO, Nullable<int> idVersion)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
                 new ObjectParameter("IdEmpresa", idEmpresa) :
@@ -386,10 +391,14 @@ namespace DAL
                 new ObjectParameter("IDART_COSTO_AGRANDADO", iDART_COSTO_AGRANDADO) :
                 new ObjectParameter("IDART_COSTO_AGRANDADO", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarCombo", idEmpresaParameter, iDPROMOParameter, pROMOParameter, iDDEFINICION_PROMOParameter, dEFINICION_PROMOParameter, cANTIDAD_DEFINICIONParameter, iDPRODUCTO_CMBParameter, iDPRODUCTOParameter, pRODUCTOParameter, cANTIDADParameter, pREDETERMINADOParameter, eSTADOParameter, cOMBINACIONESParameter, aGRANDADOParameter, iDART_COSTO_AGRANDADOParameter);
+            var idVersionParameter = idVersion.HasValue ?
+                new ObjectParameter("IdVersion", idVersion) :
+                new ObjectParameter("IdVersion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarCombo", idEmpresaParameter, iDPROMOParameter, pROMOParameter, iDDEFINICION_PROMOParameter, dEFINICION_PROMOParameter, cANTIDAD_DEFINICIONParameter, iDPRODUCTO_CMBParameter, iDPRODUCTOParameter, pRODUCTOParameter, cANTIDADParameter, pREDETERMINADOParameter, eSTADOParameter, cOMBINACIONESParameter, aGRANDADOParameter, iDART_COSTO_AGRANDADOParameter, idVersionParameter);
         }
     
-        public virtual int ph_ActualizarProducto(Nullable<int> idEmpresa, string iDARTICULO, Nullable<int> iDGRUPO, string gRUPO, Nullable<int> iDMEDIDA, Nullable<int> iDLINEA, string lINEA, string aRTICULO, string eSTADO, string dESCRIPCION_CORTA, Nullable<int> iDIMPUESTO, Nullable<int> iDFAMILIA, string fAMILIA, Nullable<int> iDMARCA, Nullable<int> iDCOLECCION, Nullable<short> cOMBO, Nullable<short> pRODUCCION, Nullable<int> iDFRANQUICIA, string fRANQUICIA, string dESCRIPCION_WEB)
+        public virtual int ph_ActualizarProducto(Nullable<int> idEmpresa, string iDARTICULO, Nullable<int> iDGRUPO, string gRUPO, Nullable<int> iDMEDIDA, Nullable<int> iDLINEA, string lINEA, string aRTICULO, string eSTADO, string dESCRIPCION_CORTA, Nullable<int> iDIMPUESTO, Nullable<int> iDFAMILIA, string fAMILIA, Nullable<int> iDMARCA, Nullable<int> iDCOLECCION, Nullable<short> cOMBO, Nullable<short> pRODUCCION, Nullable<int> iDFRANQUICIA, string fRANQUICIA, string dESCRIPCION_WEB, Nullable<int> idVersion)
         {
             var idEmpresaParameter = idEmpresa.HasValue ?
                 new ObjectParameter("IdEmpresa", idEmpresa) :
@@ -471,7 +480,11 @@ namespace DAL
                 new ObjectParameter("DESCRIPCION_WEB", dESCRIPCION_WEB) :
                 new ObjectParameter("DESCRIPCION_WEB", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarProducto", idEmpresaParameter, iDARTICULOParameter, iDGRUPOParameter, gRUPOParameter, iDMEDIDAParameter, iDLINEAParameter, lINEAParameter, aRTICULOParameter, eSTADOParameter, dESCRIPCION_CORTAParameter, iDIMPUESTOParameter, iDFAMILIAParameter, fAMILIAParameter, iDMARCAParameter, iDCOLECCIONParameter, cOMBOParameter, pRODUCCIONParameter, iDFRANQUICIAParameter, fRANQUICIAParameter, dESCRIPCION_WEBParameter);
+            var idVersionParameter = idVersion.HasValue ?
+                new ObjectParameter("IdVersion", idVersion) :
+                new ObjectParameter("IdVersion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ph_ActualizarProducto", idEmpresaParameter, iDARTICULOParameter, iDGRUPOParameter, gRUPOParameter, iDMEDIDAParameter, iDLINEAParameter, lINEAParameter, aRTICULOParameter, eSTADOParameter, dESCRIPCION_CORTAParameter, iDIMPUESTOParameter, iDFAMILIAParameter, fAMILIAParameter, iDMARCAParameter, iDCOLECCIONParameter, cOMBOParameter, pRODUCCIONParameter, iDFRANQUICIAParameter, fRANQUICIAParameter, dESCRIPCION_WEBParameter, idVersionParameter);
         }
     }
 }

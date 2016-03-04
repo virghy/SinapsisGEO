@@ -4,86 +4,86 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="85c0a6a3189248c3a041827aecc12004" Name="Diagrama1" ZoomLevel="67">
-        <EntityTypeShape EntityType="SinapsisModel.tel_Carrito" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Carrito_Item" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Clientes" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Pedidos" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Productos" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Sucursal" Width="1.5" PointX="6" PointY="28.125" IsExpanded="true" />
+      <Diagram DiagramId="85c0a6a3189248c3a041827aecc12004" Name="Diagrama1" ZoomLevel="85">
+        <EntityTypeShape EntityType="SinapsisModel.tel_Carrito" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Carrito_Item" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Clientes" Width="1.5" PointX="6" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Pedidos" Width="1.5" PointX="8.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Sucursal" Width="1.5" PointX="6" PointY="43.75" IsExpanded="true" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito" ManuallyRouted="false" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_tel_Clientes" ManuallyRouted="false" />
-        <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" ManuallyRouted="false" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Pedidos_tel_Clientes" ManuallyRouted="false" />
         <AssociationConnector Association="SinapsisModel.tel_Sucursal_tel_Pedidos_FK1" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Empresa" Width="1.5" PointX="3.75" PointY="28" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Empresa" Width="1.5" PointX="3.75" PointY="44.125" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Pedidos_tel_Empresa" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Sucursal_tel_Empresa" />
-        <EntityTypeShape EntityType="SinapsisModel.Tel_Direcciones" Width="1.5" PointX="5.25" PointY="23.5" />
+        <EntityTypeShape EntityType="SinapsisModel.Tel_Direcciones" Width="1.5" PointX="3" PointY="8.25" />
         <AssociationConnector Association="SinapsisModel.FK_Tel_Direcciones_tel_Clientes" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Familia" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Grupo" Width="1.5" PointX="5.25" PointY="20.625" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Linea" Width="1.5" PointX="3" PointY="13.5" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Familia" Width="1.5" PointX="0.75" PointY="14.375" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Grupo" Width="1.5" PointX="5.25" PointY="21.25" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Linea" Width="1.5" PointX="3" PointY="14.125" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Linea_tel_Familia" />
-        <AssociationConnector Association="SinapsisModel.FK_tel_Productos_tel_Familia" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Grupo_tel_Linea" />
-        <AssociationConnector Association="SinapsisModel.FK_tel_Productos_tel_Linea" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Precios" Width="1.5" PointX="9.25" PointY="20" />
-        <AssociationConnector Association="SinapsisModel.FK_tel_Precios_tel_Productos" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Combos" Width="1.5" PointX="7.5" PointY="16" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_CombosDet" Width="1.5" PointX="9.75" PointY="13.875" />
-        <AssociationConnector Association="SinapsisModel.FK_tel_Combos_tel_Productos" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Precios" Width="1.5" PointX="7.5" PointY="10" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Combos" Width="1.5" PointX="7.5" PointY="22.625" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_CombosDet" Width="1.5" PointX="9.75" PointY="18.625" />
         <AssociationConnector Association="SinapsisModel.FK_tel_CombosDet_tel_Combos" />
-        <AssociationConnector Association="SinapsisModel.FK_tel_CombosDet_tel_Productos" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_Item_tel_Carrito_Item" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_PedidosDet" Width="1.5" PointX="2.9587531252572097" PointY="31.515712618602304" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_PedidosDet" Width="1.5" PointX="10.5" PointY="8.25" />
         <AssociationConnector Association="SinapsisModel.tel_Pedidos_tel_PedidosDet_FK1" />
         <AssociationConnector Association="SinapsisModel.FK_tel_PedidosDet_tel_PedidosDet" />
         <AssociationConnector Association="SinapsisModel.FK_tel_PedidosDet_tel_PedidosDet1" />
-        <AssociationConnector Association="SinapsisModel.FK_tel_PedidosDet_tel_Productos" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Comentarios" Width="1.5" PointX="0.5" PointY="22" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_TipoReclamo" Width="1.5" PointX="1.875" PointY="26.5" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Comentarios" Width="1.5" PointX="15" PointY="11" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_TipoReclamo" Width="1.5" PointX="12.75" PointY="11.625" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Comentarios_tel_TipoReclamo" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Ph_Interfase" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="SinapsisModel.sys_Menu" Width="1.5" PointX="11" PointY="4.25" />
-        <EntityTypeShape EntityType="SinapsisModel.sys_MenuDet" Width="1.5" PointX="15.375" PointY="4.25" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Ph_Interfase" Width="1.5" PointX="12.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SinapsisModel.sys_Menu" Width="1.5" PointX="12.75" PointY="7" />
+        <EntityTypeShape EntityType="SinapsisModel.sys_MenuDet" Width="1.5" PointX="15" PointY="7" />
         <AssociationConnector Association="SinapsisModel.FK_sys_MenuDet_sys_Menu" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_TipoPedido" Width="1.5" PointX="4.1502807606711434" PointY="13.561769536492308" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_TipoPedido" Width="1.5" PointX="6" PointY="38.125" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Pedidos_tel_TipoPedido" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Opciones" Width="1.5" PointX="0.875" PointY="16.25" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_OpcionesDet" Width="1.5" PointX="10.098188844555146" PointY="30.947012334571692" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Opciones" Width="1.5" PointX="8.25" PointY="4.25" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_OpcionesDet" Width="1.5" PointX="10.5" PointY="22" />
         <AssociationConnector Association="SinapsisModel.FK_tel_OpcionesDet_tel_Opciones" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_ProductoOpcion" Width="1.5" PointX="6.875" PointY="14.25" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_ProductoOpcion" Width="1.5" PointX="10.5" PointY="13.75" />
         <AssociationConnector Association="SinapsisModel.FK_tel_ProductoOpcion_tel_Opciones" />
-        <AssociationConnector Association="SinapsisModel.FK_tel_ProductoOpcion_Productos" />
-        <EntityTypeShape EntityType="SinapsisModel.sys_ReporteEmpresa" Width="1.5" PointX="8.4484738430234021" PointY="12.689401498385426" />
-        <EntityTypeShape EntityType="SinapsisModel.sys_Reportes" Width="1.5" PointX="0.875" PointY="2.75" />
-        <EntityTypeShape EntityType="SinapsisModel.sys_UsuarioEmpresa" Width="1.5" PointX="9.3440576835274971" PointY="30.909475951879042" />
-        <EntityTypeShape EntityType="SinapsisModel.UsersInfo" Width="1.5" PointX="11.760046519227348" PointY="27.162541789544068" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Moviles" Width="1.5" PointX="11.673975219798262" PointY="10.654171441986305" />
+        <EntityTypeShape EntityType="SinapsisModel.sys_ReporteEmpresa" Width="1.5" PointX="14.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SinapsisModel.sys_Reportes" Width="1.5" PointX="15.75" PointY="2.75" />
+        <EntityTypeShape EntityType="SinapsisModel.sys_UsuarioEmpresa" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="SinapsisModel.UsersInfo" Width="1.5" PointX="16.75" PointY="15.75" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Moviles" Width="1.5" PointX="6" PointY="34.625" />
         <AssociationConnector Association="SinapsisModel.tel_Moviles_tel_Pedidos_FK1" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Moviles_tel_Sucursal" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_Tel_Direcciones" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_TipoCliente" Width="1.5" PointX="1.2317668223901497" PointY="27.610715655428692" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_TipoCliente" Width="1.5" PointX="3.75" PointY="29.375" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Clientes_tel_TipoCliente" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_FormaPago" Width="1.5" PointX="3.8229109364668421" PointY="25.135424968383937" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_FormaPago" Width="1.5" PointX="6" PointY="41" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_tel_FormaPago" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Pedidos_tel_FormaPago" />
-        <EntityTypeShape EntityType="SinapsisModel.sys_ReportesGEO" Width="1.5" PointX="10.310926967445262" PointY="17.170905121216041" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Faltantes" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Insumos" Width="1.5" PointX="11.589261079015797" PointY="28.603496669141343" />
+        <EntityTypeShape EntityType="SinapsisModel.sys_ReportesGEO" Width="1.5" PointX="14.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Faltantes" Width="1.5" PointX="13" PointY="2.875" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Insumos" Width="1.5" PointX="10.75" PointY="3.125" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Faltantes_tel_Insumos" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Avisos" Width="1.5" PointX="7" PointY="5.875" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Barrios" Width="1.5" PointX="2.1275602216495018" PointY="2.8759678466599286" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_Ciudades" Width="1.5" PointX="9.2623314062423674" PointY="24.767056536286631" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Avisos" Width="1.5" PointX="16.75" PointY="18.75" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Barrios" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Ciudades" Width="1.5" PointX="1.5" PointY="4.75" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Barrios_tel_Ciudades" />
         <AssociationConnector Association="SinapsisModel.FK_Tel_Direcciones_tel_Barrios" />
         <AssociationConnector Association="SinapsisModel.FK_Tel_Direcciones_tel_Ciudades" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_MovilTracker" Width="1.5" PointX="13.875" PointY="10.625" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_MovilTracker" Width="1.5" PointX="8.25" PointY="28.625" />
         <AssociationConnector Association="SinapsisModel.FK_tel_MovilTracker_tel_Moviles" />
-        <EntityTypeShape EntityType="SinapsisModel.tel_ListaPrecio" Width="1.5" PointX="4.375" PointY="0.875" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_ListaPrecio" Width="1.5" PointX="5.25" PointY="9.5" />
         <AssociationConnector Association="SinapsisModel.FK_tel_Precios_tel_ListaPrecio" />
-      </Diagram>
+        <EntityTypeShape EntityType="SinapsisModel.sys_Eventos" Width="1.5" PointX="17.75" PointY="2.75" />
+        <EntityTypeShape EntityType="SinapsisModel.tel_Productos" Width="1.5" PointX="5.25" PointY="12.875" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Carrito_Item_tel_Productos" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Productos_tel_Familia" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Productos_tel_Linea" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_PedidosDet_tel_Productos" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_Precios_tel_Productos" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_ProductoOpcion_Productos" />
+        <AssociationConnector Association="SinapsisModel.FK_tel_CombosDet_tel_Productos" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

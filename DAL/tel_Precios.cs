@@ -19,8 +19,9 @@ namespace DAL
         public string IdProducto { get; set; }
         public Nullable<decimal> Precio { get; set; }
         public string IdLista { get; set; }
+        public Nullable<int> IdVersion { get; set; }
     
-        public virtual tel_Productos tel_Productos { get; set; }
         public virtual tel_ListaPrecio tel_ListaPrecio { get; set; }
+        public virtual tel_Productos tel_Productos { get; set; }
     }
 }

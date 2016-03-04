@@ -30,8 +30,8 @@ namespace DAL
         public Nullable<int> IdCIPadre { get; set; }
     
         public virtual tel_Carrito tel_Carrito { get; set; }
-        public virtual tel_Productos tel_Productos { get; set; }
         public virtual ICollection<tel_Carrito_Item> tel_Carrito_Item1 { get; set; }
         public virtual tel_Carrito_Item tel_Carrito_Item2 { get; set; }
+        public virtual tel_Productos tel_Productos { get; set; }
     }
 }

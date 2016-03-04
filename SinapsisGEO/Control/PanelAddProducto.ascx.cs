@@ -143,7 +143,8 @@ namespace SinapsisGEO.Control
 
                 if (chkMitad.Checked)
                 {
-                    var prod = db.tel_Productos.Find(this.IdProducto.Text);
+                    //var prod = db.tel_Productos.Find(this.IdProducto.Text);
+                    var prod = db.tel_Productos.Find(Global.IdEmpresa, this.IdProducto.Text);
 
                     if (prod.PermiteMitad.HasValue && prod.PermiteMitad.Value)
                     {

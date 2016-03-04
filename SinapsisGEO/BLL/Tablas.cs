@@ -13,6 +13,19 @@ namespace SinapsisGEO.BLL
             this.db = db;
         }
 
+        public int sys_VersionAdd(int IdEmpresa,string Usuario)
+        {
+            DAL.sys_Eventos v =new DAL.sys_Eventos();
+           v.IdEmpresa=IdEmpresa;
+           v.Usuario = Usuario;
+            v.FechaEvento=DateTime.Now;
+            db.sys_Eventos.Add(v);
+            db.SaveChanges();
+            return v.IdEvento;
+
+        }
+
+
         public IQueryable<DAL.tel_Familia> GetFamilias()
         {
             var query = this.db.tel_Familia.Where(p => p.IdEmpresa == Global.IdEmpresa & p.Activo==true);
@@ -34,6 +47,11 @@ namespace SinapsisGEO.BLL
             using (DAL.SinapsisEntities db = new DAL.SinapsisEntities())
             {
                 var query = db.tel_Opciones.Include("tel_OpcionesDet").Where(p => p.IdEmpresa == Global.IdEmpresa & p.IdOpcion==IdOpcion);
+
+                var q = from o in db.tel_Opciones join od in db.tel_OpcionesDet on o.IdOpcion equals od.IdOpcion
+                        where o.IdEmpresa==Global.IdEmpresa & o.IdOpcion==IdOpcion & od.Activo==true
+                        select o ;
+                        
 
                 return query.OrderBy(p => p.Titulo).FirstOrDefault();
             
@@ -80,9 +98,9 @@ namespace SinapsisGEO.BLL
             {
 
                 var query = from s in db.tel_Productos
-                            join od in db.tel_OpcionesDet on s.IdProducto equals od.IdProducto
+                            join od in db.tel_OpcionesDet on s.IdProducto equals od.IdProducto    
                             join o in db.tel_Opciones on od.IdOpcion equals o.IdOpcion
-                            where o.IdOpcion == IdOpcion
+                            where o.IdOpcion == IdOpcion & od.Activo==true && s.IdEmpresa==Global.IdEmpresa
                             orderby s.DescripcionCorta
                             select new DAL.Opciones { IdProducto = s.IdProducto, Descripcion = s.DescripcionCorta, Predet = od.Predet, Cantidad= od.Predet.HasValue && od.Predet.Value==true ? o.Maximo.Value : 0 };
 

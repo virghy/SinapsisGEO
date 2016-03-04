@@ -27,7 +27,6 @@ namespace DAL
         public Nullable<bool> Activo { get; set; }
         public Nullable<bool> PermiteMitad { get; set; }
     
-        public virtual tel_Productos tel_Productos { get; set; }
         public virtual ICollection<tel_CombosDet> tel_CombosDet { get; set; }
     }
 }

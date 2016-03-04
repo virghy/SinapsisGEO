@@ -41,7 +41,7 @@ namespace SinapsisGEO.Admin
                 foreach (var item in lista)
                 {
                     
-                    db.ph_ActualizarPrecio(Global.IdEmpresa, item.IDARTICULO, item.PRECIO, item.IDLISTA.ToString(), item.LISTA);
+                    db.ph_ActualizarPrecio(Global.IdEmpresa, item.IDARTICULO, item.PRECIO, item.IDLISTA.ToString(), item.LISTA,null);
                 }
                 db.SaveChanges();
             }

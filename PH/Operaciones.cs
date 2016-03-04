@@ -153,7 +153,15 @@ namespace PH
 						cm.IDPRODUCTO_CMB= myreader.GetInt32(5);
 						cm.IDPRODUCTO = myreader.GetString(6);
 						cm.PRODUCTO = myreader.GetString(7);
-						cm.CANTIDAD= myreader.GetDecimal(8);
+                        if (!myreader.IsDBNull(8))
+                        {
+                            cm.CANTIDAD = myreader.GetDecimal(8);
+                        }
+                        else
+                        {
+                            cm.CANTIDAD = 0;
+                        }
+						
 						cm.PREDETERMINADO=myreader.GetInt32(9);
 
 						if (!myreader.IsDBNull(10))
@@ -194,9 +202,9 @@ namespace PH
 			return lista;
 		}
 
-        public List<PH.Entidades.SP_CALL_PRODUCTO> SP_CALL_PRODUCTO(string IdProducto)
+		public List<PH.Entidades.SP_CALL_PRODUCTO> SP_CALL_PRODUCTO(string IdProducto)
 		{
-			PH.Entidades.SP_CALL_PRODUCTO cm = null;
+			
 			List<PH.Entidades.SP_CALL_PRODUCTO> lista = new List<Entidades.SP_CALL_PRODUCTO>();
 			using (FirebirdSql.Data.FirebirdClient.FbConnection cn = new FbConnection(ConfigurationManager.ConnectionStrings["PHConnection"].ConnectionString))
 			{
@@ -209,93 +217,16 @@ namespace PH
 					  new FbCommand(spName, cn);
 					// new FbCommand("Select * From " + spName + "(@IDSucursal,@Header,@Details,@Cliente,@IdPedido)", cn);
 					// readCommand.Parameters.Add(new FbParameter("@IDPROMO", IdProducto));
-                    readCommand.Parameters.Add(new FbParameter("@IDARTICULO", IdProducto));
+					readCommand.Parameters.Add(new FbParameter("@IDARTICULO", IdProducto));
 
 					FbDataReader myreader = readCommand.ExecuteReader();
 					while (myreader.Read())
 					{
-						
-						
-						cm = new PH.Entidades.SP_CALL_PRODUCTO();
-						cm.IDARTICULO   = myreader.GetString(0);
-                        if (!myreader.IsDBNull(1))
-                        {
-                            cm.IDGRUPO = myreader.GetInt32(1);
-                        }
-                        if (!myreader.IsDBNull(2))
-                        {
-                            cm.GRUPO = myreader.GetString(2);
-                        }
-                        if (!myreader.IsDBNull(3))
-                        {
-                            cm.IDMEDIDA = myreader.GetInt32(3);
-                        }
-                        if (!myreader.IsDBNull(4))
-                        {
-                            cm.IDLINEA = myreader.GetInt32(4);
-                        }
 
-                        if (!myreader.IsDBNull(5))
-                        {
-                            cm.LINEA  = myreader.GetString(5);
-                        }
 
-                        if (!myreader.IsDBNull(6))
-                        {
-                            cm.ARTICULO = myreader.GetString(6);
-                        }
+						PH.Entidades.SP_CALL_PRODUCTO cm ;
+						cm = ReaderToProducto(myreader);
 
-                        if (!myreader.IsDBNull(7))
-                        {
-                            cm.ESTADO = myreader.GetString(7);
-                        }
-                        if (!myreader.IsDBNull(8))
-                        {
-                            cm.DESCRIPCION_CORTA = myreader.GetString(8);
-                        }
-                        if (!myreader.IsDBNull(9))
-                        {
-                            cm.IDIMPUESTO = myreader.GetInt32(9);
-                        }
-
-                        if (!myreader.IsDBNull(10))
-                        {
-                            cm.IDFAMILIA = myreader.GetInt32(10);
-                        }
-                        if (!myreader.IsDBNull(11))
-                        {
-                            cm.FAMILIA = myreader.GetString(11);
-                        }
-                        if (!myreader.IsDBNull(12))
-                        {
-                            cm.IDMARCA = myreader.GetInt32(12);
-                        }
-                        if (!myreader.IsDBNull(13))
-                        {
-                            cm.IDCOLECCION = myreader.GetInt32(13);
-                        }
-                        if (!myreader.IsDBNull(14))
-                        {
-                            cm.COMBO = myreader.GetInt32(14);
-                        }
-
-                        if (!myreader.IsDBNull(15))
-                        {
-                            cm.PRODUCCION = myreader.GetInt32(15);
-                        }
-                        if (!myreader.IsDBNull(16))
-                        {
-                            cm.IDFRANQUICIA = myreader.GetInt32(16);
-                        }
-                        if (!myreader.IsDBNull(17))
-                        {
-                            cm.FRANQUICIA = myreader.GetString(17);
-                        }
-
-                        if (!myreader.IsDBNull(18))
-                        {
-                            cm.DESCRIPCION_WEB = myreader.GetString(18);
-                        }
 						lista.Add(cm);
 
 					}
@@ -316,6 +247,191 @@ namespace PH
 			return lista;
 		}
 
+        public List<PH.Entidades.SP_CALL_PRODUCTO> SP_CALL_INSUMO(string IdProducto)
+        {
+
+            List<PH.Entidades.SP_CALL_PRODUCTO> lista = new List<Entidades.SP_CALL_PRODUCTO>();
+            using (FirebirdSql.Data.FirebirdClient.FbConnection cn = new FbConnection(ConfigurationManager.ConnectionStrings["PHConnection"].ConnectionString))
+            {
+                try
+                {
+                    cn.Open();
+                    string spName = ConfigurationManager.AppSettings["SP_CALL_INSUMO"];
+                    // declare command
+                    FbCommand readCommand =
+                      new FbCommand(spName, cn);
+                    // new FbCommand("Select * From " + spName + "(@IDSucursal,@Header,@Details,@Cliente,@IdPedido)", cn);
+                    // readCommand.Parameters.Add(new FbParameter("@IDPROMO", IdProducto));
+                    readCommand.Parameters.Add(new FbParameter("@IDARTICULO", IdProducto));
+
+                    FbDataReader myreader = readCommand.ExecuteReader();
+                    while (myreader.Read())
+                    {
+
+
+                        PH.Entidades.SP_CALL_PRODUCTO cm;
+                        cm = ReaderToProducto(myreader);
+
+                        lista.Add(cm);
+
+                    }
+                    myreader.Close(); // we are done with the reader
+                }
+                catch (Exception x)
+                {
+                    //MessageBox.Show(x.Message);
+                    throw x;
+                }
+                finally
+                {
+                    cn.Close();
+                }
+
+            }
+
+            return lista;
+        }
+
+		public List<PH.Entidades.SP_CALL_PRODUCTO> SP_CALL_PRODUCTO_FULL(String Tipo)
+		{
+
+			List<PH.Entidades.SP_CALL_PRODUCTO> lista = new List<Entidades.SP_CALL_PRODUCTO>();
+			using (FirebirdSql.Data.FirebirdClient.FbConnection cn = new FbConnection(ConfigurationManager.ConnectionStrings["PHConnection"].ConnectionString))
+			{
+				try
+				{
+					cn.Open();
+                    string spName;
+                  if (Tipo=="P")
+                  {
+                      spName = ConfigurationManager.AppSettings["SP_CALL_PRODUCTO_FULL"];
+                  }
+                  else
+                  {
+                      spName = ConfigurationManager.AppSettings["SP_CALL_INSUMOS_FULL"];
+                  }
+					
+					// declare command
+					FbCommand readCommand =
+					  new FbCommand(spName, cn);
+					// new FbCommand("Select * From " + spName + "(@IDSucursal,@Header,@Details,@Cliente,@IdPedido)", cn);
+					// readCommand.Parameters.Add(new FbParameter("@IDPROMO", IdProducto));
+					//readCommand.Parameters.Add(new FbParameter("@IDARTICULO", IdProducto));
+
+					FbDataReader myreader = readCommand.ExecuteReader();
+					while (myreader.Read())
+					{
+
+
+                        PH.Entidades.SP_CALL_PRODUCTO cm = ReaderToProducto(myreader);
+
+						lista.Add(cm);
+
+					}
+					myreader.Close(); // we are done with the reader
+				}
+				catch (Exception x)
+				{
+					//MessageBox.Show(x.Message);
+					throw x;
+				}
+				finally
+				{
+					cn.Close();
+				}
+
+			}
+
+			return lista;
+		}
+
+		private PH.Entidades.SP_CALL_PRODUCTO ReaderToProducto(FbDataReader myreader)
+		{
+			PH.Entidades.SP_CALL_PRODUCTO cm = new PH.Entidades.SP_CALL_PRODUCTO();
+
+			cm.IDARTICULO = myreader.GetString(0);
+
+			if (!myreader.IsDBNull(1))
+			{
+				cm.IDGRUPO = myreader.GetInt32(1);
+			}
+			if (!myreader.IsDBNull(2))
+			{
+				cm.GRUPO = myreader.GetString(2);
+			}
+			if (!myreader.IsDBNull(3))
+			{
+				cm.IDMEDIDA = myreader.GetInt32(3);
+			}
+			if (!myreader.IsDBNull(4))
+			{
+				cm.IDLINEA = myreader.GetInt32(4);
+			}
+
+			if (!myreader.IsDBNull(5))
+			{
+				cm.LINEA = myreader.GetString(5);
+			}
+
+			if (!myreader.IsDBNull(6))
+			{
+				cm.ARTICULO = myreader.GetString(6);
+			}
+
+			if (!myreader.IsDBNull(7))
+			{
+				cm.ESTADO = myreader.GetString(7);
+			}
+			if (!myreader.IsDBNull(8))
+			{
+				cm.DESCRIPCION_CORTA = myreader.GetString(8);
+			}
+			if (!myreader.IsDBNull(9))
+			{
+				cm.IDIMPUESTO = myreader.GetInt32(9);
+			}
+
+			if (!myreader.IsDBNull(10))
+			{
+				cm.IDFAMILIA = myreader.GetInt32(10);
+			}
+			if (!myreader.IsDBNull(11))
+			{
+				cm.FAMILIA = myreader.GetString(11);
+			}
+			if (!myreader.IsDBNull(12))
+			{
+				cm.IDMARCA = myreader.GetInt32(12);
+			}
+			if (!myreader.IsDBNull(13))
+			{
+				cm.IDCOLECCION = myreader.GetInt32(13);
+			}
+			if (!myreader.IsDBNull(14))
+			{
+				cm.COMBO = myreader.GetInt32(14);
+			}
+
+			if (!myreader.IsDBNull(15))
+			{
+				cm.PRODUCCION = myreader.GetInt32(15);
+			}
+			if (!myreader.IsDBNull(16))
+			{
+				cm.IDFRANQUICIA = myreader.GetInt32(16);
+			}
+			if (!myreader.IsDBNull(17))
+			{
+				cm.FRANQUICIA = myreader.GetString(17);
+			}
+
+			if (!myreader.IsDBNull(18))
+			{
+				cm.DESCRIPCION_WEB = myreader.GetString(18);
+			}
+            
+			return cm;
+		}
 		public void SP_TEST(int IdModelo, string Descripcion)
 		{
 			PH.Entidades.SP_CALL_PRECIO cm = null;

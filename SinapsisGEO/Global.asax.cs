@@ -70,6 +70,7 @@ namespace SinapsisGEO
             LastError = Server.GetLastError();
             log.Error(LastError.Message, LastError);
             
+            
         }
     }
 }

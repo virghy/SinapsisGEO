@@ -41,26 +41,27 @@ namespace SinapsisGEO.Admin
 
             using (DAL.SinapsisEntities db= new DAL.SinapsisEntities())
             {
+
                 foreach (var item in prod)
                 {
 
                     db.ph_ActualizarProducto(Global.IdEmpresa, item.IDARTICULO, item.IDGRUPO, item.GRUPO, item.IDMEDIDA, item.IDLINEA,
                         item.LINEA, item.ARTICULO, item.ESTADO, item.DESCRIPCION_CORTA, item.IDIMPUESTO, item.IDFAMILIA,
                         item.FAMILIA, item.IDMARCA, item.IDCOLECCION, Convert.ToInt16( item.COMBO), Convert.ToInt16(item.PRODUCCION), item.IDFRANQUICIA,
-                        item.FRANQUICIA, item.DESCRIPCION_WEB);
+                        item.FRANQUICIA, item.DESCRIPCION_WEB,null);
                 }
 
                 foreach (var item in precios)
                 {
                     
-                    db.ph_ActualizarPrecio(Global.IdEmpresa, item.IDARTICULO, item.PRECIO, item.IDLISTA.ToString(), item.LISTA);
+                    db.ph_ActualizarPrecio(Global.IdEmpresa, item.IDARTICULO, item.PRECIO, item.IDLISTA.ToString(), item.LISTA,null);
                 }
                 foreach (var item in combos)
                 {
 
                     db.ph_ActualizarCombo(Global.IdEmpresa, item.IDPROMO, item.PROMO, item.IDDEFINICION_PROMO, item.DEFINICION_PROMO,
                         Convert.ToInt32(item.CANTIDAD), item.IDPRODUCTO_CMB, item.IDPRODUCTO, item.PRODUCTO, item.CANTIDAD, item.PREDETERMINADO,
-                        item.ESTADO, item.COMBINACIONES, item.AGRANDADO, item.IDART_COSTO_AGRANDADO);
+                        item.ESTADO, item.COMBINACIONES, item.AGRANDADO, item.IDART_COSTO_AGRANDADO,null);
                       
                 }
                 db.SaveChanges();

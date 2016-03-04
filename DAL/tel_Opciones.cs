@@ -34,6 +34,7 @@ namespace DAL
         public Nullable<bool> PermiteMitad { get; set; }
         public Nullable<bool> EsCombo { get; set; }
         public string IdProducto { get; set; }
+        public Nullable<int> IdVersion { get; set; }
     
         public virtual ICollection<tel_OpcionesDet> tel_OpcionesDet { get; set; }
         public virtual ICollection<tel_ProductoOpcion> tel_ProductoOpcion { get; set; }
