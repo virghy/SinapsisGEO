@@ -104,7 +104,7 @@ namespace SinapsisGEO.BLL
                             orderby s.DescripcionCorta
                             select new DAL.Opciones { IdProducto = s.IdProducto, Descripcion = s.DescripcionCorta, Predet = od.Predet, Cantidad= od.Predet.HasValue && od.Predet.Value==true ? o.Maximo.Value : 0 };
 
-                // return   query.OrderBy(p => p.Descripcion).ToList();
+                // return   query.OrderBy(p => p.Descripcion).ToList(); 
                 return query.OrderByDescending(p => p.Predet).ToList();
 
             }
